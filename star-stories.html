@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAR Stories — Rachel Hull</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@300&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%235C3A7E' rx='6'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23EDE8F5'>★</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --deep-plum: #3D2454;
+      --lavender: #EDE8F5;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --slate-light: #909090;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── STICKY HEADER ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,246,243,0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--plum);
+      white-space: nowrap;
+    }
+
+    .header-role {
+      font-size: 13px;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+
+    .header-dot {
+      font-size: 18px;
+      line-height: 1;
+      margin: 0 0.25rem;
+      color: rgba(0,0,0,0.2);
+    }
+
+    .header-section {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+
+    /* ── MAIN LAYOUT ───────────────────────────────────────────── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ── PAGE INTRO ────────────────────────────────────────────── */
+    .page-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-headline {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 300;
+      font-size: 36px;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .page-description {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── FILTER BAR ────────────────────────────────────────────── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-tag {
+      background: var(--lavender);
+      color: var(--plum);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 4px 11px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .filter-tag:hover {
+      border-color: var(--plum);
+    }
+
+    .filter-tag.active {
+      background: var(--plum);
+      color: #fff;
+      border-color: var(--plum);
+    }
+
+    /* count badge inside active filter tag */
+    .filter-tag .filter-count {
+      display: inline-block;
+      margin-left: 5px;
+      font-size: 10px;
+      opacity: 0.75;
+    }
+
+    /* empty state */
+    .empty-state {
+      display: none;
+      padding: 2.5rem 0 1rem;
+      font-size: 14px;
+      color: var(--slate);
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    /* ── STORY LIST ────────────────────────────────────────────── */
+    .story-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .story-item {
+      border-top: 0.5px solid var(--border);
+      transition: opacity 0.15s;
+    }
+
+    .story-item:last-child {
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .story-item.hidden {
+      display: none;
+    }
+
+    /* keep bottom border on last visible item */
+    .story-item.last-visible {
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* ── ACCORDION TRIGGER ─────────────────────────────────────── */
+    .story-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 1.25rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .story-trigger:hover .story-lede {
+      color: var(--ink);
+    }
+
+    .story-trigger-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .story-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .story-company {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    .story-lede {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.45;
+      margin-bottom: 0.6rem;
+      transition: color 0.12s;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* story tags — highlight matching tag when filtered */
+    .tag {
+      background: var(--lavender);
+      color: var(--plum);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 3px 10px;
+      white-space: nowrap;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .tag.matched {
+      background: var(--plum);
+      color: #fff;
+    }
+
+    /* chevron */
+    .chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      color: var(--slate-light);
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .story-item.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    /* metric badge */
+    .metric-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .metric-num {
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .metric-label {
+      background: var(--lavender);
+      color: var(--plum);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      border-radius: 3px;
+      padding: 2px 7px;
+    }
+
+    /* ── ACCORDION PANEL ───────────────────────────────────────── */
+    .story-panel {
+      display: none;
+      padding: 0 0 1.75rem;
+    }
+
+    .story-item.open .story-panel {
+      display: block;
+    }
+
+    .star-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .star-section {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .star-label {
+      flex-shrink: 0;
+      width: 72px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--plum);
+      padding-top: 2px;
+      line-height: 1.6;
+    }
+
+    .star-text {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    .star-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--plum);
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* ── MOBILE ────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .page-headline { font-size: 28px; }
+      .header-role { display: none; }
+      main { padding: 2.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header>
+  <div class="header-inner">
+    <span class="header-name">Rachel Hull</span>
+    <span class="header-role">Lifecycle Growth Marketer</span>
+    <span class="header-dot">·</span>
+    <span class="header-section">STAR stories</span>
+  </div>
+</header>
+
+<main>
+
+  <p class="page-eyebrow">Interview evidence</p>
+  <h1 class="page-headline">Results I can prove<br>and exactly how I got there.</h1>
+  <p class="page-description">Each story below follows the STAR format — Situation, Task, Action, Result. Every metric is from production work, measured against holdout or a control group unless noted otherwise.</p>
+
+  <!-- FILTER BAR — populated by JS -->
+  <div class="filter-bar" id="filterBar" role="group" aria-label="Filter stories by skill"></div>
+
+  <div class="empty-state" id="emptyState">No stories match that filter.</div>
+
+  <div class="story-list" id="storyList">
+
+    <!-- STORY 1 -->
+    <div class="story-item" data-tags="Experimentation|Messaging Strategy|Feature Adoption|Customer.io">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">+72%</span>
+            <span class="metric-label">feature adoption</span>
+          </div>
+          <div class="story-lede">Reframed a fear-based upsell as an automation win — and validated it with an A/B path test built inside a platform migration.</div>
+          <div class="tag-row">
+            <span class="tag">Experimentation</span>
+            <span class="tag">Messaging Strategy</span>
+            <span class="tag">Feature Adoption</span>
+            <span class="tag">Customer.io</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">During a migration of the core Rent Payments retargeting flow from Klaviyo to Customer.io, I recognized the existing flow was several years old and built on a fear/loss-aversion messaging model tied to a landlord persona that no longer matched our broader acquisition mix.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Use the migration as an opportunity to validate whether the messaging still resonated — and increase conversion of "RP Clickers" (users who showed intent but didn't complete setup) by updating the value prop to align with current landlord mental models.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">I hypothesized that landlords didn't recognize themselves in the old messaging — they viewed rent collection as a solved problem, even if their actual "solution" was manual and tedious. Version B dropped the fear framing entirely and focused on removing drudgery: manual reminders, chasing late payments, writing receipts. I emphasized that the feature was free and saved hours of admin work. I built an A/B path test within the migration itself to validate the hypothesis.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">The automation-framed path delivered a <strong>72% lift in Rent Payment adoption</strong>. Rent Payments is a primary ARR driver via tenant fees and the platform's stickiest retention feature — creating a recurring monthly engagement loop with landlords.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-item" data-tags="Onboarding|Segmentation|Personalization|Experimentation|Liquid">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">+11%</span>
+            <span class="metric-label">onboarding conversion</span>
+          </div>
+          <div class="story-lede">Fixed an onboarding series failing to beat holdout by discovering the messaging was ignoring an entire landlord segment — and rebuilding with Liquid-driven personalization.</div>
+          <div class="tag-row">
+            <span class="tag">Onboarding</span>
+            <span class="tag">Segmentation</span>
+            <span class="tag">Personalization</span>
+            <span class="tag">Experimentation</span>
+            <span class="tag">Liquid</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant's onboarding series for incomplete signups hadn't been updated in some time, despite meaningful changes in the acquisition mix. For two specific intent segments, the series wasn't beating holdout — meaning the emails were producing no measurable lift over doing nothing.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Redesign the incomplete-signup onboarding series for users who signed up to find tenants ("Marketing" intent) and users who signed up to collect rent ("Rent Payment" intent) — to drive property-add completion and clear holdout performance.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">I diagnosed portfolio size as the primary gap: all messaging had been written for small landlords, systematically ignoring larger landlords who behaved differently — lower open rates but significantly higher conversion when they did open, and entirely different value propositions. I rebuilt the series as a single journey per intent segment, using Liquid scripting to serve differentiated content blocks by property count. For larger landlords, I surfaced the Payments Dashboard and optimized subject lines to lift open rates. For smaller landlords, messaging stayed benefit-forward at their scale. A/B tested old vs. new.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text"><strong>+11% relative lift</strong> in property-add completion for Marketing intent signups and <strong>+5% lift</strong> for Rent Payment intent signups — both clearing holdout performance the original series had never reached. Durable learning: larger landlords convert at a disproportionate rate when they open.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-item" data-tags="Platform Migration|Martech Infrastructure|Customer.io|Cross-functional">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">30</span>
+            <span class="metric-label">net-new emails in 6 weeks</span>
+          </div>
+          <div class="story-lede">Migrated transactional email out of Engineering's stack and into Marketing — consolidating three platforms and unlocking personalization that a static SendGrid architecture couldn't support.</div>
+          <div class="tag-row">
+            <span class="tag">Platform Migration</span>
+            <span class="tag">Martech Infrastructure</span>
+            <span class="tag">Customer.io</span>
+            <span class="tag">Cross-functional</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant's transactional email infrastructure was fragmented across SendGrid, Klaviyo, and Intercom — each owned by a different team. SendGrid, controlled by Engineering, made personalization structurally difficult: static templates, limited dynamic content, and any change requiring a dev ticket. When TurboTenant launched a managed property service, the scope of personalized transactional communication required made the fragmentation untenable.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Migrate transactional email ownership from Engineering/SendGrid into Marketing/Customer.io, consolidating the martech stack and enabling the personalization and testing capabilities the business needed to scale.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Led the full migration across multiple product teams — building Trello-based per-team workflows, joining Sprint Demos to stay ahead of product changes, and creating documentation to build cross-team buy-in. Rebuilt emails in Customer.io using Liquid logic and dynamic content blocks so a single template could surface the right content per user situation. Simultaneously unlocked structural A/B testing that SendGrid's architecture had blocked.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">Delivered <strong>30 net-new transactional emails in 6 weeks</strong> at product launch — with 3–4 content revisions per email as procedures evolved — at a pace Engineering couldn't have matched mid-release. Testing cadence accelerated roughly fourfold. Established Marketing as the owner of transactional messaging, removing a persistent dev dependency and enabling channel expansion to SMS and push.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 4 -->
+    <div class="story-item" data-tags="Deliverability|Data-driven Influence|Stakeholder Management|List Hygiene">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">−40%</span>
+            <span class="metric-label">unsubscribe rate</span>
+          </div>
+          <div class="story-lede">Turned down an executive request to blast 8M addresses by building a data case that reframed the question — and earned the organizational buy-in to fix deliverability for good.</div>
+          <div class="tag-row">
+            <span class="tag">Deliverability</span>
+            <span class="tag">Data-driven Influence</span>
+            <span class="tag">Stakeholder Management</span>
+            <span class="tag">List Hygiene</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant had 8 million email addresses accumulated over 10 years, but only ~100–200K landlords were actively using the platform. The CEO's Chief of Staff pushed to blast a promotional partner offer to the largest possible audience — with an attempt to pull rank rather than discuss tradeoffs.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Push back on an executive-level request in a way that would actually land — protect email deliverability and sender reputation without turning it into a political fight.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">I pulled cohort data from Metabase and Klaviyo and built a chart showing the correlation between user recency and adverse engagement rates. I connected that to deliverability mechanics: a spike in spam reports triggers inbox providers — particularly Google — to downgrade sender reputation for everyone, including active users. The case reframed the ask from "how big can we go" to "what does this cost us permanently." The CEO sided with the data. That organizational buy-in then enabled broader deliverability reforms: sunsetting disengaged users, tightening the newsletter blast, establishing best practices for promotional GTM sends.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">Partner send scoped to users active in the last 90 days. Broader reforms drove unsubscribe rate from 0.355% to 0.213% — a <strong>~40% improvement</strong> — during a period of high new signup volume.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 5 -->
+    <div class="story-item" data-tags="Churn Prevention|Journey Design|PLG|Feature Adoption">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">5% → 40%</span>
+            <span class="metric-label">feature adoption</span>
+          </div>
+          <div class="story-lede">Converted a transactional, one-and-done user segment into an ongoing platform relationship by leading with the one feature that creates a monthly return reason.</div>
+          <div class="tag-row">
+            <span class="tag">Churn Prevention</span>
+            <span class="tag">Journey Design</span>
+            <span class="tag">PLG</span>
+            <span class="tag">Feature Adoption</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant's "Screening to Lease" journey targeted users who signed up to run a one-time background check — a transactional, low-intent segment with 95% within-year dormancy. The journey was underperforming against holdout and Rent Payments adoption was under 5%.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Diagnose why the journey was failing and redesign it to drive meaningful feature adoption in a segment that hadn't come to TurboTenant for an ongoing relationship.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Audited the existing sequence and identified two structural problems: the email order followed landlord workflow logic that assumed users planned to stay — most didn't — and the first email promoted a $75 lease feature, asking a cold user to pay again immediately. I reframed the strategic goal: instead of walking users through a landlord checklist, the journey needed to reposition TurboTenant as worth an ongoing relationship. I rebuilt the sequence to lead with Rent Payments — free for landlords, recurring by nature, and the feature most likely to create a monthly visit cadence.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">Rent Payments adoption rose from under 5% to <strong>40% — an eightfold increase</strong> — measured pre/post against the redesigned journey across ~200 users per week.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 6 -->
+    <div class="story-item" data-tags="Freemium Conversion|Behavioral Triggers|A/B Testing|Personalization">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">+15%</span>
+            <span class="metric-label">subscription conversions</span>
+          </div>
+          <div class="story-lede">Replaced a generic premium pitch with a 3-email sequence triggered by in-product behavior and personalized by business attributes — and tested it 50/50 against the existing flow.</div>
+          <div class="tag-row">
+            <span class="tag">Freemium Conversion</span>
+            <span class="tag">Behavioral Triggers</span>
+            <span class="tag">A/B Testing</span>
+            <span class="tag">Personalization</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant had an existing post-modal email sequence targeting freemium users who engaged with Premium upgrade prompts in-product, but conversion performance left room to improve.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Redesign the sequence to convert more high-intent freemium users into paying subscribers by making the value prop more relevant and the cadence more deliberate.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Built a 3-email sequence over 10 days, triggered by behavioral signal (in-product modal clicks — not dismissals) and personalized using business-level attributes: property count, landlord tenure, and self-reported feature priorities. Email 1 led with the single most relevant Premium feature for that user. Email 2 gave the full value prop. Email 3 offered a discount. Tested 50/50 against the existing flow.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">The redesigned sequence achieved a 30% conversion rate — a <strong>15% lift over the control</strong> — confirming that leading with personalized, attribute-driven value props outperformed a generic premium pitch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 7 -->
+    <div class="story-item" data-tags="Campaign Strategy|Engagement|Personalization|Retention">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">55%</span>
+            <span class="metric-label">open rate</span>
+          </div>
+          <div class="story-lede">Redesigned a year-in-review campaign to include the users with "bad" years — by reframing weak stats as adoption opportunities, not things to hide.</div>
+          <div class="tag-row">
+            <span class="tag">Campaign Strategy</span>
+            <span class="tag">Engagement</span>
+            <span class="tag">Personalization</span>
+            <span class="tag">Retention</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant's prior year-in-review campaign had retention as its primary goal — but that framing had two structural problems: it limited the eligible audience to users with strong numbers, and a single email untimed to renewal has limited retention impact on its own.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Redesign the campaign with a goal that could reach a broader audience and drive measurable behavior — not just goodwill.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Reframed the strategic goal around feature adoption — unlocking users with low or zero activity. Instead of hiding weak stats, the campaign surfaced them as opportunities: a landlord with zero rent reminders sent saw that stat alongside copy explaining that Rent Payments would automate reminders so they'd never chase rent again. Personalization pulled from rent collected, features adopted vs. not adopted, portfolio growth, maintenance requests, and Premium status. Measured against a 15% random holdout, with non-openers tracked separately.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text"><strong>55% open rate, 4% CTR, 0.5% lift in 2-month subscriber retention</strong> against holdout — with incremental feature adoption gains across targeted features.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 8 -->
+    <div class="story-item" data-tags="Analytics|Measurement|Adobe Analytics|Revenue Attribution">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">Snagajob</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">+31%</span>
+            <span class="metric-label">revenue growth</span>
+          </div>
+          <div class="story-lede">Built lifecycle reporting from scratch — and the first thing it surfaced was that the highest-volume send program had the worst ROI in the portfolio.</div>
+          <div class="tag-row">
+            <span class="tag">Analytics</span>
+            <span class="tag">Measurement</span>
+            <span class="tag">Adobe Analytics</span>
+            <span class="tag">Revenue Attribution</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">Snagajob had Adobe Analytics connected to lifecycle email, but inconsistent event structure meant visit and revenue data couldn't be reliably monitored. Performance decisions were being made on opens and CTRs — not business outcomes. One series alone accounted for ~80% of send volume and was operating largely as spray-and-pray.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Fix the measurement layer so lifecycle performance could be evaluated against real business outcomes, then use that visibility to optimize.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Standardized Adobe Analytics event structure, classified all email programs into four themes (daily job recommendations, worker engagement, welcome/onboarding, transactional), and built a reporting framework capturing downstream performance: site visits, job views, applications, and direct session revenue via last-touch attribution. Validated against historical data to control for seasonality. Reliable baseline within six weeks.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">The report immediately surfaced a critical misallocation. Shifting resources toward engagement and onboarding — and scaling back job recommendation frequency — drove <strong>31% revenue growth, 6.7% visit growth, and 22% reduction in send volume</strong>. Efficiency and outcomes improved simultaneously.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 9 -->
+    <div class="story-item" data-tags="Behavioral Targeting|Segmentation|B2B2C|Personalization">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">Snagajob</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">+20%</span>
+            <span class="metric-label">return visits</span>
+          </div>
+          <div class="story-lede">Tested the assumption that hourly workers had high lateral job mobility — found it was wrong — and built a behavioral filtering system around what they actually wanted.</div>
+          <div class="tag-row">
+            <span class="tag">Behavioral Targeting</span>
+            <span class="tag">Segmentation</span>
+            <span class="tag">B2B2C</span>
+            <span class="tag">Personalization</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">Snagajob's emailed job recommendations were filtered by zip code only. The prevailing assumption was that hourly workers had high lateral mobility and low job-type preference — recommendations were broad by design.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Test whether that assumption was correct — and if not, build something better.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Used persona research and AI tools to investigate hourly worker job-seeking behavior. Found meaningful evidence that workers had strong preferences for job types similar to roles they'd recently applied for — lateral mobility was lower than assumed. Built a de novo job type taxonomy grounded in BLS categories and refined against Snagajob's application data, then filtered recommendations to match each worker's recent application history. Built and launched in approximately two months against a control group.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text"><strong>20% more return visits</strong> than the control group — validating both the behavioral insight and the filtering approach.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 10 -->
+    <div class="story-item" data-tags="AI Tools|Content Systems|Workflow Design|Copywriting">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">Snagajob</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">+70%</span>
+            <span class="metric-label">return visits vs. baseline</span>
+          </div>
+          <div class="story-lede">Built a repeatable AI-assisted content system in 2022 — before it was standard practice — that scaled output across email, blog, and social without losing brand voice.</div>
+          <div class="tag-row">
+            <span class="tag">AI Tools</span>
+            <span class="tag">Content Systems</span>
+            <span class="tag">Workflow Design</span>
+            <span class="tag">Copywriting</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">Running lifecycle at Snagajob meant producing high-quality content continuously against ~45MM sends/week. My scope then expanded to include all worker-facing blog and social content — roughly quadrupling my production workload. Early AI use surfaced an immediate problem: outputs varied widely in voice, tone, and format, and required heavy manual revision before anything could go out.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Build a repeatable AI-assisted content system that produced on-brand output across email, blog, and social without manual style correction on every piece.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Selected three top-performing worker blog posts that cleared both a quantitative bar (SEO) and a qualitative one (brand voice). Fed them to Jasper and prompted it to identify the underlying voice and style patterns — not to produce output, but to surface the rules embedded in the writing. Repeated the exercise with emails to capture register differences between formats. Embedded the resulting parameters into my standard prompt setup so voice, tone, and format handled themselves while individual prompts focused on topic and concept.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">Content scaled across three formats without adding headcount. One email produced through this system drove <strong>70% more return visits than baseline</strong> — a clean causal read. The AI-generated personas became a core input to the team's segmentation framework — a lasting change to how the team operated.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 11 -->
+    <div class="story-item" data-tags="Activation|0-to-1 Program Build|Behavioral Automation|Personalization">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">Conduent / BenefitWallet</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">5% → 27%</span>
+            <span class="metric-label">activation rate</span>
+          </div>
+          <div class="story-lede">Built the first lifecycle email program for an adoption-resistant segment — employees with unfunded HSAs who didn't understand what was wrong, why it mattered, or what to do.</div>
+          <div class="tag-row">
+            <span class="tag">Activation</span>
+            <span class="tag">0-to-1 Program Build</span>
+            <span class="tag">Behavioral Automation</span>
+            <span class="tag">Personalization</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">Every year, a significant percentage of new HSA account holders failed Patriot Act verification — a regulatory requirement preventing accounts from being funded without a confirmed physical address. Conduent's only outreach was a paper mail notice: dry, legalistic, delivered to an address that was sometimes the source of the problem. Response rates were around 5%.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Build the first lifecycle email program targeting this segment — employees who had an unfunded HSA but hadn't taken the steps to fix it, often because they didn't understand what was wrong, why it mattered, or what to do.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Automated a data trigger to identify employees in Patriot Act failure state and route them into a personalized email sequence. Messaging led with consequences relevant to each employee's situation: employer-funded account holders were told they were missing out on money their employer was trying to give them; self-funded holders were told they were losing HSA tax benefits. Required actions were personalized to the specific failure type. Included four automated follow-ups for non-responders. Rewrote tone from legalistic to value-forward. Measured against a paper-mail holdout at launch.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">Activation rate rose from 5% to <strong>27% — a fivefold increase</strong> — across approximately 4,000 employees annually.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 12 -->
+    <div class="story-item" data-tags="AI Tools|Technical Fluency|SMS|Python / API">
+      <button class="story-trigger" aria-expanded="false">
+        <div class="story-trigger-left">
+          <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
+          <div class="metric-badge">
+            <span class="metric-num">1 afternoon</span>
+            <span class="metric-label">vs. 2-week BI queue</span>
+          </div>
+          <div class="story-lede">Needed Twilio SMS performance data to plan a migration — so I wrote a Python script against the API in an afternoon instead of waiting two weeks for a BI request.</div>
+          <div class="tag-row">
+            <span class="tag">AI Tools</span>
+            <span class="tag">Technical Fluency</span>
+            <span class="tag">SMS</span>
+            <span class="tag">Python / API</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="story-panel" role="region">
+        <div class="star-divider"></div>
+        <div class="star-block">
+          <div class="star-section">
+            <span class="star-label">Situation</span>
+            <p class="star-text">TurboTenant's Product team used Twilio to send non-promotional SMS — campaigns outside Marketing's ownership and largely unmonitored. No one had visibility into total send volume or deliverability. I needed this data to plan a migration to a new sending architecture routing messages through Customer.io before Twilio execution. Twilio is a developer-first platform with no native marketer-facing reporting; pulling the data required API access and a custom script.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Task</span>
+            <p class="star-text">Get a working picture of Twilio SMS performance quickly enough to inform active planning decisions, without pulling BI resources onto a low-urgency exploratory request.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Action</span>
+            <p class="star-text">Using Cursor and Gemini, I wrote and ran a Python script against Twilio's API using credentials I already had access to. Iterated in Cursor until the script produced the output I needed. One hour of active work, two hours of background execution, yielding a CSV I could import directly into a spreadsheet.</p>
+          </div>
+          <div class="star-section">
+            <span class="star-label">Result</span>
+            <p class="star-text">Completed in an afternoon what would have taken a minimum of two weeks in the BI queue — and produced data that had apparently never existed for this team: a clear picture of non-promotional SMS volume and deliverability that we could use to sequence and prioritize the migration work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /story-list -->
+</main>
+
+<script>
+  // ── Collect all unique tags from stories ──────────────────────────
+  const allItems = Array.from(document.querySelectorAll('.story-item'));
+  const tagSet = new Set();
+  allItems.forEach(item => {
+    item.dataset.tags.split('|').forEach(t => tagSet.add(t.trim()));
+  });
+  const allTags = Array.from(tagSet).sort();
+
+  // ── Build filter bar ──────────────────────────────────────────────
+  const filterBar = document.getElementById('filterBar');
+  let activeTag = null;
+
+  allTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-tag';
+    btn.textContent = tag;
+    btn.setAttribute('aria-pressed', 'false');
+    btn.dataset.tag = tag;
+    btn.addEventListener('click', () => toggleFilter(tag, btn));
+    filterBar.appendChild(btn);
+  });
+
+  function toggleFilter(tag, btn) {
+    if (activeTag === tag) {
+      // Deactivate — show all
+      activeTag = null;
+      document.querySelectorAll('.filter-tag').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      applyFilter(null);
+    } else {
+      activeTag = tag;
+      document.querySelectorAll('.filter-tag').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      applyFilter(tag);
+    }
+  }
+
+  function applyFilter(tag) {
+    // Close all open accordions first
+    allItems.forEach(item => {
+      item.classList.remove('open');
+      item.querySelector('.story-trigger').setAttribute('aria-expanded', 'false');
+    });
+
+    let visibleCount = 0;
+    allItems.forEach(item => {
+      const itemTags = item.dataset.tags.split('|').map(t => t.trim());
+      const matches = tag === null || itemTags.includes(tag);
+      item.classList.toggle('hidden', !matches);
+      if (matches) visibleCount++;
+
+      // Highlight matching tag pills on the story
+      item.querySelectorAll('.tag').forEach(pill => {
+        pill.classList.toggle('matched', tag !== null && pill.textContent.trim() === tag);
+      });
+    });
+
+    // Empty state
+    document.getElementById('emptyState').classList.toggle('visible', visibleCount === 0);
+
+    // Re-apply border to last visible item
+    allItems.forEach(item => item.classList.remove('last-visible'));
+    const visible = allItems.filter(i => !i.classList.contains('hidden'));
+    if (visible.length > 0) visible[visible.length - 1].classList.add('last-visible');
+  }
+
+  // ── Accordion ─────────────────────────────────────────────────────
+  allItems.forEach(item => {
+    const trigger = item.querySelector('.story-trigger');
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      allItems.forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.story-trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        setTimeout(() => {
+          const top = item.getBoundingClientRect().top + window.scrollY - 68;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 50);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
