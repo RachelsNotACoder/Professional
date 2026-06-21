@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rachel Hull — Lifecycle & Growth Marketing</title>
+  <meta name="description" content="Senior lifecycle marketer specializing in activation, adoption, and expansion in product-led environments.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --plum-deep: #3D2454;
+      --lavender: #EDE8F5;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --max-width: 720px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--plum);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--plum);
+      font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    section + section {
+      border-top: 0.5px solid var(--border);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 4.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 1rem;
+    }
+
+    .hero-headline {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      max-width: 560px;
+    }
+
+    .hero-body {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.75;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── METRICS ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.7);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .metric-number {
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--plum);
+      background: var(--lavender);
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 5px;
+      vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+
+    .metric-desc {
+      font-size: 11px;
+      color: var(--slate);
+      line-height: 1.4;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--plum);
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 10px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--plum-deep);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--plum);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 9px 21px;
+      border-radius: 4px;
+      border: 1.5px solid var(--plum);
+      text-decoration: none;
+      margin-left: 10px;
+      transition: background 0.15s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--lavender);
+    }
+
+    /* ── WORK SECTION ── */
+    .section-heading {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 1.75rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .work-card {
+      background: #fff;
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .card-accent {
+      width: 32px;
+      height: 2px;
+      background: var(--plum);
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .card-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-stat {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .card-stat-meta {
+      font-size: 11px;
+      color: var(--slate);
+      font-style: italic;
+      margin-top: 5px;
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-heading {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+    }
+
+    .about-body {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 1.25rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--lavender);
+      color: var(--plum);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--plum);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--plum);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-strip {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-name">Rachel Hull</a>
+    <ul class="nav-links">
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">Senior Lifecycle Marketing</p>
+      <h1 class="hero-headline">Lifecycle systems that move numbers.</h1>
+      <p class="hero-body">I build behavioral automation, segmentation, and experimentation programs in product-led environments — and measure them against real business outcomes.</p>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-number">+72%<span class="metric-badge">lift</span></div>
+          <div class="metric-desc">Feature adoption · TurboTenant</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">31%<span class="metric-badge">rev growth</span></div>
+          <div class="metric-desc">With 22% fewer sends · Snagajob</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">5→27%<span class="metric-badge">activation</span></div>
+          <div class="metric-desc">Adoption-resistant segment · Conduent</div>
+        </div>
+      </div>
+
+      <a href="Rachel_Hull_Resume.pdf" class="btn-primary" download>Download resume</a>
+      <a href="contact.html" class="btn-ghost">Get in touch</a>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section>
+      <p class="section-heading">Selected work</p>
+      <div class="cards-grid">
+
+        <div class="work-card">
+          <div class="card-accent"></div>
+          <p class="card-eyebrow">TurboTenant · 2024–2026</p>
+          <h2 class="card-title">Rent Payment activation reframe</h2>
+          <p class="card-body">An aging fear-based retargeting flow hadn't been touched in years — and the landlord profile it was written for no longer matched the acquisition mix. I rebuilt the messaging around automation value, removing the loss-framing entirely, and A/B tested the hypothesis inside a platform migration.</p>
+          <div class="card-stat">+72%<span class="metric-badge">adoption lift</span></div>
+          <p class="card-stat-meta">A/B tested messaging reframe · Customer.io</p>
+        </div>
+
+        <div class="work-card">
+          <div class="card-accent"></div>
+          <p class="card-eyebrow">Snagajob · 2022–2023</p>
+          <h2 class="card-title">Measurement-first analytics rebuild</h2>
+          <p class="card-body">Lifecycle programs were tracked at the email level only — no visibility into visits, applications, or revenue. I standardized the Adobe Analytics event structure, built a reporting framework from scratch, then used that visibility to diagnose a high-volume series operating as spray-and-pray and cut it back.</p>
+          <div class="card-stat">31%<span class="metric-badge">revenue growth</span></div>
+          <p class="card-stat-meta">22% reduction in send volume · Adobe Analytics</p>
+        </div>
+
+        <div class="work-card">
+          <div class="card-accent"></div>
+          <p class="card-eyebrow">Conduent · 2018–2022</p>
+          <h2 class="card-title">Patriot Act activation program</h2>
+          <p class="card-body">Employees failing identity verification couldn't fund their HSA accounts. The only outreach was a paper notice most people ignored. I built the first lifecycle email program targeting this segment — personalized by failure type, consequence, and employer funding status — against a paper-mail holdout.</p>
+          <div class="card-stat">5→27%<span class="metric-badge">activation rate</span></div>
+          <p class="card-stat-meta">De novo program · ~4,000 employees annually</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT STRIP -->
+    <section>
+      <div class="about-strip">
+        <div class="about-text">
+          <h2 class="about-heading">Post-signup is where growth actually happens.</h2>
+          <p class="about-body">I've spent my career building the lifecycle systems that turn signups into active users, active users into retained customers, and retained customers into expansion revenue. PLG environments specifically — where the product does the selling and lifecycle drives the motion — are where I do my best work.</p>
+          <div class="tag-list">
+            <span class="tag">PLG Lifecycle</span>
+            <span class="tag">Behavioral Automation</span>
+            <span class="tag">Segmentation</span>
+            <span class="tag">Experimentation</span>
+            <span class="tag">Onboarding &amp; Activation</span>
+            <span class="tag">Customer.io</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Looker</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-wrap -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Rachel Hull</span>
+      <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:rachel.hull@protonmail.com">Email</a></li>
+        <li><a href="Rachel_Hull_Resume.pdf" download>Resume</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
