@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Rachel Hull</title>
+  <meta name="description" content="Rachel Hull — senior lifecycle marketer specializing in activation, adoption, and expansion in product-led environments.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%235C3A7E'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --plum-deep: #3D2454;
+      --lavender: #EDE8F5;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --max-width: 720px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--plum);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--plum);
+      font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 4rem 0 3rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-headline {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(26px, 4vw, 36px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      max-width: 560px;
+    }
+
+    .page-body {
+      font-size: 15px;
+      color: var(--slate);
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    .page-body p + p {
+      margin-top: 0.85rem;
+    }
+
+    /* ── SECTIONS ── */
+    .about-section {
+      padding: 3rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .about-section:last-child {
+      border-bottom: none;
+      padding-bottom: 4rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-pipe {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 2;
+    }
+
+    /* ── TOOLS ── */
+    .tools-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .tool-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .tool-category {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      min-width: 180px;
+    }
+
+    .tool-list {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* ── TAGS ── */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--lavender);
+      color: var(--plum);
+    }
+
+    /* ── CAREER ARC ── */
+    .arc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .arc-item {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .arc-marker {
+      width: 2px;
+      background: var(--lavender);
+      border-radius: 2px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .arc-marker::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: -3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--plum);
+    }
+
+    .arc-content {
+      padding-bottom: 0.5rem;
+    }
+
+    .arc-company {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .arc-desc {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--plum);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--plum); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .tool-row { flex-direction: column; gap: 0.25rem; }
+      .tool-category { min-width: unset; }
+      .footer-inner { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-name">Rachel Hull</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+
+    <header class="page-header">
+      <p class="eyebrow">About</p>
+      <h1 class="page-headline">I build the systems that turn signups into revenue.</h1>
+      <div class="page-body">
+        <p>Most lifecycle marketing looks like email. What I actually build is closer to a behavioral decision engine: who gets what message, when, based on what they've done — and what that combination is most likely to make them do next.</p>
+        <p>I've spent my career in the post-signup part of the funnel, where the product and the marketing motion have to work together. That's made me comfortable operating at the intersection of data, product, and copy in ways that pure-channel marketers usually aren't. I can pull the SQL, design the experiment, write the email, and explain the result to a product manager and a CEO in the same meeting.</p>
+        <p>My background spans B2B2C marketplaces (Snagajob), regulated financial products (Wells Fargo, Conduent), and product-led SaaS (TurboTenant). The common thread across all three: a paying business benefits when end users take specific actions, and I built the systems that drove those actions at scale.</p>
+        <p>I'm based in the Denver area and looking for senior lifecycle or growth marketing roles — remote or hybrid — where the lifecycle motion sits at the center of how the product grows.</p>
+      </div>
+    </header>
+
+    <!-- SKILLS -->
+    <div class="about-section">
+      <p class="section-label">Skills</p>
+      <div class="tag-list">
+        <span class="tag">PLG Lifecycle Strategy</span>
+        <span class="tag">Behavioral Automation</span>
+        <span class="tag">Segmentation &amp; Personalization</span>
+        <span class="tag">Onboarding &amp; Activation</span>
+        <span class="tag">Feature Adoption</span>
+        <span class="tag">Experimentation &amp; A/B Testing</span>
+        <span class="tag">Analytics &amp; Measurement</span>
+        <span class="tag">Cross-functional Partnership</span>
+        <span class="tag">Copywriting &amp; Messaging</span>
+        <span class="tag">Platform Migrations</span>
+      </div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="about-section">
+      <p class="section-label">Tools</p>
+      <div class="tools-grid">
+        <div class="tool-row">
+          <span class="tool-category">Marketing automation</span>
+          <span class="tool-list">Customer.io · Klaviyo · Salesforce Marketing Cloud · Intercom · Iterable</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-category">Analytics &amp; data</span>
+          <span class="tool-list">SQL · Looker · Snowflake · Adobe Analytics</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-category">Design &amp; frontend</span>
+          <span class="tool-list">Figma · Liquid · HTML · CSS</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-category">AI &amp; workflow</span>
+          <span class="tool-list">Claude · ChatGPT · Gemini · Cursor</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAREER ARC -->
+    <div class="about-section">
+      <p class="section-label">Career arc</p>
+      <div class="arc-list">
+        <div class="arc-item">
+          <div class="arc-marker"></div>
+          <div class="arc-content">
+            <div class="arc-company">TurboTenant</div>
+            <div class="arc-desc">Senior Lifecycle Marketing Manager at a PLG SaaS for rental property management. Owned activation, adoption, and retention strategy end to end. Built and restructured lifecycle infrastructure in Customer.io; expanded to SMS.</div>
+          </div>
+        </div>
+        <div class="arc-item">
+          <div class="arc-marker"></div>
+          <div class="arc-content">
+            <div class="arc-company">Snagajob</div>
+            <div class="arc-desc">Owned lifecycle strategy for the worker side of a B2B2C hourly-jobs marketplace. ~45MM sends per week. Rebuilt the analytics layer, introduced AI-assisted content and persona development, drove 31% revenue growth.</div>
+          </div>
+        </div>
+        <div class="arc-item">
+          <div class="arc-marker"></div>
+          <div class="arc-content">
+            <div class="arc-company">Conduent (BenefitWallet)</div>
+            <div class="arc-desc">Built a lifecycle email program from scratch for 5 million users across employer-sponsored HSA and FSA accounts. First time the company had systematic behavioral targeting on the employee side.</div>
+          </div>
+        </div>
+        <div class="arc-item">
+          <div class="arc-marker"></div>
+          <div class="arc-content">
+            <div class="arc-company">Wells Fargo</div>
+            <div class="arc-desc">12 years across product management, yield optimization, and acquisition marketing. Built pricing models that generated $6M+ in annual revenue. Applied early A/B testing and direct marketing before either was standard practice.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Rachel Hull</span>
+      <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:rachel.hull.mktg@gmail.com">Email</a></li>
+        <li><a href="Rachel_Hull_Resume.pdf" download>Resume</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

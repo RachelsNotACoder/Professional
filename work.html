@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Rachel Hull</title>
+  <meta name="description" content="Selected lifecycle marketing projects by Rachel Hull — each one starts with a hypothesis, ends with a number.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%235C3A7E'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --plum-deep: #3D2454;
+      --lavender: #EDE8F5;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --max-width: 720px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 60px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--plum);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--plum);
+      font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 4rem 0 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-headline {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-sub {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* ── CASE STUDIES ── */
+    .case-studies {
+      padding: 3rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case-study {
+      padding: 3rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .case-study:last-child {
+      border-bottom: none;
+    }
+
+    .case-meta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: 1.25rem;
+    }
+
+    .case-accent {
+      width: 32px;
+      height: 2px;
+      background: var(--plum);
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+
+    .case-body {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+
+    .case-body p + p {
+      margin-top: 0.85rem;
+    }
+
+    .case-result {
+      margin-top: 1.75rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.7);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .result-number {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .result-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--plum);
+      background: var(--lavender);
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+
+    .result-secondary {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+
+    .result-meta {
+      font-size: 11px;
+      color: var(--slate);
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 0;
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--plum);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--slate);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--plum); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .footer-inner {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-name">Rachel Hull</a>
+    <ul class="nav-links">
+      <li><a href="work.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+
+    <header class="page-header">
+      <p class="eyebrow">Selected work</p>
+      <h1 class="page-headline">Each one starts with a hypothesis.<br>Ends with a number.</h1>
+    </header>
+
+    <div class="case-studies">
+
+      <!-- 1 -->
+      <article class="case-study">
+        <p class="case-meta">TurboTenant · 2024–2026</p>
+        <h2 class="case-title">Rent Payment activation reframe</h2>
+        <div class="case-accent"></div>
+        <div class="case-body">
+          <p>An aging retargeting flow — built on fear and loss-aversion — hadn't been touched in years. The landlord profile it was written for no longer matched the acquisition mix: newer landlords didn't recognize themselves in messaging about "chasing late rent." They thought they had the problem solved, even when their actual solution was manual and time-consuming.</p>
+          <p>I reframed the feature from an upsell to an automation win. Version B dropped the fear framing entirely and focused on removing drudgery — no more manual reminders, no more writing receipts, no chasing. Built the A/B test into the platform migration from Klaviyo to Customer.io so the hypothesis could be validated without adding a separate workstream.</p>
+        </div>
+        <div class="case-result">
+          <div class="result-number">+72%<span class="result-badge">adoption lift</span></div>
+          <div class="result-meta">A/B tested messaging reframe · Customer.io · Rent Payments is TurboTenant's primary ARR driver and stickiest retention feature</div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="case-study">
+        <p class="case-meta">TurboTenant · 2024–2026</p>
+        <h2 class="case-title">Onboarding series rebuild — intent-based segmentation</h2>
+        <div class="case-accent"></div>
+        <div class="case-body">
+          <p>Two onboarding series for incomplete signups weren't beating holdout — meaning the emails produced no measurable lift over doing nothing. The diagnosis: every message had been written for small landlords, systematically ignoring larger landlords who existed in both segments, behaved differently, and responded to entirely different value propositions.</p>
+          <p>I rebuilt each series as a single journey using Liquid scripting to serve differentiated content blocks by property count. For larger landlords, I surfaced enterprise-relevant features and optimized subject lines to improve open rates — knowing that if I could get a larger landlord to open, their conversion probability was disproportionately high. Instrumented each CTA with dynamic UTM parameters so downstream analytics could separate performance by which content block rendered, not just which series ran.</p>
+        </div>
+        <div class="case-result">
+          <div class="result-number">+11%<span class="result-badge">onboarding conversion</span></div>
+          <div class="result-secondary">+5% lift in Rent Payment intent segment</div>
+          <div class="result-meta">Single-template Liquid architecture · A/B tested against original series</div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="case-study">
+        <p class="case-meta">TurboTenant · 2024–2026</p>
+        <h2 class="case-title">Vacancy-to-retention: screening-to-lease journey redesign</h2>
+        <div class="case-accent"></div>
+        <div class="case-body">
+          <p>The "Screening to Lease" journey targeted users who signed up to run a one-time background check — a transactional segment with 95% within-year dormancy and Rent Payments adoption under 5%. The journey was underperforming against holdout.</p>
+          <p>The existing sequence followed landlord workflow logic (screen → lease → move-in → collect rent), but that assumed users planned to stay. Most didn't. The first email promoted a $75 lease feature — asking a cold, transactional user to pay again immediately after a free screening report.</p>
+          <p>I rebuilt it to lead with Rent Payments: free for landlords, recurring by nature, and the feature most likely to create a regular visit cadence tied to the monthly rent cycle. The goal shifted from walking users through a checklist to repositioning TurboTenant as a platform worth an ongoing relationship.</p>
+        </div>
+        <div class="case-result">
+          <div class="result-number">5→40%<span class="result-badge">adoption rate</span></div>
+          <div class="result-meta">Eightfold increase · ~200 users per week · pre/post measurement</div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="case-study">
+        <p class="case-meta">Snagajob · 2022–2023</p>
+        <h2 class="case-title">Measurement-first analytics rebuild</h2>
+        <div class="case-accent"></div>
+        <div class="case-body">
+          <p>Lifecycle programs were tracked at the single email level only — opens and clicks on individual sends — with no visibility into site visits, job applications, or revenue, and no way to track campaign trends over time. One series accounted for roughly 80% of send volume and was operating as spray-and-pray. Decisions were being made on engagement metrics that had no connection to business outcomes.</p>
+          <p>I revised the UTM coding hierarchy to better reflect specific email series, then built a campaign-level and series-level dashboard in Adobe Analytics that surfaced trends and made it possible to compare performance across programs for the first time. Within six weeks, there was a reliable baseline. That visibility immediately surfaced a misallocation: job recommendations were high-volume with poor ROI; engagement and onboarding emails were low-volume but consistently strong. Shifted resources accordingly.</p>
+        </div>
+        <div class="case-result">
+          <div class="result-number">31%<span class="result-badge">revenue growth</span></div>
+          <div class="result-secondary">6.7% visit growth · 22% reduction in send volume</div>
+          <div class="result-meta">Efficiency and outcomes improved simultaneously · Adobe Analytics dashboard build</div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="case-study">
+        <p class="case-meta">Conduent · 2018–2022</p>
+        <h2 class="case-title">Patriot Act activation program</h2>
+        <div class="case-accent"></div>
+        <div class="case-body">
+          <p>Every year, a significant percentage of new HSA account holders failed Patriot Act identity verification — a regulatory requirement that prevented accounts from being funded until a physical address was confirmed on file. Conduent's only outreach was a paper mail notice: dry, legalistic, and delivered to a physical address that was often undeliverable and, in the majority of cases, the reason the account had failed in the first place. Response rates were around 5%.</p>
+          <p>I built the first lifecycle email program targeting this segment. Automated a data trigger to identify employees in failure state and route them into a personalized sequence. Messaging led with consequences specific to each employee's situation: employer-funded account holders were told they were missing money their employer was trying to give them; self-funded holders were told they were losing the tax benefits of having an HSA. Required actions were personalized to the specific failure type. Four automated follow-ups for non-responders. Measured against a paper-mail holdout at launch.</p>
+        </div>
+        <div class="case-result">
+          <div class="result-number">5→27%<span class="result-badge">activation rate</span></div>
+          <div class="result-meta">Fivefold increase · ~4,000 employees annually · de novo program build</div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="case-study">
+        <p class="case-meta">Snagajob · 2022–2023</p>
+        <h2 class="case-title">AI-assisted content system at scale</h2>
+        <div class="case-accent"></div>
+        <div class="case-body">
+          <p>Running lifecycle at roughly 45MM sends per week meant continuous content production against an unforgiving schedule. When my scope expanded to include all worker-facing blog and social content, output volume roughly quadrupled. Early AI use surfaced an immediate problem: outputs varied widely in voice and required heavy manual revision before anything could go out.</p>
+          <p>I built a repeatable AI-assisted content system by selecting top-performing blog posts and emails that cleared both SEO and brand voice bars, feeding them to the model to surface the underlying style rules rather than produce output, then encoding those rules into a standard prompt setup. Email and blog require different tones — that distinction was built into the system, not manually corrected each time.</p>
+        </div>
+        <div class="case-result">
+          <div class="result-number">+70%<span class="result-badge">return visits</span></div>
+          <div class="result-meta">One email vs. baseline · AI-generated personas became a permanent input to the team's segmentation framework · Late 2022</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Rachel Hull</span>
+      <ul class="footer-links">
+        <li><a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:rachel.hull.mktg@gmail.com">Email</a></li>
+        <li><a href="Rachel_Hull_Resume.pdf" download>Resume</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
