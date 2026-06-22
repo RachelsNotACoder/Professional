@@ -385,7 +385,7 @@
   <div class="story-list" id="storyList">
 
     <!-- STORY 1 -->
-    <div class="story-item" data-tags="Experimentation|Messaging Strategy|Feature Adoption|Customer.io">
+    <div id="rent-payments-72pct" class="story-item" data-tags="Experimentation|Messaging Strategy|Feature Adoption|Customer.io">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -429,7 +429,7 @@
     </div>
 
     <!-- STORY 2 -->
-    <div class="story-item" data-tags="Onboarding|Segmentation|Personalization|Experimentation|Liquid">
+    <div id="onboarding-11pct" class="story-item" data-tags="Onboarding|Segmentation|Personalization|Experimentation|Liquid">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -474,7 +474,7 @@
     </div>
 
     <!-- STORY 3 -->
-    <div class="story-item" data-tags="Platform Migration|Martech Infrastructure|Customer.io|Cross-functional">
+    <div id="sendgrid-migration" class="story-item" data-tags="Platform Migration|Martech Infrastructure|Customer.io|Cross-functional">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -518,7 +518,7 @@
     </div>
 
     <!-- STORY 4 -->
-    <div class="story-item" data-tags="Deliverability|Data-driven Influence|Stakeholder Management|List Hygiene">
+    <div id="deliverability-pushback" class="story-item" data-tags="Deliverability|Data-driven Influence|Stakeholder Management|List Hygiene">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -562,7 +562,7 @@
     </div>
 
     <!-- STORY 5 -->
-    <div class="story-item" data-tags="Churn Prevention|Journey Design|PLG|Feature Adoption">
+    <div id="vacancy-to-retention" class="story-item" data-tags="Churn Prevention|Journey Design|PLG|Feature Adoption">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -606,7 +606,7 @@
     </div>
 
     <!-- STORY 6 -->
-    <div class="story-item" data-tags="Freemium Conversion|Behavioral Triggers|A/B Testing|Personalization">
+    <div id="freemium-conversion-15pct" class="story-item" data-tags="Freemium Conversion|Behavioral Triggers|A/B Testing|Personalization">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -650,7 +650,7 @@
     </div>
 
     <!-- STORY 7 -->
-    <div class="story-item" data-tags="Campaign Strategy|Engagement|Personalization|Retention">
+    <div id="wrapped-campaign" class="story-item" data-tags="Campaign Strategy|Engagement|Personalization|Retention">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -694,7 +694,7 @@
     </div>
 
     <!-- STORY 8 -->
-    <div class="story-item" data-tags="Analytics|Measurement|Adobe Analytics|Revenue Attribution">
+    <div id="analytics-rebuild-31pct" class="story-item" data-tags="Analytics|Measurement|Adobe Analytics|Revenue Attribution">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">Snagajob</span></div>
@@ -738,7 +738,7 @@
     </div>
 
     <!-- STORY 9 -->
-    <div class="story-item" data-tags="Behavioral Targeting|Segmentation|B2B2C|Personalization">
+    <div id="job-rec-filtering-20pct" class="story-item" data-tags="Behavioral Targeting|Segmentation|B2B2C|Personalization">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">Snagajob</span></div>
@@ -782,7 +782,7 @@
     </div>
 
     <!-- STORY 10 -->
-    <div class="story-item" data-tags="AI Tools|Content Systems|Workflow Design|Copywriting">
+    <div id="ai-content-system" class="story-item" data-tags="AI Tools|Content Systems|Workflow Design|Copywriting">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">Snagajob</span></div>
@@ -826,7 +826,7 @@
     </div>
 
     <!-- STORY 11 -->
-    <div class="story-item" data-tags="Activation|0-to-1 Program Build|Behavioral Automation|Personalization">
+    <div id="patriot-act-activation" class="story-item" data-tags="Activation|0-to-1 Program Build|Behavioral Automation|Personalization">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">Conduent / BenefitWallet</span></div>
@@ -870,7 +870,7 @@
     </div>
 
     <!-- STORY 12 -->
-    <div class="story-item" data-tags="AI Tools|Technical Fluency|SMS|Python / API">
+    <div id="twilio-python-script" class="story-item" data-tags="AI Tools|Technical Fluency|SMS|Python / API">
       <button class="story-trigger" aria-expanded="false">
         <div class="story-trigger-left">
           <div class="story-meta-row"><span class="story-company">TurboTenant</span></div>
@@ -988,6 +988,32 @@
     const visible = allItems.filter(i => !i.classList.contains('hidden'));
     if (visible.length > 0) visible[visible.length - 1].classList.add('last-visible');
   }
+
+  // ── Open story from URL hash (e.g. star-stories.html#rent-payments-72pct) ──
+  function openByHash(hash) {
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target || !target.classList.contains('story-item')) return;
+    target.classList.add('open');
+    target.querySelector('.story-trigger').setAttribute('aria-expanded', 'true');
+    // Slight delay so the page has finished painting before scrolling
+    setTimeout(() => {
+      const top = target.getBoundingClientRect().top + window.scrollY - 68;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 120);
+  }
+
+  // On initial load
+  openByHash(window.location.hash);
+
+  // Also respond if someone navigates to a hash while already on the page
+  window.addEventListener('hashchange', () => {
+    allItems.forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.story-trigger').setAttribute('aria-expanded', 'false');
+    });
+    openByHash(window.location.hash);
+  });
 
   // ── Accordion ─────────────────────────────────────────────────────
   allItems.forEach(item => {
