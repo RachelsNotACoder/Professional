@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rachel Hull — Lifecycle & Growth Marketing</title>
   <meta name="description" content="Senior lifecycle marketer specializing in activation, adoption, and expansion in product-led environments.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%235C3A7E'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,6 +15,12 @@
       --plum: #5C3A7E;
       --plum-deep: #3D2454;
       --lavender: #EDE8F5;
+      --teal: #2A4A45;
+      --teal-tint: #D8EAE7;
+      --teal-dark: #1A302D;
+      --gold: #B8762A;
+      --gold-tint: #FAF0DC;
+      --gold-dark: #7A4E18;
       --ink: #111111;
       --linen: #F7F6F3;
       --slate: #6B6B6B;
@@ -28,49 +33,63 @@
     body {
       background: var(--linen);
       color: var(--ink);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
       font-weight: 400;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
+    /* ── STICKY HEADER / NAV ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--plum);
+    }
+
+    .header-inner {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 1.5rem;
       display: flex;
       align-items: center;
-      height: 60px;
-      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+      height: 56px;
+      gap: 0.6rem;
     }
 
-    .nav-name {
+    .header-name {
+      font-family: 'Outfit', sans-serif;
       font-size: 15px;
       font-weight: 500;
-      color: var(--plum);
+      color: #ffffff;
       text-decoration: none;
       letter-spacing: 0.01em;
     }
 
-    .nav-links {
+    .header-dot {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .header-links {
       margin-left: auto;
       display: flex;
       gap: 2rem;
       list-style: none;
     }
 
-    .nav-links a {
+    .header-links a {
+      font-family: 'Outfit', sans-serif;
       font-size: 13px;
-      color: var(--slate);
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
       text-decoration: none;
       transition: color 0.15s;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--plum);
-      font-weight: 500;
+    .header-links a:hover,
+    .header-links a.active {
+      color: #ffffff;
     }
 
     /* ── LAYOUT ── */
@@ -95,6 +114,7 @@
     }
 
     .eyebrow {
+      font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -104,7 +124,7 @@
     }
 
     .hero-headline {
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-family: 'Outfit', sans-serif;
       font-weight: 300;
       font-size: clamp(32px, 5vw, 46px);
       line-height: 1.15;
@@ -115,7 +135,9 @@
     }
 
     .hero-body {
+      font-family: 'Outfit', sans-serif;
       font-size: 15px;
+      font-weight: 400;
       color: var(--slate);
       line-height: 1.75;
       max-width: 500px;
@@ -138,6 +160,7 @@
     }
 
     .metric-number {
+      font-family: 'Outfit', sans-serif;
       font-size: 26px;
       font-weight: 300;
       letter-spacing: -0.02em;
@@ -148,6 +171,7 @@
 
     .metric-badge {
       display: inline-block;
+      font-family: 'Outfit', sans-serif;
       font-size: 10px;
       font-weight: 500;
       color: var(--plum);
@@ -160,6 +184,7 @@
     }
 
     .metric-desc {
+      font-family: 'Outfit', sans-serif;
       font-size: 11px;
       color: var(--slate);
       line-height: 1.4;
@@ -170,7 +195,7 @@
       display: inline-block;
       background: var(--plum);
       color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Outfit', sans-serif;
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.02em;
@@ -188,7 +213,7 @@
       display: inline-block;
       background: transparent;
       color: var(--plum);
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Outfit', sans-serif;
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.02em;
@@ -206,6 +231,7 @@
 
     /* ── WORK SECTION ── */
     .section-heading {
+      font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -237,6 +263,7 @@
     }
 
     .card-eyebrow {
+      font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.08em;
@@ -246,6 +273,7 @@
     }
 
     .card-title {
+      font-family: 'Outfit', sans-serif;
       font-size: 16px;
       font-weight: 400;
       color: var(--ink);
@@ -254,13 +282,16 @@
     }
 
     .card-body {
+      font-family: 'Outfit', sans-serif;
       font-size: 13px;
+      font-weight: 400;
       color: var(--slate);
       line-height: 1.6;
       margin-bottom: 1.1rem;
     }
 
     .card-stat {
+      font-family: 'Outfit', sans-serif;
       font-size: 28px;
       font-weight: 300;
       letter-spacing: -0.02em;
@@ -269,6 +300,7 @@
     }
 
     .card-stat-meta {
+      font-family: 'Outfit', sans-serif;
       font-size: 11px;
       color: var(--slate);
       font-style: italic;
@@ -287,6 +319,7 @@
     }
 
     .about-heading {
+      font-family: 'Outfit', sans-serif;
       font-size: 22px;
       font-weight: 400;
       letter-spacing: -0.01em;
@@ -296,7 +329,9 @@
     }
 
     .about-body {
+      font-family: 'Outfit', sans-serif;
       font-size: 14px;
+      font-weight: 400;
       color: var(--slate);
       line-height: 1.75;
     }
@@ -308,54 +343,79 @@
       margin-top: 1.25rem;
     }
 
+    /* ── TAG VARIANTS ── */
     .tag {
       display: inline-block;
+      font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 20px;
+    }
+
+    /* Plum — skills, strategies, channels */
+    .tag-plum {
       background: var(--lavender);
       color: var(--plum);
     }
 
+    /* Teal — methodology, tooling, analytical */
+    .tag-teal {
+      background: var(--teal-tint);
+      color: var(--teal-dark);
+    }
+
+    /* Gold — outcomes, growth milestones */
+    .tag-gold {
+      background: var(--gold-tint);
+      color: var(--gold-dark);
+    }
+
     /* ── FOOTER ── */
     footer {
-      border-top: 0.5px solid var(--border);
-      padding: 2rem 0;
+      background: var(--plum);
     }
 
     .footer-inner {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 1.25rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .footer-name {
+      font-family: 'Outfit', sans-serif;
       font-size: 13px;
       font-weight: 500;
-      color: var(--plum);
+      color: #ffffff;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
+    .footer-meta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
     }
 
-    .footer-links a {
-      font-size: 13px;
-      color: var(--slate);
+    .footer-link {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
       text-decoration: none;
-      transition: color 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: color 0.12s, border-color 0.12s;
     }
 
-    .footer-links a:hover {
-      color: var(--plum);
+    .footer-link:hover {
+      color: #ffffff;
+      border-bottom-color: rgba(255,255,255,0.7);
     }
 
     /* ── MOBILE ── */
@@ -371,21 +431,21 @@
 
       .footer-inner {
         flex-direction: column;
-        gap: 1rem;
         align-items: flex-start;
+        gap: 0.25rem;
       }
 
-      nav {
+      .header-inner {
         padding: 0 1rem;
       }
 
-      .nav-links {
+      .header-links {
         gap: 1.25rem;
       }
     }
 
     @media (max-width: 480px) {
-      .nav-links {
+      .header-links {
         display: none;
       }
     }
@@ -397,21 +457,25 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-name">Rachel Hull</a>
-    <ul class="nav-links">
-      <li><a href="work.html" class="active">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- STICKY HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="header-name">Rachel Hull</a>
+      <span class="header-dot">·</span>
+      <span style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.7);">Lifecycle &amp; Growth Marketing</span>
+      <ul class="header-links">
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
 
   <div class="page-wrap">
 
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow">Senior Lifecycle Marketing Manager</p>
+      <p class="eyebrow">Senior lifecycle marketing</p>
       <h1 class="hero-headline">Lifecycle systems that move numbers.</h1>
       <p class="hero-body">I build behavioral automation, segmentation, and experimentation programs in product-led environments — and measure them against real business outcomes.</p>
 
@@ -473,17 +537,21 @@
     <section>
       <div class="about-strip">
         <div class="about-text">
-          <h2 class="about-heading">Post-signup is where revenue growth happens.</h2>
+          <h2 class="about-heading">Post-signup is where growth actually happens.</h2>
           <p class="about-body">I've spent my career building the lifecycle systems that turn signups into active users, active users into retained customers, and retained customers into expansion revenue. PLG environments specifically — where the product does the selling and lifecycle drives the motion — are where I do my best work.</p>
           <div class="tag-list">
-            <span class="tag">PLG Lifecycle</span>
-            <span class="tag">Behavioral Automation</span>
-            <span class="tag">Segmentation</span>
-            <span class="tag">Experimentation</span>
-            <span class="tag">Onboarding &amp; Activation</span>
-            <span class="tag">Customer.io</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Looker</span>
+            <!-- Gold: outcomes / growth milestones -->
+            <span class="tag tag-gold">PLG</span>
+            <span class="tag tag-gold">Onboarding &amp; activation</span>
+            <!-- Teal: methodology / tooling / analytical -->
+            <span class="tag tag-teal">Behavioral automation</span>
+            <span class="tag tag-teal">Experimentation</span>
+            <span class="tag tag-teal">Customer.io</span>
+            <span class="tag tag-teal">Analytics</span>
+            <!-- Plum: strategies / skills / channels -->
+            <span class="tag tag-plum">Segmentation</span>
+            <span class="tag tag-plum">SQL</span>
+            <span class="tag tag-plum">Looker</span>
           </div>
         </div>
       </div>
@@ -495,11 +563,7 @@
   <footer>
     <div class="footer-inner">
       <span class="footer-name">Rachel Hull</span>
-      <ul class="footer-links">
-        <li><a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:rachel.hull.mktg@gmail.com">Email</a></li>
-        <li><a href="Rachel_Hull_Resume.pdf" download>Resume</a></li>
-      </ul>
+      <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
     </div>
   </footer>
 
