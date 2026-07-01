@@ -150,6 +150,14 @@
       border-bottom: 0.5px solid var(--border);
     }
 
+    /* ── CONTACT CALLOUT (Highlight variant) ── */
+    .contact-callout {
+      background: var(--gold-tint);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 1.5rem;
+    }
+
     .contact-list {
       display: flex;
       flex-direction: column;
@@ -168,26 +176,26 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--slate);
+      color: var(--gold-dark);
       min-width: 80px;
     }
 
     .contact-value {
       font-family: 'Outfit', sans-serif;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 400;
       color: var(--ink);
+      line-height: 1.6;
     }
 
     .contact-value a {
-      color: var(--plum);
+      color: var(--gold-dark);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.15s;
     }
 
     .contact-value a:hover {
-      color: var(--plum-deep);
       text-decoration: underline;
     }
 
@@ -321,24 +329,26 @@
     </div>
 
     <div class="contact-section">
-      <div class="contact-list">
-        <div class="contact-item">
-          <span class="contact-label">LinkedIn</span>
-          <span class="contact-value">
-            <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener">linkedin.com/in/rachel-e-hull</a>
-          </span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <span class="contact-value">
-            <a href="mailto:rachel.hull.mktg@gmail.com">rachel.hull.mktg@gmail.com</a>
-          </span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Resume</span>
-          <span class="contact-value">
-            <a href="Rachel_Hull_Resume.pdf" download>Download PDF</a>
-          </span>
+      <div class="contact-callout">
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">
+              <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener">linkedin.com/in/rachel-e-hull</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">
+              <a href="mailto:rachel.hull.mktg@gmail.com">rachel.hull.mktg@gmail.com</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Resume</span>
+            <span class="contact-value">
+              <a href="Rachel_Hull_Resume.pdf" download>Download PDF</a>
+            </span>
+          </div>
         </div>
       </div>
     </div>
