@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Rachel Hull</title>
-  <meta name="description" content="Rachel Hull — senior lifecycle marketer specializing in activation, adoption, and expansion in product-led environments.">
+  <title>Rachel Hull — Lifecycle & Growth Marketing</title>
+  <meta name="description" content="Senior lifecycle marketer specializing in activation, adoption, and expansion in product-led environments.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -42,7 +42,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── STICKY HEADER ── */
+    /* ── STICKY HEADER / NAV ── */
     header {
       position: sticky;
       top: 0;
@@ -109,10 +109,18 @@
       padding: 0 1.5rem;
     }
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      padding: 4rem 0 3rem;
-      border-bottom: 0.5px solid var(--border);
+    section {
+      padding: 4rem 0;
+    }
+
+    section + section {
+      border-top: 0.5px solid var(--border);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 4.5rem;
+      padding-bottom: 4rem;
     }
 
     .eyebrow {
@@ -122,99 +130,291 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--plum);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
 
-    .page-headline {
+    .hero-headline {
       font-family: 'Outfit', sans-serif;
       font-weight: 300;
-      font-size: clamp(26px, 4vw, 36px);
-      line-height: 1.2;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.15;
       letter-spacing: -0.02em;
       color: var(--ink);
       margin-bottom: 1.25rem;
       max-width: 560px;
     }
 
-    .page-body {
+    .hero-body {
       font-family: 'Outfit', sans-serif;
       font-size: 15px;
       font-weight: 400;
       color: var(--slate);
       line-height: 1.75;
-      max-width: 580px;
+      max-width: 500px;
+      margin-bottom: 2rem;
     }
 
-    .page-body p + p {
-      margin-top: 0.85rem;
+    /* ── METRICS ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
     }
 
-    /* ── SECTIONS ── */
-    .about-section {
-      padding: 3rem 0;
-      border-bottom: 0.5px solid var(--border);
+    .metric-card {
+      background: rgba(255,255,255,0.7);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
     }
 
-    .about-section:last-child {
-      border-bottom: none;
-      padding-bottom: 4rem;
+    .metric-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
     }
 
-    .section-label {
+    .metric-badge {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--plum);
+      background: var(--lavender);
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 5px;
+      vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+
+    .metric-desc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--slate);
+      line-height: 1.4;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--plum);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 10px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--plum-deep);
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--plum);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 9px 21px;
+      border-radius: 4px;
+      border: 1.5px solid var(--plum);
+      text-decoration: none;
+      margin-left: 10px;
+      transition: background 0.15s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--lavender);
+    }
+
+    /* ── WORK SECTION ── */
+    .section-heading {
       font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--plum);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.75rem;
     }
 
-    /* ── TOOLS (Insight callout) ── */
-    .tools-callout {
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .work-card {
+      background: #fff;
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    /* Callout treatment — replaces plain white card + top-rule */
+    .work-card.highlight {
+      background: var(--gold-tint);
+      border: none;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .work-card.insight {
       background: var(--teal-tint);
+      border: none;
       border-left: 3px solid var(--teal);
       border-radius: 0 4px 4px 0;
-      padding: 1.5rem;
     }
 
-    .tools-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .tool-row {
-      display: flex;
-      gap: 0.75rem;
-      align-items: baseline;
-    }
-
-    .tool-category {
+    .card-eyebrow {
       font-family: 'Outfit', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--teal-dark);
-      min-width: 180px;
+      color: var(--slate);
+      margin-bottom: 0.4rem;
     }
 
-    .tool-list {
+    .work-card .tag {
+      margin: 0 0 0.75rem;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .card-body {
       font-family: 'Outfit', sans-serif;
       font-size: 13px;
       font-weight: 400;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-stat {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .card-stat-meta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--slate);
+      font-style: italic;
+      margin-top: 5px;
+    }
+
+    /* ── STORY ACCORDION ── */
+    .card-trigger {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      width: fit-content;
+      margin-top: 1.1rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .card-trigger::-webkit-details-marker { display: none; }
+    .card-trigger::marker { content: ""; }
+
+    .work-card.highlight .card-trigger {
+      color: var(--gold-dark);
+    }
+
+    .work-card.insight .card-trigger {
+      color: var(--teal-dark);
+    }
+
+    .card-trigger .chevron {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    details[open] .card-trigger .chevron {
+      transform: rotate(180deg);
+    }
+
+    .star-content {
+      margin-top: 0.9rem;
+    }
+
+    .star-section {
+      padding: 0.75rem 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
       color: var(--ink);
       line-height: 1.6;
     }
 
-    /* ── TAG VARIANTS ── */
+    .star-section + .star-section {
+      border-top: 0.5px solid var(--border);
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+    }
+
+    .about-body {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+
     .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
+      margin-top: 1.25rem;
     }
 
+    /* ── TAG VARIANTS ── */
     .tag {
       display: inline-block;
       font-family: 'Outfit', sans-serif;
@@ -242,67 +442,6 @@
     .tag-gold {
       background: var(--gold-tint);
       color: var(--gold-dark);
-    }
-
-    /* ── CAREER ARC ── */
-    .arc-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .arc-item {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .arc-marker {
-      width: 2px;
-      background: var(--lavender);
-      border-radius: 2px;
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    .arc-icon {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--lavender);
-      color: var(--plum);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .arc-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-    }
-
-    .arc-content {
-      padding-bottom: 0.5rem;
-    }
-
-    .arc-company {
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 0.25rem;
-    }
-
-    .arc-desc {
-      font-family: 'Outfit', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--slate);
-      line-height: 1.65;
     }
 
     /* ── FOOTER ── */
@@ -352,14 +491,48 @@
 
     /* ── MOBILE ── */
     @media (max-width: 640px) {
-      .tool-row { flex-direction: column; gap: 0.25rem; }
-      .tool-category { min-width: unset; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-strip {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .header-inner {
+        padding: 0 1rem;
+      }
+
+      .header-links {
+        gap: 1.25rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .header-links { display: none; }
-      .header-role { display: none; }
+      .header-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0.75rem 1rem;
+        row-gap: 0.6rem;
+      }
+
+      .header-dot,
+      .header-role {
+        display: none;
+      }
+
+      .header-links {
+        width: 100%;
+        margin-left: 0;
+        gap: 1.5rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -376,8 +549,8 @@
       <span class="header-dot">·</span>
       <span class="header-role">Lifecycle &amp; Growth Marketing</span>
       <ul class="header-links">
-        <li><a href="work.html">Work</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -385,114 +558,154 @@
 
   <div class="page-wrap">
 
-    <div class="page-header">
-      <p class="eyebrow">About</p>
-      <h1 class="page-headline">I build the systems that turn signups into revenue.</h1>
-      <div class="page-body">
-        <p>Most lifecycle marketing looks like email. What I actually build is closer to a behavioral decision engine: who gets what message, when, based on what they've done — and what that combination is most likely to make them do next.</p>
-        <p>I've spent my career in the post-signup part of the funnel, where the product and the marketing motion have to work together. That's made me comfortable operating at the intersection of data, product, and copy in ways that pure-channel marketers usually aren't. I can pull the SQL, design the experiment, write the email, and explain the result to a product manager and a CEO in the same meeting.</p>
-        <p>My background spans B2B2C marketplaces (Snagajob), regulated financial products (Wells Fargo, Conduent), and product-led SaaS (TurboTenant). The common thread across all three: a paying business benefits when end users take specific actions, and I built the systems that drove those actions at scale.</p>
-        <p>I'm based in the Denver area and looking for senior lifecycle or growth marketing roles — remote or hybrid — where the lifecycle motion sits at the center of how the product grows.</p>
-      </div>
-    </div>
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">Senior lifecycle marketing</p>
+      <h1 class="hero-headline">Lifecycle systems that move numbers.</h1>
+      <p class="hero-body">I build behavioral automation, segmentation, and experimentation programs in product-led environments — and measure them against real business outcomes.</p>
 
-    <!-- SKILLS -->
-    <div class="about-section">
-      <p class="section-label">Skills</p>
-      <div class="tag-list">
-        <!-- Gold: outcomes / growth milestones -->
-        <span class="tag tag-gold">PLG lifecycle strategy</span>
-        <span class="tag tag-gold">Onboarding &amp; activation</span>
-        <span class="tag tag-gold">Feature adoption</span>
-        <!-- Teal: methodology / tooling / analytical -->
-        <span class="tag tag-teal">Behavioral automation</span>
-        <span class="tag tag-teal">Experimentation &amp; A/B testing</span>
-        <span class="tag tag-teal">Analytics &amp; measurement</span>
-        <!-- Plum: strategies / skills / channels -->
-        <span class="tag tag-plum">Segmentation &amp; personalization</span>
-        <span class="tag tag-plum">Copywriting &amp; messaging</span>
-        <span class="tag tag-plum">Cross-functional partnership</span>
-        <span class="tag tag-teal">Platform migrations</span>
-      </div>
-    </div>
-
-    <!-- TOOLS -->
-    <div class="about-section">
-      <p class="section-label">Tools</p>
-      <div class="tools-callout">
-        <div class="tools-grid">
-          <div class="tool-row">
-            <span class="tool-category">Marketing automation</span>
-            <span class="tool-list">Customer.io · Klaviyo · Salesforce Marketing Cloud · Intercom · Iterable</span>
-          </div>
-          <div class="tool-row">
-            <span class="tool-category">Analytics &amp; data</span>
-            <span class="tool-list">SQL · Looker · Snowflake · Adobe Analytics</span>
-          </div>
-          <div class="tool-row">
-            <span class="tool-category">Design &amp; frontend</span>
-            <span class="tool-list">Figma · Liquid · HTML · CSS</span>
-          </div>
-          <div class="tool-row">
-            <span class="tool-category">AI &amp; workflow</span>
-            <span class="tool-list">Claude · ChatGPT · Gemini · Cursor</span>
-          </div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-number">+72%<span class="metric-badge">lift</span></div>
+          <div class="metric-desc">Feature adoption · TurboTenant</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">31%<span class="metric-badge">rev growth</span></div>
+          <div class="metric-desc">With 22% fewer sends · Snagajob</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">5→27%<span class="metric-badge">activation</span></div>
+          <div class="metric-desc">Adoption-resistant segment · Conduent</div>
         </div>
       </div>
-    </div>
 
-    <!-- CAREER ARC -->
-    <div class="about-section">
-      <p class="section-label">Career arc</p>
-      <div class="arc-list">
-        <div class="arc-item">
-          <div class="arc-marker">
-            <span class="arc-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg>
-            </span>
-          </div>
-          <div class="arc-content">
-            <div class="arc-company">TurboTenant</div>
-            <div class="arc-desc">Senior Lifecycle Marketing Manager at a PLG SaaS for rental property management. Owned activation, adoption, and retention strategy end to end. Built and restructured lifecycle infrastructure in Customer.io; expanded to SMS.</div>
-          </div>
+      <a href="Rachel_Hull_Resume.pdf" class="btn-primary" download>Download resume</a>
+      <a href="contact.html" class="btn-ghost">Get in touch</a>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section>
+      <p class="section-heading">Selected work</p>
+      <div class="cards-grid">
+
+        <div class="work-card highlight">
+          <p class="card-eyebrow">TurboTenant</p>
+          <span class="tag tag-teal">A/B testing</span>
+          <h2 class="card-title">Rent Payment activation reframe</h2>
+          <p class="card-body">An aging fear-based retargeting flow hadn't been touched in years — and the landlord profile it was written for no longer matched the acquisition mix. I rebuilt the messaging around automation value, removing the loss-framing entirely, and A/B tested the hypothesis inside a platform migration.</p>
+          <div class="card-stat">+72%<span class="metric-badge">adoption lift</span></div>
+          <p class="card-stat-meta">A/B tested messaging reframe · Customer.io</p>
+
+          <details>
+            <summary class="card-trigger">
+              Read the full story
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="star-content">
+              <div class="star-section">
+                <p>During a migration of the core Rent Payments retargeting flow from Klaviyo to Customer.io, I recognized the existing flow was several years old and built on a fear/loss-aversion messaging model tied to a landlord persona that no longer matched our broader acquisition mix.</p>
+              </div>
+              <div class="star-section">
+                <p>Use the migration as an opportunity to validate whether the messaging still resonated — and increase conversion of "RP Clickers" (users who showed intent but didn't complete setup) by updating the value prop to align with current landlord mental models.</p>
+              </div>
+              <div class="star-section">
+                <p>I hypothesized that landlords didn't recognize themselves in the old messaging — they viewed rent collection as a solved problem, even if their actual "solution" was manual and tedious. Version B dropped the fear framing entirely and focused on removing drudgery: manual reminders, chasing late payments, writing receipts. I emphasized that the feature was free and saved hours of admin work. I built an A/B path test within the migration itself to validate the hypothesis.</p>
+              </div>
+              <div class="star-section">
+                <p>The automation-framed path delivered a 72% lift in Rent Payment adoption. Rent Payments is a primary ARR driver via tenant fees and the platform's stickiest retention feature — creating a recurring monthly engagement loop with landlords.</p>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="arc-item">
-          <div class="arc-marker">
-            <span class="arc-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-            </span>
-          </div>
-          <div class="arc-content">
-            <div class="arc-company">Snagajob</div>
-            <div class="arc-desc">Owned lifecycle strategy for the worker side of a B2B2C hourly-jobs marketplace. ~45MM sends per week. Rebuilt the analytics layer, introduced AI-assisted content and persona development, drove 31% revenue growth.</div>
-          </div>
+
+        <div class="work-card insight">
+          <p class="card-eyebrow">Snagajob</p>
+          <span class="tag tag-teal">Analytics</span>
+          <h2 class="card-title">Measurement-first analytics rebuild</h2>
+          <p class="card-body">Lifecycle programs were tracked at the email level only — no visibility into visits, applications, or revenue. I standardized the Adobe Analytics event structure, built a reporting framework from scratch, then used that visibility to diagnose a high-volume series operating as spray-and-pray and cut it back.</p>
+          <div class="card-stat">31%<span class="metric-badge">revenue growth</span></div>
+          <p class="card-stat-meta">22% reduction in send volume · Adobe Analytics</p>
+
+          <details>
+            <summary class="card-trigger">
+              Read the full story
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="star-content">
+              <div class="star-section">
+                <p>Snagajob had Adobe Analytics connected to lifecycle email, but inconsistent event structure meant visit and revenue data couldn't be reliably monitored. Performance decisions were being made on opens and CTRs — not business outcomes. One series alone accounted for ~80% of send volume and was operating largely as spray-and-pray.</p>
+              </div>
+              <div class="star-section">
+                <p>Fix the measurement layer so lifecycle performance could be evaluated against real business outcomes, then use that visibility to optimize.</p>
+              </div>
+              <div class="star-section">
+                <p>Standardized Adobe Analytics event structure, classified all email programs into four themes (daily job recommendations, worker engagement, welcome/onboarding, transactional), and built a reporting framework capturing downstream performance: site visits, job views, applications, and direct session revenue via last-touch attribution. Validated against historical data to control for seasonality. Reliable baseline within six weeks.</p>
+              </div>
+              <div class="star-section">
+                <p>The report immediately surfaced a critical misallocation. Shifting resources toward engagement and onboarding — and scaling back job recommendation frequency — drove 31% revenue growth, 6.7% visit growth, and 22% reduction in send volume. Efficiency and outcomes improved simultaneously.</p>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="arc-item">
-          <div class="arc-marker">
-            <span class="arc-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
-            </span>
-          </div>
-          <div class="arc-content">
-            <div class="arc-company">Conduent (BenefitWallet)</div>
-            <div class="arc-desc">Built a lifecycle email program from scratch for 5 million users across employer-sponsored HSA and FSA accounts. First time the company had systematic behavioral targeting on the employee side.</div>
-          </div>
+
+        <div class="work-card highlight">
+          <p class="card-eyebrow">Conduent</p>
+          <span class="tag tag-gold">0-to-1 program build</span>
+          <h2 class="card-title">Patriot Act activation program</h2>
+          <p class="card-body">Employees failing identity verification couldn't fund their HSA accounts. The only outreach was a paper notice most people ignored. I built the first lifecycle email program targeting this segment — personalized by failure type, consequence, and employer funding status — against a paper-mail holdout.</p>
+          <div class="card-stat">5→27%<span class="metric-badge">activation rate</span></div>
+          <p class="card-stat-meta">De novo program · ~4,000 employees annually</p>
+
+          <details>
+            <summary class="card-trigger">
+              Read the full story
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="star-content">
+              <div class="star-section">
+                <p>Every year, a significant percentage of new HSA account holders failed Patriot Act verification — a regulatory requirement preventing accounts from being funded without a confirmed physical address. Conduent's only outreach was a paper mail notice: dry, legalistic, delivered to an address that was sometimes the source of the problem. Response rates were around 5%.</p>
+              </div>
+              <div class="star-section">
+                <p>Build the first lifecycle email program targeting this segment — employees who had an unfunded HSA but hadn't taken the steps to fix it, often because they didn't understand what was wrong, why it mattered, or what to do.</p>
+              </div>
+              <div class="star-section">
+                <p>Automated a data trigger to identify employees in Patriot Act failure state and route them into a personalized email sequence. Messaging led with consequences relevant to each employee's situation: employer-funded account holders were told they were missing out on money their employer was trying to give them; self-funded holders were told they were losing HSA tax benefits. Required actions were personalized to the specific failure type. Included four automated follow-ups for non-responders. Rewrote tone from legalistic to value-forward. Measured against a paper-mail holdout at launch.</p>
+              </div>
+              <div class="star-section">
+                <p>Activation rate rose from 5% to 27% — a fivefold increase — across approximately 4,000 employees annually.</p>
+              </div>
+            </div>
+          </details>
         </div>
-        <div class="arc-item">
-          <div class="arc-marker">
-            <span class="arc-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18v-7"/><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg>
-            </span>
-          </div>
-          <div class="arc-content">
-            <div class="arc-company">Wells Fargo</div>
-            <div class="arc-desc">12 years across product management, yield optimization, and acquisition marketing. Built pricing models that generated $6M+ in annual revenue. Applied early A/B testing and direct marketing before either was standard practice.</div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT STRIP -->
+    <section>
+      <div class="about-strip">
+        <div class="about-text">
+          <h2 class="about-heading">Post-signup is where growth actually happens.</h2>
+          <p class="about-body">I've spent my career building the lifecycle systems that turn signups into active users, active users into retained customers, and retained customers into expansion revenue. PLG environments specifically — where the product does the selling and lifecycle drives the motion — are where I do my best work.</p>
+          <div class="tag-list">
+            <!-- Gold: outcomes / growth milestones -->
+            <span class="tag tag-gold">PLG</span>
+            <span class="tag tag-gold">Onboarding &amp; activation</span>
+            <!-- Teal: methodology / tooling / analytical -->
+            <span class="tag tag-teal">Behavioral automation</span>
+            <span class="tag tag-teal">Experimentation</span>
+            <span class="tag tag-teal">Customer.io</span>
+            <span class="tag tag-teal">Analytics</span>
+            <!-- Plum: strategies / skills / channels -->
+            <span class="tag tag-plum">Segmentation</span>
+            <span class="tag tag-plum">SQL</span>
+            <span class="tag tag-plum">Looker</span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-  </div>
+  </div><!-- /page-wrap -->
 
   <!-- FOOTER -->
   <footer>
