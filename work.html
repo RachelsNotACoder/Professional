@@ -193,13 +193,22 @@
       margin-top: 0.85rem;
     }
 
+    /* ── RESULT CALLOUTS (alternating Highlight/Insight) ── */
     .case-result {
       margin-top: 1.75rem;
       padding: 1.25rem 1.5rem;
-      background: rgba(255,255,255,0.7);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
+      border-radius: 0 4px 4px 0;
       display: inline-block;
+    }
+
+    .case-result.highlight {
+      background: var(--gold-tint);
+      border-left: 3px solid var(--gold);
+    }
+
+    .case-result.insight {
+      background: var(--teal-tint);
+      border-left: 3px solid var(--teal);
     }
 
     .result-number {
@@ -229,7 +238,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 13px;
       font-weight: 400;
-      color: var(--ink);
+      color: var(--slate);
       margin-top: 4px;
     }
 
@@ -333,14 +342,14 @@
 
       <!-- 1 -->
       <article class="case-study">
-        <p class="case-meta">TurboTenant · 2024–2026</p>
+        <p class="case-meta">TurboTenant</p>
         <h2 class="case-title">Rent Payment activation reframe</h2>
         <div class="case-accent"></div>
         <div class="case-body">
           <p>An aging retargeting flow — built on fear and loss-aversion — hadn't been touched in years. The landlord profile it was written for no longer matched the acquisition mix: newer landlords didn't recognize themselves in messaging about "chasing late rent." They thought they had the problem solved, even when their actual solution was manual and time-consuming.</p>
           <p>I reframed the feature from an upsell to an automation win. Version B dropped the fear framing entirely and focused on removing drudgery — no more manual reminders, no more writing receipts, no chasing. Built the A/B test into the platform migration from Klaviyo to Customer.io so the hypothesis could be validated without adding a separate workstream.</p>
         </div>
-        <div class="case-result">
+        <div class="case-result highlight">
           <div class="result-number">+72%<span class="result-badge">adoption lift</span></div>
           <div class="result-meta">A/B tested messaging reframe · Customer.io · Rent Payments is TurboTenant's primary ARR driver and stickiest retention feature</div>
         </div>
@@ -348,14 +357,14 @@
 
       <!-- 2 -->
       <article class="case-study">
-        <p class="case-meta">TurboTenant · 2024–2026</p>
+        <p class="case-meta">TurboTenant</p>
         <h2 class="case-title">Onboarding series rebuild — intent-based segmentation</h2>
         <div class="case-accent"></div>
         <div class="case-body">
           <p>Two onboarding series for incomplete signups weren't beating holdout — meaning the emails produced no measurable lift over doing nothing. The diagnosis: every message had been written for small landlords, systematically ignoring larger landlords who existed in both segments, behaved differently, and responded to entirely different value propositions.</p>
           <p>I rebuilt each series as a single journey using Liquid scripting to serve differentiated content blocks by property count. For larger landlords, I surfaced enterprise-relevant features and optimized subject lines to improve open rates — knowing that if I could get a larger landlord to open, their conversion probability was disproportionately high. Instrumented each CTA with dynamic UTM parameters so downstream analytics could separate performance by which content block rendered, not just which series ran.</p>
         </div>
-        <div class="case-result">
+        <div class="case-result insight">
           <div class="result-number">+11%<span class="result-badge">onboarding conversion</span></div>
           <div class="result-secondary">+5% lift in Rent Payment intent segment</div>
           <div class="result-meta">Single-template Liquid architecture · A/B tested against original series</div>
@@ -364,7 +373,7 @@
 
       <!-- 3 -->
       <article class="case-study">
-        <p class="case-meta">TurboTenant · 2024–2026</p>
+        <p class="case-meta">TurboTenant</p>
         <h2 class="case-title">Vacancy-to-retention: screening-to-lease journey redesign</h2>
         <div class="case-accent"></div>
         <div class="case-body">
@@ -372,7 +381,7 @@
           <p>The existing sequence followed landlord workflow logic (screen → lease → move-in → collect rent), but that assumed users planned to stay. Most didn't. The first email promoted a $75 lease feature — asking a cold, transactional user to pay again immediately after a free screening report.</p>
           <p>I rebuilt it to lead with Rent Payments: free for landlords, recurring by nature, and the feature most likely to create a regular visit cadence tied to the monthly rent cycle. The goal shifted from walking users through a checklist to repositioning TurboTenant as a platform worth an ongoing relationship.</p>
         </div>
-        <div class="case-result">
+        <div class="case-result highlight">
           <div class="result-number">5→40%<span class="result-badge">adoption rate</span></div>
           <div class="result-meta">Eightfold increase · ~200 users per week · pre/post measurement</div>
         </div>
@@ -380,14 +389,14 @@
 
       <!-- 4 -->
       <article class="case-study">
-        <p class="case-meta">Snagajob · 2022–2023</p>
+        <p class="case-meta">Snagajob</p>
         <h2 class="case-title">Measurement-first analytics rebuild</h2>
         <div class="case-accent"></div>
         <div class="case-body">
           <p>Lifecycle programs were tracked at the single email level only — opens and clicks on individual sends — with no visibility into site visits, job applications, or revenue, and no way to track campaign trends over time. One series accounted for roughly 80% of send volume and was operating as spray-and-pray. Decisions were being made on engagement metrics that had no connection to business outcomes.</p>
           <p>I revised the UTM coding hierarchy to better reflect specific email series, then built a campaign-level and series-level dashboard in Adobe Analytics that surfaced trends and made it possible to compare performance across programs for the first time. Within six weeks, there was a reliable baseline. That visibility immediately surfaced a misallocation: job recommendations were high-volume with poor ROI; engagement and onboarding emails were low-volume but consistently strong. Shifted resources accordingly.</p>
         </div>
-        <div class="case-result">
+        <div class="case-result insight">
           <div class="result-number">31%<span class="result-badge">revenue growth</span></div>
           <div class="result-secondary">6.7% visit growth · 22% reduction in send volume</div>
           <div class="result-meta">Efficiency and outcomes improved simultaneously · Adobe Analytics dashboard build</div>
@@ -396,14 +405,14 @@
 
       <!-- 5 -->
       <article class="case-study">
-        <p class="case-meta">Conduent · 2018–2022</p>
+        <p class="case-meta">Conduent</p>
         <h2 class="case-title">Patriot Act activation program</h2>
         <div class="case-accent"></div>
         <div class="case-body">
           <p>Every year, a significant percentage of new HSA account holders failed Patriot Act identity verification — a regulatory requirement that prevented accounts from being funded until a physical address was confirmed on file. Conduent's only outreach was a paper mail notice: dry, legalistic, and delivered to a physical address that was often undeliverable and, in the majority of cases, the reason the account had failed in the first place. Response rates were around 5%.</p>
           <p>I built the first lifecycle email program targeting this segment. Automated a data trigger to identify employees in failure state and route them into a personalized sequence. Messaging led with consequences specific to each employee's situation: employer-funded account holders were told they were missing money their employer was trying to give them; self-funded holders were told they were losing the tax benefits of having an HSA. Required actions were personalized to the specific failure type. Four automated follow-ups for non-responders. Measured against a paper-mail holdout at launch.</p>
         </div>
-        <div class="case-result">
+        <div class="case-result highlight">
           <div class="result-number">5→27%<span class="result-badge">activation rate</span></div>
           <div class="result-meta">Fivefold increase · ~4,000 employees annually · de novo program build</div>
         </div>
@@ -411,14 +420,14 @@
 
       <!-- 6 -->
       <article class="case-study">
-        <p class="case-meta">Snagajob · 2022–2023</p>
+        <p class="case-meta">Snagajob</p>
         <h2 class="case-title">AI-assisted content system at scale</h2>
         <div class="case-accent"></div>
         <div class="case-body">
           <p>Running lifecycle at roughly 45MM sends per week meant continuous content production against an unforgiving schedule. When my scope expanded to include all worker-facing blog and social content, output volume roughly quadrupled. Early AI use surfaced an immediate problem: outputs varied widely in voice and required heavy manual revision before anything could go out.</p>
           <p>I built a repeatable AI-assisted content system by selecting top-performing blog posts and emails that cleared both SEO and brand voice bars, feeding them to the model to surface the underlying style rules rather than produce output, then encoding those rules into a standard prompt setup. Email and blog require different tones — that distinction was built into the system, not manually corrected each time.</p>
         </div>
-        <div class="case-result">
+        <div class="case-result insight">
           <div class="result-number">+70%<span class="result-badge">return visits</span></div>
           <div class="result-meta">One email vs. baseline · AI-generated personas became a permanent input to the team's segmentation framework · Late 2022</div>
         </div>
