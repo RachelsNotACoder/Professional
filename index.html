@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rachel Hull — Lifecycle & Growth Marketing</title>
   <meta name="description" content="Senior lifecycle marketer specializing in activation, adoption, and expansion in product-led environments.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%235C3A7E'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -70,6 +72,13 @@
     .header-dot {
       font-size: 13px;
       color: rgba(255,255,255,0.3);
+    }
+
+    .header-role {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
     }
 
     .header-links {
@@ -237,7 +246,7 @@
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--slate);
+      color: var(--plum);
       margin-bottom: 1.75rem;
     }
 
@@ -255,12 +264,19 @@
       position: relative;
     }
 
-    .card-accent {
-      width: 32px;
-      height: 2px;
-      background: var(--plum);
-      border-radius: 2px;
-      margin-bottom: 1rem;
+    /* Callout treatment — replaces plain white card + top-rule */
+    .work-card.highlight {
+      background: var(--gold-tint);
+      border: none;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .work-card.insight {
+      background: var(--teal-tint);
+      border: none;
+      border-left: 3px solid var(--teal);
+      border-radius: 0 4px 4px 0;
     }
 
     .card-eyebrow {
@@ -271,6 +287,10 @@
       text-transform: uppercase;
       color: var(--slate);
       margin-bottom: 0.4rem;
+    }
+
+    .work-card .tag {
+      margin: 0 0 0.75rem;
     }
 
     .card-title {
@@ -306,6 +326,56 @@
       color: var(--slate);
       font-style: italic;
       margin-top: 5px;
+    }
+
+    /* ── STORY ACCORDION ── */
+    .card-trigger {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      width: fit-content;
+      margin-top: 1.1rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .card-trigger::-webkit-details-marker { display: none; }
+    .card-trigger::marker { content: ""; }
+
+    .work-card.highlight .card-trigger {
+      color: var(--gold-dark);
+    }
+
+    .work-card.insight .card-trigger {
+      color: var(--teal-dark);
+    }
+
+    .card-trigger .chevron {
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    details[open] .card-trigger .chevron {
+      transform: rotate(180deg);
+    }
+
+    .star-content {
+      margin-top: 0.9rem;
+    }
+
+    .star-section {
+      padding: 0.75rem 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .star-section + .star-section {
+      border-top: 0.5px solid var(--border);
     }
 
     /* ── ABOUT STRIP ── */
@@ -463,7 +533,7 @@
     <div class="header-inner">
       <a href="index.html" class="header-name">Rachel Hull</a>
       <span class="header-dot">·</span>
-      <span style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;color:rgba(255,255,255,0.7);">Lifecycle &amp; Growth Marketing</span>
+      <span class="header-role">Lifecycle &amp; Growth Marketing</span>
       <ul class="header-links">
         <li><a href="work.html" class="active">Work</a></li>
         <li><a href="about.html">About</a></li>
@@ -504,31 +574,94 @@
       <p class="section-heading">Selected work</p>
       <div class="cards-grid">
 
-        <div class="work-card">
-          <div class="card-accent"></div>
-          <p class="card-eyebrow">TurboTenant · 2024–2026</p>
+        <div class="work-card highlight">
+          <p class="card-eyebrow">TurboTenant</p>
+          <span class="tag tag-teal">A/B testing</span>
           <h2 class="card-title">Rent Payment activation reframe</h2>
           <p class="card-body">An aging fear-based retargeting flow hadn't been touched in years — and the landlord profile it was written for no longer matched the acquisition mix. I rebuilt the messaging around automation value, removing the loss-framing entirely, and A/B tested the hypothesis inside a platform migration.</p>
           <div class="card-stat">+72%<span class="metric-badge">adoption lift</span></div>
           <p class="card-stat-meta">A/B tested messaging reframe · Customer.io</p>
+
+          <details>
+            <summary class="card-trigger">
+              Read the full story
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="star-content">
+              <div class="star-section">
+                <p>During a migration of the core Rent Payments retargeting flow from Klaviyo to Customer.io, I recognized the existing flow was several years old and built on a fear/loss-aversion messaging model tied to a landlord persona that no longer matched our broader acquisition mix.</p>
+              </div>
+              <div class="star-section">
+                <p>Use the migration as an opportunity to validate whether the messaging still resonated — and increase conversion of "RP Clickers" (users who showed intent but didn't complete setup) by updating the value prop to align with current landlord mental models.</p>
+              </div>
+              <div class="star-section">
+                <p>I hypothesized that landlords didn't recognize themselves in the old messaging — they viewed rent collection as a solved problem, even if their actual "solution" was manual and tedious. Version B dropped the fear framing entirely and focused on removing drudgery: manual reminders, chasing late payments, writing receipts. I emphasized that the feature was free and saved hours of admin work. I built an A/B path test within the migration itself to validate the hypothesis.</p>
+              </div>
+              <div class="star-section">
+                <p>The automation-framed path delivered a 72% lift in Rent Payment adoption. Rent Payments is a primary ARR driver via tenant fees and the platform's stickiest retention feature — creating a recurring monthly engagement loop with landlords.</p>
+              </div>
+            </div>
+          </details>
         </div>
 
-        <div class="work-card">
-          <div class="card-accent"></div>
-          <p class="card-eyebrow">Snagajob · 2022–2023</p>
+        <div class="work-card insight">
+          <p class="card-eyebrow">Snagajob</p>
+          <span class="tag tag-teal">Analytics</span>
           <h2 class="card-title">Measurement-first analytics rebuild</h2>
           <p class="card-body">Lifecycle programs were tracked at the email level only — no visibility into visits, applications, or revenue. I standardized the Adobe Analytics event structure, built a reporting framework from scratch, then used that visibility to diagnose a high-volume series operating as spray-and-pray and cut it back.</p>
           <div class="card-stat">31%<span class="metric-badge">revenue growth</span></div>
           <p class="card-stat-meta">22% reduction in send volume · Adobe Analytics</p>
+
+          <details>
+            <summary class="card-trigger">
+              Read the full story
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="star-content">
+              <div class="star-section">
+                <p>Snagajob had Adobe Analytics connected to lifecycle email, but inconsistent event structure meant visit and revenue data couldn't be reliably monitored. Performance decisions were being made on opens and CTRs — not business outcomes. One series alone accounted for ~80% of send volume and was operating largely as spray-and-pray.</p>
+              </div>
+              <div class="star-section">
+                <p>Fix the measurement layer so lifecycle performance could be evaluated against real business outcomes, then use that visibility to optimize.</p>
+              </div>
+              <div class="star-section">
+                <p>Standardized Adobe Analytics event structure, classified all email programs into four themes (daily job recommendations, worker engagement, welcome/onboarding, transactional), and built a reporting framework capturing downstream performance: site visits, job views, applications, and direct session revenue via last-touch attribution. Validated against historical data to control for seasonality. Reliable baseline within six weeks.</p>
+              </div>
+              <div class="star-section">
+                <p>The report immediately surfaced a critical misallocation. Shifting resources toward engagement and onboarding — and scaling back job recommendation frequency — drove 31% revenue growth, 6.7% visit growth, and 22% reduction in send volume. Efficiency and outcomes improved simultaneously.</p>
+              </div>
+            </div>
+          </details>
         </div>
 
-        <div class="work-card">
-          <div class="card-accent"></div>
-          <p class="card-eyebrow">Conduent · 2018–2022</p>
+        <div class="work-card highlight">
+          <p class="card-eyebrow">Conduent</p>
+          <span class="tag tag-gold">0-to-1 program build</span>
           <h2 class="card-title">Patriot Act activation program</h2>
           <p class="card-body">Employees failing identity verification couldn't fund their HSA accounts. The only outreach was a paper notice most people ignored. I built the first lifecycle email program targeting this segment — personalized by failure type, consequence, and employer funding status — against a paper-mail holdout.</p>
           <div class="card-stat">5→27%<span class="metric-badge">activation rate</span></div>
           <p class="card-stat-meta">De novo program · ~4,000 employees annually</p>
+
+          <details>
+            <summary class="card-trigger">
+              Read the full story
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="star-content">
+              <div class="star-section">
+                <p>Every year, a significant percentage of new HSA account holders failed Patriot Act verification — a regulatory requirement preventing accounts from being funded without a confirmed physical address. Conduent's only outreach was a paper mail notice: dry, legalistic, delivered to an address that was sometimes the source of the problem. Response rates were around 5%.</p>
+              </div>
+              <div class="star-section">
+                <p>Build the first lifecycle email program targeting this segment — employees who had an unfunded HSA but hadn't taken the steps to fix it, often because they didn't understand what was wrong, why it mattered, or what to do.</p>
+              </div>
+              <div class="star-section">
+                <p>Automated a data trigger to identify employees in Patriot Act failure state and route them into a personalized email sequence. Messaging led with consequences relevant to each employee's situation: employer-funded account holders were told they were missing out on money their employer was trying to give them; self-funded holders were told they were losing HSA tax benefits. Required actions were personalized to the specific failure type. Included four automated follow-ups for non-responders. Rewrote tone from legalistic to value-forward. Measured against a paper-mail holdout at launch.</p>
+              </div>
+              <div class="star-section">
+                <p>Activation rate rose from 5% to 27% — a fivefold increase — across approximately 4,000 employees annually.</p>
+              </div>
+            </div>
+          </details>
         </div>
 
       </div>
