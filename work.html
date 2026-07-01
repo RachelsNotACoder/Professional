@@ -306,8 +306,23 @@
     }
 
     @media (max-width: 480px) {
-      .header-links { display: none; }
-      .header-role { display: none; }
+      .header-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0.75rem 1rem;
+        row-gap: 0.6rem;
+      }
+
+      .header-dot,
+      .header-role {
+        display: none;
+      }
+
+      .header-links {
+        width: 100%;
+        margin-left: 0;
+        gap: 1.5rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
