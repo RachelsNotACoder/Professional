@@ -170,7 +170,14 @@
       margin-bottom: 1.25rem;
     }
 
-    /* ── TOOLS ── */
+    /* ── TOOLS (Insight callout) ── */
+    .tools-callout {
+      background: var(--teal-tint);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 4px 4px 0;
+      padding: 1.5rem;
+    }
+
     .tools-grid {
       display: flex;
       flex-direction: column;
@@ -185,9 +192,11 @@
 
     .tool-category {
       font-family: 'Outfit', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      color: var(--ink);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
       min-width: 180px;
     }
 
@@ -195,7 +204,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 13px;
       font-weight: 400;
-      color: var(--slate);
+      color: var(--ink);
       line-height: 1.6;
     }
 
@@ -255,15 +264,25 @@
       position: relative;
     }
 
-    .arc-marker::before {
-      content: '';
+    .arc-icon {
       position: absolute;
-      top: 4px;
-      left: -3px;
-      width: 8px;
-      height: 8px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: var(--plum);
+      background: var(--lavender);
+      color: var(--plum);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arc-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
     }
 
     .arc-content {
@@ -393,29 +412,31 @@
         <span class="tag tag-plum">Segmentation &amp; personalization</span>
         <span class="tag tag-plum">Copywriting &amp; messaging</span>
         <span class="tag tag-plum">Cross-functional partnership</span>
-        <span class="tag tag-plum">Platform migrations</span>
+        <span class="tag tag-teal">Platform migrations</span>
       </div>
     </div>
 
     <!-- TOOLS -->
     <div class="about-section">
       <p class="section-label">Tools</p>
-      <div class="tools-grid">
-        <div class="tool-row">
-          <span class="tool-category">Marketing automation</span>
-          <span class="tool-list">Customer.io · Klaviyo · Salesforce Marketing Cloud · Intercom · Iterable</span>
-        </div>
-        <div class="tool-row">
-          <span class="tool-category">Analytics &amp; data</span>
-          <span class="tool-list">SQL · Looker · Snowflake · Adobe Analytics</span>
-        </div>
-        <div class="tool-row">
-          <span class="tool-category">Design &amp; frontend</span>
-          <span class="tool-list">Figma · Liquid · HTML · CSS</span>
-        </div>
-        <div class="tool-row">
-          <span class="tool-category">AI &amp; workflow</span>
-          <span class="tool-list">Claude · ChatGPT · Gemini · Cursor</span>
+      <div class="tools-callout">
+        <div class="tools-grid">
+          <div class="tool-row">
+            <span class="tool-category">Marketing automation</span>
+            <span class="tool-list">Customer.io · Klaviyo · Salesforce Marketing Cloud · Intercom · Iterable</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-category">Analytics &amp; data</span>
+            <span class="tool-list">SQL · Looker · Snowflake · Adobe Analytics</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-category">Design &amp; frontend</span>
+            <span class="tool-list">Figma · Liquid · HTML · CSS</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-category">AI &amp; workflow</span>
+            <span class="tool-list">Claude · ChatGPT · Gemini · Cursor</span>
+          </div>
         </div>
       </div>
     </div>
@@ -425,28 +446,44 @@
       <p class="section-label">Career arc</p>
       <div class="arc-list">
         <div class="arc-item">
-          <div class="arc-marker"></div>
+          <div class="arc-marker">
+            <span class="arc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+            </span>
+          </div>
           <div class="arc-content">
             <div class="arc-company">TurboTenant</div>
             <div class="arc-desc">Senior Lifecycle Marketing Manager at a PLG SaaS for rental property management. Owned activation, adoption, and retention strategy end to end. Built and restructured lifecycle infrastructure in Customer.io; expanded to SMS.</div>
           </div>
         </div>
         <div class="arc-item">
-          <div class="arc-marker"></div>
+          <div class="arc-marker">
+            <span class="arc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
+            </span>
+          </div>
           <div class="arc-content">
             <div class="arc-company">Snagajob</div>
             <div class="arc-desc">Owned lifecycle strategy for the worker side of a B2B2C hourly-jobs marketplace. ~45MM sends per week. Rebuilt the analytics layer, introduced AI-assisted content and persona development, drove 31% revenue growth.</div>
           </div>
         </div>
         <div class="arc-item">
-          <div class="arc-marker"></div>
+          <div class="arc-marker">
+            <span class="arc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+            </span>
+          </div>
           <div class="arc-content">
             <div class="arc-company">Conduent (BenefitWallet)</div>
             <div class="arc-desc">Built a lifecycle email program from scratch for 5 million users across employer-sponsored HSA and FSA accounts. First time the company had systematic behavioral targeting on the employee side.</div>
           </div>
         </div>
         <div class="arc-item">
-          <div class="arc-marker"></div>
+          <div class="arc-marker">
+            <span class="arc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18v-7"/><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg>
+            </span>
+          </div>
           <div class="arc-content">
             <div class="arc-company">Wells Fargo</div>
             <div class="arc-desc">12 years across product management, yield optimization, and acquisition marketing. Built pricing models that generated $6M+ in annual revenue. Applied early A/B testing and direct marketing before either was standard practice.</div>
