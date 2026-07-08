@@ -305,6 +305,34 @@
       line-height: 1.65;
     }
 
+    /* ── SIDE PROJECT ── */
+    .recipe-blurb {
+      margin-top: 1.5rem;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--slate);
+    }
+
+    .recipe-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 10px 22px;
+      background: transparent;
+      color: var(--plum);
+      border: 1.5px solid var(--plum);
+      border-radius: 4px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .recipe-link:hover {
+      background: var(--lavender);
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--plum);
@@ -500,6 +528,13 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- SIDE PROJECT -->
+    <div class="about-section">
+      <p class="section-label">Outside of work</p>
+      <p class="recipe-blurb">A Claude side project: recipes I cook, no life story required first.</p>
+      <a href="https://rachelsnotacoder.github.io/recipes/index.html" class="recipe-link">See the recipes →</a>
     </div>
 
   </div>
