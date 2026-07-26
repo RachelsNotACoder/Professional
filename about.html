@@ -271,17 +271,44 @@
       line-height: 1.65;
     }
 
-    /* ── SIDE PROJECT ── */
-    .recipe-blurb {
-      margin-top: 1.5rem;
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--slate);
+    /* ── OUTSIDE OF WORK (Callout Boxes) ── */
+    .outside-callout {
+      padding: 1.5rem;
+      border-radius: 0 4px 4px 0;
+      margin-top: 1.25rem;
     }
 
-    .recipe-link {
+    .outside-callout.highlight {
+      background: var(--gold-tint);
+      border-left: 3px solid var(--gold);
+    }
+
+    .outside-callout.note {
+      background: var(--lavender);
+      border-left: 3px solid var(--plum);
+    }
+
+    .callout-header {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .outside-callout.highlight .callout-header { color: var(--gold-dark); }
+    .outside-callout.note .callout-header { color: var(--plum-deep); }
+
+    .outside-blurb {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .outside-link {
       display: inline-block;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
       padding: 10px 22px;
       background: transparent;
       color: var(--plum);
@@ -295,8 +322,8 @@
       transition: background 0.2s;
     }
 
-    .recipe-link:hover {
-      background: var(--lavender);
+    .outside-link:hover {
+      background: rgba(255,255,255,0.5);
     }
 
     /* ── FOOTER ── */
@@ -393,10 +420,10 @@
       <p class="eyebrow">About</p>
       <h1 class="page-headline">I build the systems that turn signups into revenue.</h1>
       <div class="page-body">
-        <p>Most lifecycle marketing looks like email. What I actually build is closer to a behavioral decision engine: who gets what message, when, based on what they've done — and what that combination is most likely to make them do next.</p>
+        <p>A lot of lifecycle marketing looks like email. What I build is a behavioral decision engine: who gets what message, when, based on what they've done — and what that combination is most likely to make them do next.</p>
         <p>I've spent my career in the post-signup part of the funnel, where the product and the marketing motion have to work together. That's made me comfortable operating at the intersection of data, product, and copy in ways that pure-channel marketers usually aren't. I can pull the SQL, design the experiment, write the email, and explain the result to a product manager and a CEO in the same meeting.</p>
-        <p>My background spans B2B2C marketplaces (Snagajob), product-led SaaS (TurboTenant), and regulated financial products (Wells Fargo, Conduent). User behavior — not always the behavior of paying users or clients — directly drives OKRs, including revenue.</p>
-        <p>I'm based in the Denver area and looking for senior lifecycle or growth marketing roles — remote or hybrid — where the lifecycle motion sits at the center of how the product grows.</p>
+        <p>My background spans B2B2C marketplaces (Snagajob), product-led SaaS (TurboTenant), and regulated healthcare and financial products (Wells Fargo, Conduent). User behavior — not always the behavior of paying users or clients — directly drives OKRs, including revenue.</p>
+        <p>I'm based in the Denver area and looking for senior lifecycle or growth marketing roles — remote or hybrid — where the lifecycle motion plays a critical role in how the product grows.</p>
       </div>
     </div>
 
@@ -476,11 +503,21 @@
       </div>
     </div>
 
-    <!-- SIDE PROJECT -->
+    <!-- OUTSIDE OF WORK -->
     <div class="about-section">
       <p class="section-label">Outside of work</p>
-      <p class="recipe-blurb">A Claude side project: recipes I cook, no life story required first.</p>
-      <a href="https://rachelsnotacoder.github.io/recipes/index.html" class="recipe-link">See the recipes →</a>
+
+      <div class="outside-callout highlight">
+        <p class="callout-header">Currently reading</p>
+        <p class="outside-blurb">Robots. Spaceships. Robots falling in love with spaceships. Murder. Robots solving murders. Aliens. Robots saving aliens from murderous spaceships. Magic. Magic robots. If it involves at least one robot and preferably a body count, I'm in.</p>
+        <a href="https://www.goodreads.com/user/year_in_books/2026/26751107" class="outside-link" target="_blank" rel="noopener">What I'm reading →</a>
+      </div>
+
+      <div class="outside-callout note">
+        <p class="callout-header">Recipe archive</p>
+        <p class="outside-blurb">A Claude side project: recipes I cook, no life story required first.</p>
+        <a href="https://rachelsnotacoder.github.io/recipes/index.html" class="outside-link">See the recipes →</a>
+      </div>
     </div>
 
   </div>
