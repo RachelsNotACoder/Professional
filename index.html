@@ -182,9 +182,11 @@
       right: 0;
       bottom: 0;
       z-index: 2;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 1.5rem 2.75rem;
+      /* left edge matches .page-wrap's content below; right side stays open so the
+         headline has room to breathe across the image instead of wrapping tight */
+      padding-left: max(1.5rem, calc((100% - var(--max-width)) / 2 + 1.5rem));
+      padding-right: 1.5rem;
+      padding-bottom: 2.75rem;
     }
 
     .hero-headline-light {
