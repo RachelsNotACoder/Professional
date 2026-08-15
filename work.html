@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED4QVHV7Q8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ED4QVHV7Q8');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Work — Rachel Hull</title>
@@ -942,7 +951,10 @@
     const presetBtn = Array.from(document.querySelectorAll('.filter-tag')).find(b => b.dataset.tag === presetTag);
     if (presetBtn) {
       toggleFilter(presetTag, presetBtn);
-      presetBtn.scrollIntoView({ block: 'center', behavior: 'auto' });
+      const firstVisible = allItems.find(i => !i.classList.contains('hidden'));
+      const scrollTarget = firstVisible || document.getElementById('filterBar');
+      const top = scrollTarget.getBoundingClientRect().top + window.scrollY - 68;
+      window.scrollTo({ top, behavior: 'auto' });
     }
   }
 
