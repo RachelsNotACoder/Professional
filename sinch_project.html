@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior Lifecycle Marketing Manager Project — Rachel Hull</title>
+  <meta name="description" content="Take-home case study for Sinch (Mailgun): three lifecycle interventions from signup to paid, plus a cross-channel extension, by Rachel Hull.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,350;9..144,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --plum-deep: #3D2454;
+      --lavender: #EDE8F5;
+      --teal: #2A4A45;
+      --teal-tint: #D8EAE7;
+      --teal-dark: #1A302D;
+      --gold: #B8762A;
+      --gold-tint: #FAF0DC;
+      --gold-dark: #7A4E18;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --max-width: 720px;
+      --font-display: 'Fraunces', serif;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── STICKY HEADER ── */
+    header { position: sticky; top: 0; z-index: 100; background: var(--plum); }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      gap: 0.6rem;
+    }
+
+    .header-name { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 500; color: #ffffff; text-decoration: none; letter-spacing: 0.01em; }
+    .header-dot { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .header-role { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.7); }
+    .header-links { margin-left: auto; display: flex; gap: 2rem; list-style: none; }
+    .header-links a { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.15s; }
+    .header-links a:hover, .header-links a.active { color: #ffffff; }
+
+    /* ── LAYOUT ── */
+    .page-wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    section { max-width: var(--max-width); margin: 0 auto; padding: 3.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    /* ── PAGE HEADER / INTRO ── */
+    .page-header { max-width: var(--max-width); margin: 0 auto; padding: 4rem 1.5rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+
+    .eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-headline {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .page-subhead { font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--slate); max-width: 560px; margin-bottom: 0.5rem; }
+
+    /* Quick nav */
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.5rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--border);
+    }
+    .quick-nav a { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; color: var(--plum); text-decoration: none; border-bottom: 1px solid transparent; }
+    .quick-nav a:hover { border-bottom-color: var(--plum); }
+
+    /* ── SECTION HEADINGS ── */
+    h2.section-heading {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 1.25rem;
+    }
+
+    h3.sub-heading { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin: 1.75rem 0 0.85rem; }
+
+    section p { font-size: 15px; color: var(--slate); margin-bottom: 0.9rem; max-width: 620px; }
+    section p:last-child { margin-bottom: 0; }
+    section p strong { color: var(--ink); font-weight: 500; }
+    section ul, section ol { margin: 0 0 0.9rem 1.15rem; color: var(--slate); font-size: 14px; }
+    section ul li, section ol li { margin-bottom: 0.4rem; }
+    section ul li strong, section ol li strong { color: var(--ink); font-weight: 500; }
+
+    /* ── CALLOUT BOXES ── */
+    .callout { border-left: 3px solid var(--plum); border-radius: 0 4px 4px 0; background: var(--lavender); padding: 1rem 1.25rem; margin: 1.25rem 0; }
+    .callout-header { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--plum-deep); margin-bottom: 0.5rem; }
+    .callout-body { font-size: 13px; color: var(--ink); line-height: 1.6; }
+    .callout-body p { font-size: 13px; color: var(--ink); max-width: none; }
+    .callout-body ul { font-size: 13px; }
+
+    .callout.highlight { background: var(--gold-tint); border-color: var(--gold); }
+    .callout.highlight .callout-header { color: var(--gold-dark); }
+    .callout.insight { background: var(--teal-tint); border-color: var(--teal-dark); }
+    .callout.insight .callout-header { color: var(--teal-dark); }
+    .callout.context { background: var(--linen); border-color: rgba(0,0,0,0.18); }
+    .callout.context .callout-header { color: var(--slate); }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 1.25rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
+    thead th {
+      text-align: left;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--slate);
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td { padding: 0.7rem 0.75rem; border-bottom: 0.5px solid var(--border); color: var(--slate); vertical-align: top; }
+    tbody tr.featured td { color: var(--ink); }
+    tbody td:first-child { color: var(--slate); font-variant-numeric: tabular-nums; }
+    .check { display: inline-flex; }
+    .check svg { width: 15px; height: 15px; stroke: var(--gold); stroke-width: 2.5; }
+    .dash { color: rgba(0,0,0,0.25); }
+
+    /* ── JOURNEY PATH ── */
+    .jm-legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 0.25rem 0 2rem; }
+    .jm-legend-item { display: flex; align-items: center; gap: 0.5rem; font-family: 'Outfit', sans-serif; font-size: 12px; color: var(--slate); }
+    .jm-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .jm-legend-dot.filled { background: var(--plum); }
+    .jm-legend-dot.outline { background: var(--linen); border: 2px solid var(--slate); opacity: 0.6; }
+
+    .jm-path { position: relative; padding: 0.5rem 0 0.5rem; }
+    .jm-line-track { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; transform: translateX(-50%); background: var(--border); border-radius: 2px; }
+    .jm-line-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0%; background: var(--plum); border-radius: 2px; transition: height 0.1s linear; }
+    .jm-stops { display: flex; flex-direction: column; }
+    .jm-stop { position: relative; display: grid; grid-template-columns: 1fr 40px 1fr; column-gap: 2rem; padding: 1.1rem 0; }
+    .jm-node-col { grid-column: 2; display: flex; justify-content: center; padding-top: 0.3rem; }
+    .jm-node { width: 12px; height: 12px; border-radius: 50%; background: var(--linen); border: 2px solid var(--slate); opacity: 0.55; transform: scale(0.85); transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; }
+    .jm-stop.featured .jm-node { border-color: var(--plum); }
+    .jm-stop.active .jm-node { opacity: 1; transform: scale(1); }
+    .jm-stop.featured.active .jm-node { background: var(--plum); box-shadow: 0 0 0 4px var(--lavender); }
+    .jm-card { grid-column: 1; grid-row: 1; opacity: 0.8; transition: opacity 0.3s ease; }
+    .jm-stop.active .jm-card { opacity: 1; }
+    .jm-stop:nth-child(even) .jm-card { grid-column: 3; }
+    .jm-stop:nth-child(odd) .jm-card { text-align: right; }
+    .jm-badge { display: inline-block; font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--plum); margin-bottom: 0.4rem; }
+    .jm-stage { font-family: var(--font-display); font-optical-sizing: auto; font-size: 17px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 0.4rem; }
+    .jm-why { font-family: 'Outfit', sans-serif; font-size: 13px; color: var(--slate); line-height: 1.6; max-width: 380px; }
+    .jm-stop:nth-child(odd) .jm-why { margin-left: auto; }
+
+    @media (max-width: 800px) {
+      .jm-stop { grid-template-columns: 30px 1fr; column-gap: 1rem; }
+      .jm-node-col { grid-column: 1; }
+      .jm-card, .jm-stop:nth-child(even) .jm-card { grid-column: 2; }
+      .jm-stop:nth-child(odd) .jm-card { text-align: left; }
+      .jm-stop:nth-child(odd) .jm-why { margin-left: 0; }
+      .jm-line-track { left: 15px; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .jm-node { transition: none; }
+    }
+
+    /* ── INTERVENTION CARDS ── */
+    .intv-card { background: #ffffff; border: 0.5px solid var(--border); border-radius: 12px; padding: 1.75rem 1.75rem 2rem; margin: 1.5rem 0 2.25rem; }
+    .intv-card::before { content: ''; display: block; width: 32px; height: 2px; background: var(--teal); border-radius: 2px; margin-bottom: 1.1rem; }
+    .intv-card[data-mode="gold"]::before { background: var(--gold); }
+
+    .intv-eyebrow { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.5rem; }
+    .intv-title {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+      max-width: 560px;
+    }
+
+    .branch { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); }
+    .branch:first-of-type { margin-top: 1.75rem; }
+    .branch-title { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 0.75rem; }
+
+    .field-row { font-size: 13px; margin-bottom: 0.6rem; color: var(--slate); max-width: 600px; }
+    .field-label { font-weight: 500; color: var(--ink); }
+
+    /* ── SURFACE CALLOUTS (the "which UI element, and why" units) ── */
+    .condition-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin: 0.9rem 0 0.4rem;
+    }
+    .condition-label:first-child { margin-top: 0; }
+
+    .surface-line { display: flex; align-items: flex-start; gap: 0.65rem; margin-bottom: 0.9rem; }
+    .surface-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      background: #ffffff;
+      border: 1.25px solid rgba(0,0,0,0.2);
+      border-radius: 4px;
+      padding: 4px 10px 4px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .surface-chip svg { width: 14px; height: 14px; flex-shrink: 0; stroke: var(--slate); }
+    .intv-card[data-mode="teal"] .surface-chip { border-color: rgba(42,74,69,0.35); }
+    .intv-card[data-mode="teal"] .surface-chip svg { stroke: var(--teal-dark); }
+    .intv-card[data-mode="gold"] .surface-chip { border-color: rgba(184,118,42,0.35); }
+    .intv-card[data-mode="gold"] .surface-chip svg { stroke: var(--gold-dark); }
+
+    .surface-why { font-size: 12.5px; color: var(--slate); line-height: 1.6; padding-top: 5px; max-width: 460px; }
+    .surface-why strong { color: var(--ink); font-weight: 500; }
+
+    .msg {
+      border-left: 3px solid var(--teal-dark);
+      background: var(--teal-tint);
+      border-radius: 0 4px 4px 0;
+      padding: 0.75rem 1rem;
+      margin: 0 0 0.75rem;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .intv-card[data-mode="gold"] .msg { border-color: var(--gold); background: var(--gold-tint); }
+    .msg-label { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); font-style: normal; display: block; margin-bottom: 0.35rem; }
+    .msg-subject { font-family: 'Outfit', sans-serif; font-size: 12.5px; font-weight: 600; font-style: normal; color: var(--ink); margin: 0 0 0.35rem; }
+    .msg-body { margin: 0; }
+    .msg-cta { font-family: 'Outfit', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-style: normal; color: var(--ink); opacity: 0.75; margin: 0.55rem 0 0; display: block; }
+
+    .link-target { display: inline-block; font-size: 11px; font-weight: 500; color: var(--plum); background: var(--lavender); border-radius: 20px; padding: 2px 9px; margin: 0 0.3rem 0.3rem 0; }
+
+    /* ── ROLE / COLLABORATOR LIST ── */
+    .role-item { margin-bottom: 1.1rem; max-width: 620px; }
+    .role-badge {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--lavender);
+      color: var(--plum);
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin-bottom: 0.4rem;
+    }
+    .role-item p { font-size: 13px; margin-bottom: 0; }
+
+    /* ── END-OF-PAGE CTA ── */
+    .impact-cta { max-width: var(--max-width); margin: 0 auto; padding: 3.5rem 1.5rem 4.5rem; border-top: 0.5px solid var(--border); text-align: center; }
+    .impact-cta h2 {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-size: clamp(22px, 3vw, 28px);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .impact-cta p { font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--slate); margin-bottom: 1.5rem; max-width: 100%; }
+    .cta-button {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      background: var(--plum);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .cta-button:hover { background: var(--plum-deep); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--plum); margin-top: 0; }
+    .footer-inner { max-width: var(--max-width); margin: 0 auto; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .footer-name { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; color: #ffffff; }
+    .footer-meta { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.55); }
+    .footer-link {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: color 0.12s, border-color 0.12s;
+    }
+    .footer-link:hover { color: #ffffff; border-bottom-color: rgba(255,255,255,0.7); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .page-header { padding: 3rem 1.5rem 2rem; }
+      section { padding: 2.5rem 1.5rem; }
+      .intv-title { font-size: 19px; }
+      .surface-line { flex-direction: column; gap: 0.4rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+    }
+    @media (max-width: 480px) {
+      .header-inner { flex-wrap: wrap; height: auto; padding: 0.75rem 1rem; row-gap: 0.6rem; }
+      .header-links { width: 100%; margin-left: 0; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="header-name">Rachel Hull</a>
+      <span class="header-dot">·</span>
+      <span class="header-role">Senior Lifecycle Marketing Manager Project</span>
+      <ul class="header-links">
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="eyebrow">Take-home case study · Sinch (Mailgun)</p>
+    <h1 class="page-headline">From signup to paid: three interventions that change the Mailgun activation curve</h1>
+    <p class="page-subhead">Senior Lifecycle Marketing Manager take-home assignment. Journey mapping, intervention design, and a cross-channel extension for one moment in the funnel.</p>
+    <nav class="quick-nav">
+      <a href="#diagnosis">Diagnosis</a>
+      <a href="#journey-map">Journey map</a>
+      <a href="#part1">Interventions</a>
+      <a href="#part2">Cross-channel</a>
+    </nav>
+  </div>
+
+  <!-- DIAGNOSIS -->
+  <section id="diagnosis">
+    <p class="eyebrow">Diagnosis</p>
+    <h2 class="section-heading">Two problems, and a third one downstream</h2>
+    <p><strong>Activation friction.</strong> A significant share of signups never complete product activation (defined as sending an email from production). In a developer-facing product, that's a setup problem, and the setup step every self-serve user has to clear before sending anything real is domain and DNS configuration.</p>
+    <p><strong>Shallow usage.</strong> Users who do activate then plateau: sending, but never touching suppression management, templates, inbound routing, or validation. Depth of usage, not just activation, is what the data says predicts upgrade.</p>
+    <p>A third moment sits downstream of both: once a user is activated and using the product with some depth, there's a window, approaching the free-plan sending ceiling, where the job is timing, not persuasion.</p>
+    <div class="callout">
+      <p class="callout-header">Scoped out deliberately</p>
+      <div class="callout-body">
+        <p>Two early steps aren't included below. Account verification (email and phone) is close to a solved problem; anyone who won't complete it is low-intent by definition, and there's no data here suggesting a real drop-off worth designing around. Signup itself is too early to act on.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY MAP -->
+  <section id="journey-map">
+    <p class="eyebrow">Journey</p>
+    <h2 class="section-heading">Full journey map</h2>
+    <p>Eight moments from signup to upgrade. Three are built out in Part 1; five are flagged and explained here.</p>
+    <div class="jm-legend">
+      <span class="jm-legend-item"><span class="jm-legend-dot filled"></span>Featured, built out in Part 1</span>
+      <span class="jm-legend-item"><span class="jm-legend-dot outline"></span>Considered, not featured</span>
+    </div>
+    <div class="jm-path" id="jmPath">
+      <div class="jm-line-track"><div class="jm-line-fill" id="jmFill"></div></div>
+      <div class="jm-stops" id="jmStops">
+
+        <article class="jm-stop">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <h3 class="jm-stage">Testing in the sandbox</h3>
+            <p class="jm-why">Optional, useful but not a required gate. Potentially helpful as a regression for users who attempt and abaondon production send.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop featured">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <p class="jm-badge">Featured</p>
+            <h3 class="jm-stage">Waiting on domain verification</h3>
+            <p class="jm-why">Every self-serve user has to pass through this step, so friction here touches the whole funnel. It's also the one place a wait can turn into a rejection or an abandon, which is why it's designed as three branches, not one message.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <h3 class="jm-stage">Sending in production</h3>
+            <p class="jm-why">Genuinely the hardest step in this list to solve with lifecycle alone. It requires the user to undertake real engineering work (SMTP vs. API, building and testing the integration) and often spans more than one session. A lift here would come from product design and support, not lifecycle messaging.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <h3 class="jm-stage">Establishing a sending cadence</h3>
+            <p class="jm-why">Real habituation risk, but the audience needs data validation (manual vs. automated senders) before it's worth building against.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop featured">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <p class="jm-badge">Featured</p>
+            <h3 class="jm-stage">Missing capabilities beyond core sending</h3>
+            <p class="jm-why">Tied directly to the strongest commercial signal in the prompt: multi-capability usage predicts upgrade.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <h3 class="jm-stage">Hitting a deliverability issue</h3>
+            <p class="jm-why">Reactive, and only reaches users already having a problem.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop featured">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <p class="jm-badge">Featured</p>
+            <h3 class="jm-stage">Approaching the free plan ceiling</h3>
+            <p class="jm-why">The cleanest upgrade signal in the funnel: usage itself tells the user they've outgrown the plan.</p>
+          </div>
+        </article>
+
+        <article class="jm-stop">
+          <div class="jm-node-col"><span class="jm-node"></span></div>
+          <div class="jm-card">
+            <h3 class="jm-stage">Sending velocity dropping</h3>
+            <p class="jm-why">Legitimate churn recovery, but fixes a failure after the fact instead of preventing one.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 1 -->
+  <section id="part1">
+    <p class="eyebrow">Part 1</p>
+    <h2 class="section-heading">Intervention design</h2>
+
+    <!-- Intervention 1 -->
+    <div class="intv-card" data-mode="teal">
+      <p class="intv-eyebrow">Intervention 1 · Waiting on domain verification</p>
+      <h3 class="intv-title">Three branches, each with a different job</h3>
+      <p>A user has submitted a custom domain for verification. From there, three different things can happen: it can <strong>stall</strong> (DNS still propagating, no error, still within the expected window), it can get <strong>rejected</strong> (the domain provider returns a verification-rejected response, sometimes within minutes), or the user can <strong>abandon</strong> the flow before it resolves (no error, no completion, no in-product activity for 24+ hours).</p>
+      <p>Every branch also splits on a second axis: is the user in-product with cookies enabled, or not. That split matters as much as the first, since roughly 40–50% of users are invisible to the in-app tool at any given moment, regardless of which branch they're in.</p>
+
+      <div class="branch">
+        <p class="branch-title">Branch A — Stall</p>
+        <p class="field-row"><span class="field-label">Trigger:</span> domain submitted, not yet verified, no error, elapsed under 48 hours.</p>
+
+        <p class="condition-label">In-product, cookies enabled</p>
+        <div class="surface-line">
+          <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/></svg>Banner</span>
+          <p class="surface-why">Ambient and non-blocking. DNS propagation is expected, nothing's broken, so the surface should update the user without demanding a response. A <strong>tooltip</strong> dismisses on hover-away and a <strong>modal</strong> interrupts; neither fits a wait that's supposed to resolve on its own.</p>
+        </div>
+        <div class="msg"><span class="msg-label">Message — banner, hasn't tested in sandbox yet</span><p class="msg-body">"DNS can take up to 48 hours to propagate. While you wait, try a sandbox send."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
+        <div class="msg"><span class="msg-label">Message — banner, already tested in sandbox</span><p class="msg-body">"DNS can take up to 48 hours to propagate. You've already tested in sandbox, so get a head start on production."</p><span class="msg-cta">CTA: Set up production send</span></div>
+
+        <p class="condition-label">Not in-product, or no cookies, inactive 10+ minutes</p>
+        <div class="surface-line">
+          <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
+          <p class="surface-why">The only surface that reaches someone outside the tab. Delayed to 10 minutes so it doesn't fire redundantly at someone still actively watching the in-app banner.</p>
+        </div>
+        <div class="msg"><span class="msg-label">Email — stall delay</span><p class="msg-subject">Subject: Your domain verification is still in progress</p><p class="msg-body">"DNS can take up to 48 hours to propagate, so [domain] may not be verified yet. If you haven't already, you can test your integration in the sandbox while you wait. We'll email you the moment verification completes."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
+
+        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ sandbox domain setup, in-product</span><span class="link-target">→ production domain setup, in-product</span></p>
+        <p class="field-row"><span class="field-label">Success criteria:</span> % who take a sandbox or production-setup action during the wait, median time to first production send, % of verifications completing while the user is still in-product.</p>
+      </div>
+
+      <div class="branch">
+        <p class="branch-title">Branch B — Rejected</p>
+        <p class="field-row"><span class="field-label">Trigger:</span> domain provider returns a verification-rejected response (bad record, mismatch, conflict).</p>
+
+        <p class="condition-label">In-product, cookies enabled</p>
+        <div class="surface-line">
+          <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 20h20L12 2z"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/></svg>Banner, alert treatment</span>
+          <p class="surface-why">Same Gainsight Bar component as the stall banner, styled to read as urgent: color, icon, persistent placement until resolved. A real problem exists now, so it needs more visual weight than the ambient stall version. It still isn't modal-worthy. The user can keep working elsewhere while they decide how to fix it.</p>
+        </div>
+        <div class="msg"><span class="msg-label">Message — banner, alert treatment</span><p class="msg-body">"We couldn't verify [domain]: [reason]."</p><span class="msg-cta">CTA: Fix it · Invite a teammate</span></div>
+
+        <p class="condition-label">Not in-product, or no cookies</p>
+        <div class="surface-line">
+          <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
+          <p class="surface-why">Same reasoning as the stall email: if they're not there to see the in-app alert, email has to carry the same specifics on its own, with no in-app follow-up to lean on.</p>
+        </div>
+        <div class="msg"><span class="msg-label">Email — verification rejected</span><p class="msg-subject">Subject: Action needed: we couldn't verify [domain]</p><p class="msg-body">"We weren't able to verify [domain]. Here's why: [reason]. If DNS isn't something you handle yourself, loop in the teammate who manages it. Or reach out and we'll walk you through the fix."</p><span class="msg-cta">CTA: See how to fix this · Invite a teammate · Talk to support</span></div>
+
+        <div class="callout insight">
+          <p class="callout-header">Personalization opportunity</p>
+          <div class="callout-body">
+            <p>The rejected reason often correlates with the domain provider (GoDaddy, Cloudflare, Namecheap, Google Domains, and so on), so both the in-app message and the DNS-records screen could be tailored per provider instead of generic. Where provider isn't captured directly, time-to-rejection is a cheaper proxy: a rejection that surfaces within seconds of submission is usually a simple syntax issue, while one that only shows up after normal propagation time has passed suggests a deeper conflict, like an existing conflicting record, that's less self-serve-friendly and might warrant leaning harder on the support and teammate-invite paths instead of the fix-it-yourself one.</p>
+          </div>
+        </div>
+
+        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ DNS records screen, showing the expected values</span><span class="link-target">→ direct line to support</span><span class="link-target">→ teammate invite flow</span></p>
+        <p class="field-row"><span class="field-label">Success criteria:</span> % resolved by the original user vs. via teammate invite vs. via support vs. unresolved after 7 days, teammate invite acceptance rate, support contact rate on this specific error state.</p>
+      </div>
+
+      <div class="branch">
+        <p class="branch-title">Branch C — Abandon</p>
+        <p class="field-row"><span class="field-label">Trigger:</span> domain submitted, no error, no completion, no in-product session in 24+ hours.</p>
+        <div class="surface-line">
+          <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
+          <p class="surface-why">In-app can't reach someone who isn't in the product, so this branch is email by definition. The copy is written to be fully self-contained, since there's no in-app surface to fall back on.</p>
+        </div>
+        <div class="msg"><span class="msg-label">Email — verification abandoned</span><p class="msg-subject">Subject: Your Mailgun domain verification is still waiting on you</p><p class="msg-body">"Verification for [domain] hasn't completed, and we haven't seen any activity on your account in a while. If DNS setup isn't something you handle yourself, invite a teammate who manages your domain so it doesn't stall your launch."</p><span class="msg-cta">CTA: Invite a teammate · See setup instructions</span></div>
+        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ teammate invite flow</span><span class="link-target">→ domain setup, in-product</span></p>
+        <p class="field-row"><span class="field-label">Success criteria:</span> email open and click rate, % of abandoned verifications that resume within 7 days, % using the invite-teammate link specifically.</p>
+      </div>
+
+      <div class="callout highlight">
+        <p class="callout-header">The commercial thread</p>
+        <div class="callout-body">
+          <p>When a teammate accepts an invite through the rejected or abandon branch, that's a second person actively collaborating on setup, which is itself paid-tier behavior (multi-user access sits on paid plans). A 30-day trial of the multi-user plan, triggered automatically on invite acceptance, turns a friction-relief mechanism into a real commercial entry point. This carries into Part 2.</p>
+        </div>
+      </div>
+      <p>The same invite-a-teammate idea belongs at stage 3 (sending in production) too, for users without engineering support, worded as "need a hand with the code? Loop in a developer" rather than the DNS-specific version above.</p>
+    </div>
+
+    <!-- Intervention 2 -->
+    <div class="intv-card" data-mode="gold">
+      <p class="intv-eyebrow">Intervention 2 · Missing capabilities beyond core sending</p>
+      <h3 class="intv-title">A discovery nudge, split by persona</h3>
+      <p>A user has activated and is sending reliably, but hasn't touched suppression lists, templates, inbound routing, or validation. Splits into two inferred personas: developer (API-heavy, little dashboard use) and marketer/growth (dashboard-heavy, less code). The DNS and nameserver setup captured back at domain verification adds a second signal: some will skew developer, some non-technical product or marketing, some solopreneur. I would also check with Growth to see if anything is captured with source during signup; certain campaigns likely skew as well; if that information rolls up to UTMs or other acquisition information.</p>
+      <p class="field-row"><span class="field-label">Trigger:</span> 14+ consecutive days of sending, zero use of a second capability category, cross-referenced against inferred persona signals (dashboard vs. API usage, plus the nameserver signal from domain setup).</p>
+
+      <div class="surface-line">
+        <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="6" y="13" width="12" height="5" rx="1"/></svg>Slider</span>
+        <p class="surface-why">Not a <strong>Tooltip</strong>: too transient to hold a persona-specific message and a CTA before it's read. Not a <strong>Dialog</strong>: this is a discovery nudge, not an urgent one, and interrupting a working session to suggest a feature undercuts it.</p>
+      </div>
+      <div class="msg"><span class="msg-label">Message — developer persona</span><p class="msg-body">"You're sending reliably. Most teams at your volume also use suppression lists to automatically keep bounces and complaints out of future sends. It's a two-minute setup, and it protects your sender reputation."</p><span class="msg-cta">CTA: Set it up</span></div>
+      <div class="msg"><span class="msg-label">Message — marketer/growth persona</span><p class="msg-body">"Your delivery rates are strong. Want to see what a templated, on-brand send looks like? Templates take the guesswork out of formatting and give you reusable, trackable campaigns."</p><span class="msg-cta">CTA: See templates</span></div>
+      <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ suppression list setup</span><span class="link-target">→ template gallery</span></p>
+      <p class="field-row"><span class="field-label">Success criteria:</span> % of exposed users who adopt a second capability within 30 days, correlation between second-capability adoption and upgrade at 60/90 days, click-through and dismissal rate by persona.</p>
+
+      <div class="callout">
+        <p class="callout-header">A/B test opportunity</p>
+        <div class="callout-body">
+          <p>Control: every eligible user sees one generic nudge, regardless of persona. Variant: the persona-branched version above. The metric that matters is upgrade rate at 60/90 days, not click-through or second-capability adoption alone, since a branched message could win engagement without moving revenue. Restricting the test to users the persona classifier is confident about keeps misclassified accounts from diluting the read.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Intervention 3 -->
+    <div class="intv-card" data-mode="teal">
+      <p class="intv-eyebrow">Intervention 3 · Approaching the free plan ceiling</p>
+      <h3 class="intv-title">Two rungs, paced to the billing month rather than a rolling week</h3>
+      <p>A user's sending volume is trending toward the free plan's cap. The clearest signal in the funnel: usage itself is telling the user they need more than the free plan gives them. The job is timing, catching this before the cap hits so the first message about upgrading isn't delivered alongside a service disruption.</p>
+      <p class="field-row"><span class="field-label">Trigger:</span> the cap resets on the calendar month, not a rolling 30 days, so a flat 7-day rolling average projected forward doesn't line up with a fixed month-end boundary. The projection instead blends two numbers: the account's month-to-date daily average (sends so far this month ÷ days elapsed), weighted toward a trailing 3-day average so a recent spike, a new campaign, say, gets caught faster than the flat average alone would. Projected month-end total = blended daily pace × days remaining in the month. The banner fires once that projection crosses the cap with 5 or fewer days left; the modal fires at 24 hours out if nothing's been done.</p>
+      <p class="field-row"><span class="field-label">Requires:</span> a daily job that computes the projection and writes it back as an account attribute, something like <code>projected_cap_date</code>, synced to both Gainsight, to drive the banner and modal below, and Customer.io, to drive the paired email. This is a data and analytics build before it's a messaging config.</p>
+
+      <p class="condition-label">Projected to hit the cap within 5 days, in-product, cookies enabled</p>
+      <div class="surface-line">
+        <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/></svg>Banner</span>
+        <p class="surface-why">Elevated but still non-blocking. There's real time left to act, so the surface should be visible and specific without stopping the user's work.</p>
+      </div>
+      <div class="msg"><span class="msg-label">Message — banner (5-day threshold)</span><p class="msg-body">"You're on track to hit your free plan limit around [date]."</p><span class="msg-cta">CTA: Upgrade now</span></div>
+
+      <p class="condition-label">Same threshold, not in-product or no cookies</p>
+      <div class="surface-line">
+        <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
+        <p class="surface-why">Same coverage-gap logic as domain verification: a user the in-app tool can't reach still needs the warning, so the same stored projection that drives the banner also drives a paired email through Customer.io.</p>
+      </div>
+      <div class="msg"><span class="msg-label">Email — 5-day threshold</span><p class="msg-subject">Subject: You're about to hit your Mailgun sending limit</p><p class="msg-body">"Your Mailgun account is on track to hit its free plan limit around [date], based on your current sending pace. Upgrading now keeps your sends running without interruption, no code changes required."</p><span class="msg-cta">CTA: Upgrade now</span></div>
+
+      <p class="condition-label">Within 24 hours of the cap, no action taken</p>
+      <div class="surface-line">
+        <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>Modal</span>
+        <p class="surface-why">The one place in this case study a modal earns its interruption: imminent service disruption, and only after the banner and email already had their chance. Escalating straight to a modal at the first sign of the trend would be the wrong call. Earning it through the ladder is the point.</p>
+      </div>
+      <div class="msg"><span class="msg-label">Message — modal (24-hour threshold)</span><p class="msg-body">"You're about to reach your sending limit."</p><span class="msg-cta">CTA: Upgrade now</span></div>
+
+      <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ plan upgrade flow, pre-filled with the recommended tier</span></p>
+      <p class="field-row"><span class="field-label">Success criteria:</span> % of at-risk accounts that upgrade before hitting the cap vs. after, reduction in cap-related support tickets, time from first exposure to upgrade decision, whether the banner-and-email pairing reduces how often accounts reach the modal stage over time.</p>
+    </div>
+  </section>
+
+  <!-- PART 2 -->
+  <section id="part2">
+    <p class="eyebrow">Part 2</p>
+    <h2 class="section-heading">Cross-channel extension for domain verification</h2>
+    <p>This is the moment worth extending. It's a high-volume moment, every self-serve user has to pass through it, so friction here has funnel-wide reach. It splits cleanly into three branches with different channel needs. And the teammate-invite mechanism is a genuine product change, not just a messaging layer, which is what this section is asking for.</p>
+    <div class="callout">
+      <p class="callout-header">The strategy</p>
+      <div class="callout-body">
+        <p>Keep users occupied in-product through an ordinary stall, but for the branches where in-app can't reach the user, a rejection they never saw or an outright abandon, route through email, and turn the resolution path itself, inviting a teammate, into a trial of the plan that includes multi-user access.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-heading">How the channels sequence together</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Branch</th><th>User state</th><th>Surface</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td>Stall</td><td>In-product, cookies enabled</td><td>Banner (in-app)</td><td>Personalized on sandbox-usage status</td></tr>
+          <tr><td>Stall</td><td>Not in-product, or no cookies</td><td>Email</td><td>Delay email at 10+ min, same personalization logic</td></tr>
+          <tr><td>Rejected</td><td>In-product, cookies enabled</td><td>Banner, alert treatment (in-app)</td><td>"Needs attention" notice with reason, fix-it and invite-teammate and support links</td></tr>
+          <tr><td>Rejected</td><td>Not in-product, or no cookies</td><td>Email</td><td>Same reason and links, sent directly</td></tr>
+          <tr><td>Abandon</td><td>Not in-product, 24h+</td><td>Email</td><td>"Still in progress" nudge, invite-teammate and domain-setup links</td></tr>
+          <tr><td>Teammate invite accepted</td><td>Any</td><td>Product (billing/entitlements)</td><td>30-day multi-user trial activates; confirmation email to both users</td></tr>
+          <tr><td>Verification completes</td><td>All users</td><td>Status element (product UI)</td><td>Status updates immediately, regardless of cookies</td></tr>
+          <tr><td>Verification completes</td><td>In-product, cookies enabled</td><td>Banner (in-app)</td><td>Fresh banner points to first production send; UTM suppression prevents a repeat for anyone who already got an email</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-heading">Who I'd need, and what I'd ask of them</h3>
+    <div class="role-item">
+      <span class="role-badge">Product, UX, engineering</span>
+      <p>The domain-status element on the product's own UI, the rejected-state banner treatment, and the invite-a-teammate flow. The status element is a one-time build that can ship independently, and it's the piece that reaches every user regardless of cookie consent, since it lives in the product itself, not the messaging tool.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Product (data / analytics)</span>
+      <p>Confirmation that <code>domain_added</code> and <code>dns_propagated</code> already reach both Gainsight and Customer.io with the fields and timing this needs, since those events almost certainly exist as core product telemetry already. The open question is whether a rejected response can be captured as its own distinct event rather than folded into a generic "not yet verified" state.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Engineering</span>
+      <p>Missing event routing, plus the trial-activation logic (invite accepted grants a 30-day multi-user trial), which touches billing and entitlements, not just messaging.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Growth / product, pricing & packaging</span>
+      <p>Sign-off on the trial mechanic itself. Auto-granting a paid-tier trial from an invite action is a pricing decision, not just a UX one.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Lifecycle / marketing ops</span>
+      <p>Banner and alert logic, UTM suppression rule.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Email platform owner</span>
+      <p>Three distinct triggers (stall-delay, rejected, abandon), each with different copy and CTA, plus trial-activation confirmation emails.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Support</span>
+      <p>A direct line, not just a help article, for the rejected branch. When verification fails, the user should be able to reach a person, not only a doc.</p>
+    </div>
+    <div class="role-item">
+      <span class="role-badge">Data (success metrics owner)</span>
+      <p>Baseline and ongoing tracking split by branch: time to verification, % completing in-product vs. after leaving, ticket volume by branch, email click-through, teammate invite acceptance rate, trial-to-paid conversion from this entry point.</p>
+    </div>
+
+    <h3 class="sub-heading">Handling the 40–50% coverage gap</h3>
+    <p>This isn't a footnote here, it's the design constraint that shaped every branch above.</p>
+    <ul>
+      <li>The domain-status element is the one piece every user sees, since it's product UI, not a cookie-gated messaging surface.</li>
+      <li>Email carries the rejected and abandon branches by necessity, not by cookie status: a user who hit a rejection they never saw, or who's already left, isn't reachable in-app regardless of consent. Both emails are written to be self-contained.</li>
+      <li>Cookie-enabled, still-active users get redundancy, not repetition: in-app for immediacy, the status element for reliability, email only if they've actually stepped away, with UTM suppression to prevent getting both.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="callout-header">Assumptions I'm carrying into this</p>
+      <div class="callout-body">
+        <ul>
+          <li>That <code>domain_added</code> and <code>dns_propagated</code> are already instrumented (near-certain, since the product depends on them) and reach both the in-app tool and email today. Less certain: whether a rejected verification is captured as its own distinct event rather than lumped into "not yet verified."</li>
+          <li>Whether a rejected response can be classified with a specific reason programmatically, rather than a generic failure state.</li>
+          <li>Whether legal or finance would sign off on auto-granting a paid-tier trial from an invite action. That's a policy question, worth surfacing early.</li>
+          <li>What proportion of users are sandbox-first vs. going straight to production, which changes how much weight this intervention should carry relative to the others.</li>
+          <li>What share of the uncounted 50–60% is explicit opt-out vs. never having seen a consent prompt, and whether that varies geographically.</li>
+          <li>Current baseline numbers for time-to-verification and ticket volume by branch, needed in the first 30 days to know whether this is working.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- END-OF-PAGE CTA -->
+  <div class="impact-cta">
+    <h2>Want to walk through the reasoning behind any of this?</h2>
+    <p>Happy to go deeper on trade-offs, the branches that didn't make the cut, or how this would change with real usage data.</p>
+    <a href="contact.html" class="cta-button">Get in touch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Rachel Hull</span>
+      <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Journey map: node activation + scroll-driven line fill ──
+    const jmStops = Array.from(document.querySelectorAll('.jm-stop'));
+    const jmReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (jmStops.length) {
+      if ('IntersectionObserver' in window) {
+        const jmIo = new IntersectionObserver((entries) => {
+          entries.forEach(entry => entry.target.classList.toggle('active', entry.isIntersecting));
+        }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+        jmStops.forEach(stop => jmIo.observe(stop));
+      } else {
+        jmStops.forEach(stop => stop.classList.add('active'));
+      }
+
+      const jmFill = document.getElementById('jmFill');
+      const jmPathEl = document.getElementById('jmPath');
+
+      if (!jmReduceMotion && jmFill && jmPathEl) {
+        let ticking = false;
+        function updateJmFill() {
+          const rect = jmPathEl.getBoundingClientRect();
+          const viewportCenter = window.innerHeight * 0.5;
+          const traveled = viewportCenter - rect.top;
+          const pct = Math.min(1, Math.max(0, traveled / rect.height));
+          jmFill.style.height = (pct * 100) + '%';
+          ticking = false;
+        }
+        window.addEventListener('scroll', () => {
+          if (!ticking) { requestAnimationFrame(updateJmFill); ticking = true; }
+        }, { passive: true });
+        window.addEventListener('resize', updateJmFill);
+        updateJmFill();
+      } else if (jmFill) {
+        jmFill.style.height = '100%';
+      }
+    }
+  </script>
+
+</body>
+</html>
