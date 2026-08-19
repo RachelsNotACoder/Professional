@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED4QVHV7Q8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ED4QVHV7Q8');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact — Rachel Hull</title>
+  <meta name="description" content="Selected lifecycle marketing projects by Rachel Hull: each one starts with a hypothesis, ends with a number.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,350;9..144,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --plum-deep: #3D2454;
+      --lavender: #EDE8F5;
+      --teal: #2A4A45;
+      --teal-tint: #D8EAE7;
+      --teal-dark: #1A302D;
+      --gold: #B8762A;
+      --gold-tint: #FAF0DC;
+      --gold-dark: #7A4E18;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --border: rgba(0,0,0,0.08);
+      --max-width: 720px;
+      --path-width: 1120px;
+      --font-display: 'Fraunces', serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── STICKY HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--plum);
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      gap: 0.6rem;
+    }
+
+    .header-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .header-dot {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .header-role {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .header-links {
+      margin-left: auto;
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .header-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .header-links a:hover,
+    .header-links a.active {
+      color: #ffffff;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .path-wrap {
+      max-width: var(--path-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── PAGE HEADER / INTRO ── */
+    .page-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3.5rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-headline {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Mode legend — ties the S/E/O system to the path before it starts */
+    .mode-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .mode-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--slate);
+    }
+
+    .mode-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .mode-dot.mode-plum { background: var(--plum); }
+    .mode-dot.mode-teal { background: var(--teal); }
+    .mode-dot.mode-gold { background: var(--gold); }
+
+    /* ── VERTICAL PATH ── */
+    .impact-path {
+      position: relative;
+      padding: 3.5rem 0 2rem;
+    }
+
+    /* the physical line — a static track plus a scroll-driven fill */
+    .path-line-track {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .path-line-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: linear-gradient(to bottom, var(--plum), var(--teal), var(--gold));
+      border-radius: 2px;
+      transition: height 0.1s linear;
+    }
+
+    .story-stops {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .story-stop {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 44px 1fr;
+      column-gap: 2.5rem;
+      padding: 1.75rem 0;
+    }
+
+    .stop-node-col {
+      grid-column: 2;
+      display: flex;
+      justify-content: center;
+      padding-top: 0.35rem;
+    }
+
+    .stop-node {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--linen);
+      border: 2px solid var(--slate);
+      opacity: 0.55;
+      transform: scale(0.85);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .story-stop[data-mode="plum"] .stop-node { border-color: var(--plum); }
+    .story-stop[data-mode="gold"] .stop-node { border-color: var(--gold); }
+    .story-stop[data-mode="teal"] .stop-node { border-color: var(--teal); }
+
+    .story-stop.active .stop-node {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .story-stop[data-mode="plum"].active .stop-node { background: var(--plum); box-shadow: 0 0 0 5px var(--lavender); }
+    .story-stop[data-mode="gold"].active .stop-node { background: var(--gold); box-shadow: 0 0 0 5px var(--gold-tint); }
+    .story-stop[data-mode="teal"].active .stop-node { background: var(--teal); box-shadow: 0 0 0 5px var(--teal-tint); }
+
+    .stop-card {
+      grid-column: 1;
+      grid-row: 1;
+      opacity: 0.72;
+      transition: opacity 0.35s ease;
+    }
+
+    .story-stop.active .stop-card { opacity: 1; }
+
+    .story-stop:nth-child(even) .stop-card {
+      grid-column: 3;
+    }
+
+    .story-stop:nth-child(odd) .stop-card { text-align: right; }
+    .story-stop:nth-child(odd) .metric-badge,
+    .story-stop:nth-child(odd) .tag-row,
+    .story-stop:nth-child(odd) .case-trigger { justify-content: flex-end; }
+    .story-stop:nth-child(odd) .case-body { margin-left: auto; }
+
+    .case-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: inherit;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: inherit;
+      gap: 0;
+    }
+
+    .case-trigger:focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .case-meta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-title {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+    }
+
+    /* Metric — the strongest visual element on the page */
+    .metric-badge {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .metric-num {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 350;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .story-stop[data-mode="plum"] .metric-num { color: var(--plum-deep); }
+    .story-stop[data-mode="gold"] .metric-num { color: var(--gold-dark); }
+    .story-stop[data-mode="teal"] .metric-num { color: var(--teal-dark); }
+
+    .metric-label {
+      font-family: 'Outfit', sans-serif;
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 3px 10px;
+      white-space: nowrap;
+      background: var(--lavender);
+      color: var(--plum);
+    }
+
+    .tag[data-v="gold"] { background: var(--gold-tint); color: var(--gold-dark); }
+    .tag[data-v="teal"] { background: var(--teal-tint); color: var(--teal); }
+
+    .accordion-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--slate);
+    }
+
+    .story-stop:nth-child(odd) .accordion-cue { flex-direction: row-reverse; }
+
+    .chevron {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: var(--slate);
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    .story-stop.open .chevron { transform: rotate(180deg); }
+
+    /* ── EXPANDED SAR PANEL ── */
+    .case-panel {
+      display: none;
+      padding-top: 1.25rem;
+      max-width: 480px;
+    }
+    .story-stop:nth-child(odd) .case-panel { margin-left: auto; }
+    .story-stop.open .case-panel { display: block; animation: panel-in 0.25s ease; }
+
+    @keyframes panel-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .case-accent {
+      width: 32px;
+      height: 2px;
+      background: var(--plum);
+      border-radius: 2px;
+      margin-bottom: 1.1rem;
+    }
+
+    .story-stop:nth-child(odd) .case-accent { margin-left: auto; }
+    .story-stop[data-mode="gold"] .case-accent { background: var(--gold); }
+    .story-stop[data-mode="teal"] .case-accent { background: var(--teal); }
+
+    .case-body {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    .case-body p + p {
+      margin-top: 0.85rem;
+    }
+
+    .result-meta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--slate);
+      font-style: italic;
+      margin-top: 1.1rem;
+      text-align: left;
+    }
+
+    /* ── END-OF-PAGE CTA ── */
+    .impact-cta {
+      max-width: var(--max-width);
+      margin: 1rem auto 0;
+      padding: 3.5rem 1.5rem 4.5rem;
+      border-top: 0.5px solid var(--border);
+      text-align: center;
+    }
+
+    .impact-cta h2 {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-size: clamp(22px, 3vw, 28px);
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .impact-cta p {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      color: var(--slate);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      background: var(--plum);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+
+    .cta-button:hover { background: var(--plum-deep); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--plum);
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .footer-meta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-link {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .footer-link:hover {
+      color: #ffffff;
+      border-bottom-color: rgba(255,255,255,0.7);
+    }
+
+    /* ── TABLET ── */
+    @media (max-width: 900px) {
+      .story-stop {
+        grid-template-columns: 36px 1fr;
+        column-gap: 1.25rem;
+      }
+      .stop-node-col { grid-column: 1; }
+      .stop-card,
+      .story-stop:nth-child(even) .stop-card {
+        grid-column: 2;
+      }
+      .story-stop:nth-child(odd) .stop-card { text-align: left; }
+      .story-stop:nth-child(odd) .metric-badge,
+      .story-stop:nth-child(odd) .tag-row,
+      .story-stop:nth-child(odd) .case-trigger { justify-content: flex-start; }
+      .story-stop:nth-child(odd) .accordion-cue { justify-content: flex-start; flex-direction: row; }
+      .story-stop:nth-child(odd) .case-body,
+      .story-stop:nth-child(odd) .case-panel,
+      .story-stop:nth-child(odd) .case-accent { margin-left: 0; }
+
+      .path-line-track { left: 18px; transform: none; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .page-header { padding: 3rem 1.5rem 2.5rem; }
+      .impact-path { padding: 2.5rem 0 1rem; }
+      .story-stop { padding: 1.25rem 0; column-gap: 1rem; }
+      .case-title { font-size: 19px; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0.75rem 1rem;
+        row-gap: 0.6rem;
+      }
+
+      .header-links {
+        width: 100%;
+        margin-left: 0;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+      .path-line-fill { height: 100% !important; }
+      .stop-node { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="header-name">Rachel Hull</a>
+      <span class="header-dot">·</span>
+      <span class="header-role">Lifecycle &amp; Growth Marketing</span>
+      <ul class="header-links">
+        <li><a href="impact.html" class="active">Impact</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="page-header">
+    <p class="eyebrow">Selected work</p>
+    <h1 class="page-headline">Each one starts with a hypothesis.<br>Ends with a number.</h1>
+    <div class="mode-legend" aria-hidden="true">
+      <span class="mode-legend-item"><span class="mode-dot mode-plum"></span>Strategy</span>
+      <span class="mode-legend-item"><span class="mode-dot mode-gold"></span>Execution</span>
+      <span class="mode-legend-item"><span class="mode-dot mode-teal"></span>Optimization</span>
+    </div>
+  </div>
+
+  <!-- VERTICAL PATH -->
+  <div class="path-wrap">
+    <div class="impact-path">
+      <div class="path-line-track" aria-hidden="true">
+        <div class="path-line-fill" id="pathFill"></div>
+      </div>
+
+      <div class="story-stops" id="storyStops">
+
+        <!-- 1 -->
+        <article class="story-stop" id="rent-payments" data-mode="teal">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">Rent Payment activation reframe</h2>
+              <div class="metric-badge">
+                <span class="metric-num">+72%</span>
+                <span class="metric-label">adoption lift</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="teal">Optimization</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>During a migration of the core Rent Payments retargeting flow from Klaviyo to Customer.io, I noticed the sequence was several years old and built on fear-based messaging that no longer fit the acquisition mix. Newer landlords didn't identify with copy about "chasing late rent" — they believed they had the problem handled, even when their actual solution was manual and tedious.</p>
+                <p>I reframed the value proposition around eliminating administrative drudgery — no more manual reminders, no chasing, no writing receipts — and built an A/B path test directly into the migration so the hypothesis could be validated without adding a separate workstream. The automation-framed path drove a 72% lift in Rent Payments adoption, strengthening TurboTenant's primary ARR driver and one of its stickiest recurring-engagement features.</p>
+              </div>
+              <div class="result-meta">A/B tested messaging reframe · Customer.io · Rent Payments is TurboTenant's primary ARR driver and stickiest retention feature</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="story-stop" id="onboarding-rebuild" data-mode="teal">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">Onboarding series rebuild: intent-based segmentation</h2>
+              <div class="metric-badge">
+                <span class="metric-num">+11% / +5%</span>
+                <span class="metric-label">feature adoption</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="teal">Optimization</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant's incomplete-signup onboarding series wasn't beating holdout for either the Marketing intent or Rent Payment intent segments — producing no measurable lift over doing nothing. Every message had been written for small landlords, systematically ignoring larger landlords who existed in both segments, behaved differently, and responded to entirely different value propositions.</p>
+                <p>I rebuilt each series as a single journey using Liquid scripting to serve differentiated content blocks by property count. Larger landlords saw the Payments Dashboard and scale-relevant features; smaller landlords received benefit-forward messaging. I instrumented each CTA with dynamic UTM parameters so downstream analytics could separate performance by which content block rendered, not just which series ran, then A/B tested the new journeys against the originals. Property-add completion increased 11% for the Marketing intent segment and 5% for Rent Payment intent, with both journeys finally clearing holdout.</p>
+              </div>
+              <div class="result-meta">+11% property-add completion, Marketing intent segment · +5% lift, Rent Payment intent segment · Single-template Liquid architecture · A/B tested against original series</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="story-stop" id="vacancy-to-retention" data-mode="plum">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">Vacancy-to-retention: screening-to-lease journey redesign</h2>
+              <div class="metric-badge">
+                <span class="metric-num">5% → 40%</span>
+                <span class="metric-label">feature adoption</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Strategy</span>
+                <span class="tag" data-v="gold">Execution</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant's Screening-to-Lease journey targeted users who signed up for a one-time background check — a segment with ~95% within-year dormancy and Rent Payments adoption under 5%. The journey followed landlord workflow logic and wasn't beating holdout. The first email promoted a $75 lease feature to a cold, transactional user who had just received a free screening report.</p>
+                <p>I recognized the journey assumed users intended to stay when most didn't, and that leading with a paid feature immediately after a free transaction set the wrong tone. I reframed the goal from walking users through a landlord checklist to creating an ongoing reason to use the platform, and rebuilt the journey to lead with Rent Payments — free for landlords, recurring by nature, and naturally tied to the monthly rent cycle. Rent Payments adoption increased from under 5% to 40%, an eightfold increase across approximately 200 users per week.</p>
+              </div>
+              <div class="result-meta">Eightfold increase · ~200 users per week · pre/post measurement</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="story-stop" id="analytics-rebuild" data-mode="plum">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">Snagajob</p>
+              <h2 class="case-title">Analytics rebuild</h2>
+              <div class="metric-badge">
+                <span class="metric-num">31%</span>
+                <span class="metric-label">revenue growth</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Strategy</span>
+                <span class="tag" data-v="teal">Optimization</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>Snagajob had Adobe Analytics connected to lifecycle email, but inconsistent event structures meant program performance couldn't be compared across series. Decisions were being made on open and click rates. One program — daily job recommendations — represented roughly 80% of send volume, and no one had the data to question it.</p>
+                <p>I standardized event structures and organized lifecycle programs into four themes: job recommendations, worker engagement, onboarding, and transactional. I built reporting around site visits, job views, applications, and last-touch revenue, then validated the baseline against historical data and seasonality. That exposed the high-volume job recommendation program as a poor-ROI area and showed that engagement and onboarding programs performed significantly better. Shifting send volume toward those programs while reducing job-recommendation frequency drove 31% revenue growth and 6.7% visit growth while cutting total send volume by 22%.</p>
+              </div>
+              <div class="result-meta">6.7% visit growth · 22% reduction in send volume · Adobe Analytics · UTM framework · Snagajob</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="story-stop" id="patriot-act" data-mode="gold">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">Conduent</p>
+              <h2 class="case-title">Patriot Act activation program</h2>
+              <div class="metric-badge">
+                <span class="metric-num">5% → 27%</span>
+                <span class="metric-label">activation rate</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="gold">Execution</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>Every year, a significant share of new HSA account holders failed Patriot Act identity verification — a regulatory requirement that blocked them from funding their accounts. Conduent's only outreach was a paper mail notice: legalistic, frequently undeliverable, and often sent to the same physical address that had caused the failure. Response rates were around 5%.</p>
+                <p>I built the first lifecycle email program for this segment. I automated a data trigger to identify employees in failure state, personalized the consequence based on whether the account was employer-funded or self-funded, and tailored the required action to the specific failure type. Four automated follow-ups went to non-responders, and the program was measured against a paper-mail holdout at launch. Activation increased from 5% to 27% — a fivefold increase — across approximately 4,000 employees annually.</p>
+              </div>
+              <div class="result-meta">Automated trigger sequence · ~4,000 employees annually · Conduent</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="story-stop" id="persona-development" data-mode="plum">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">Snagajob</p>
+              <h2 class="case-title">Worker persona development</h2>
+              <div class="metric-badge">
+                <span class="metric-num">1,500 verbatims</span>
+                <span class="metric-label">→ first segmentation framework</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Strategy</span>
+                <span class="tag" data-v="gold">Execution</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>Snagajob's marketing strategy had always focused on the employer side. The worker audience was treated as a single segment — people who wanted jobs — with no structured understanding of why different workers searched, applied, or disengaged. Marketing decisions had no framework for differentiated worker intent.</p>
+                <p>I used hundreds of open-ended worker survey responses as raw input and worked iteratively with ChatGPT to identify behavioral and motivational patterns, deliberately resisting the urge to ask for polished output until the groupings were solid. I identified four distinct segments — including students sending money home, seniors seeking low-stress part-time work, and "maximizers" stacking multiple jobs — pressure-tested them with human judgment, and packaged the findings for both Marketing and Product. The personas were adopted as the team's first structured worker segmentation framework, shifting lifecycle strategy from treating workers as a monolithic audience toward differentiated, intent-based messaging and targeting.</p>
+              </div>
+              <div class="result-meta">ChatGPT · Snagajob</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="story-stop" id="freemium-retargeting" data-mode="teal">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">Freemium-to-subscriber retargeting</h2>
+              <div class="metric-badge">
+                <span class="metric-num">+15%</span>
+                <span class="metric-label">freemium conversion</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="teal">Optimization</span>
+                <span class="tag" data-v="gold">Execution</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant already had a freemium-to-Premium sequence triggered by a meaningful behavioral signal — an actual click on an upgrade prompt in-product. The trigger logic was sound; what it lacked was any personalization. Every high-intent user who clicked received the same generic pitch they'd already seen and not acted on.</p>
+                <p>I rebuilt the sequence to personalize on business-level attributes: property count, landlord tenure, and self-reported feature priorities. Email one led with the single most relevant Premium feature for that user; email two broadened to the full value proposition; email three offered a discount. I tested the new sequence 50/50 against the existing flow. The redesigned sequence achieved a 30% conversion rate, a 15% lift over control — confirming that behavioral triggers paired with attribute-driven messaging outperform a generic pitch, even before the discount arrives.</p>
+              </div>
+              <div class="result-meta">A/B tested · Customer.io · TurboTenant</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="story-stop" id="wrapped-campaign" data-mode="teal">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">"Wrapped"-style year in review campaign</h2>
+              <div class="metric-badge">
+                <span class="metric-num">0.5%</span>
+                <span class="metric-label">retention lift</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="teal">Optimization</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant's previous year-in-review campaign was structured around subscription retention, which meant it could only speak usefully to users who already had strong platform numbers. Anyone whose year looked thin got a message that didn't land, and the campaign wasn't building a case for deepening the landlord's relationship with the platform.</p>
+                <p>I reframed the goal around feature adoption instead. That let the campaign include low-activity users by turning weak numbers into opportunities: a landlord with zero rent reminders sent saw that stat next to copy explaining what automating reminders would do for them. Personalization pulled from rent collected, features adopted, portfolio growth, tenant applications, maintenance requests, and Premium status. I set a 15% random holdout and tracked non-openers separately. The campaign generated a 55% open rate, 4% CTR, and a 0.5% lift in two-month subscriber retention against holdout, along with incremental adoption gains on the specific features it called out.</p>
+              </div>
+              <div class="result-meta">55% open rate · 4% CTR · Holdout tested · TurboTenant</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="story-stop" id="new-worker-onboarding" data-mode="gold">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">Snagajob</p>
+              <h2 class="case-title">New worker onboarding series</h2>
+              <div class="metric-badge">
+                <span class="metric-num">+80%</span>
+                <span class="metric-label">applications in first 2 weeks</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="gold">Execution</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>Snagajob's worker lifecycle program was entirely greenfield. New workers received a single generic welcome email and a handful of transactional messages — no structured effort to accelerate them toward meaningful product behavior.</p>
+                <p>I combined worker survey data, in-product behavioral signals, and interviews with Product and Marketing stakeholders to identify which motivations mattered most to new signups and which in-product actions were worth building toward. I designed a personalized series opening with a calibrated welcome, followed by four emails introducing search, filters, and profile completion, personalized by job type and geography. Applications submitted within two weeks of signup rose 80%. Refinement over the following two quarters pushed series-driven site visits up 70%, apply intents up 50%, and attributed revenue up 115%.</p>
+              </div>
+              <div class="result-meta">Persona-driven · Snagajob</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="story-stop" id="job-rec-filtering" data-mode="teal">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">Snagajob</p>
+              <h2 class="case-title">Job recommendation targeting rebuild</h2>
+              <div class="metric-badge">
+                <span class="metric-num">+20%</span>
+                <span class="metric-label">return visits</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="teal">Optimization</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>Snagajob's emailed job recommendations were filtered by ZIP code only, built on the assumption that hourly workers had high lateral job mobility and little preference for job type. No one had tested whether that assumption was accurate.</p>
+                <p>I used persona research and AI-assisted analysis to examine actual worker behavior and found the opposite: workers had strong preferences for job types similar to roles they'd recently applied for. I built a job-type taxonomy grounded in BLS categories, refined it against Snagajob's own application and posting data, and changed recommendation filtering to reflect each worker's recent application history. I launched the new system against a control group. The behavior-based recommendations generated 20% more return visits than control, validating both the underlying behavioral insight and the filtering approach.</p>
+              </div>
+              <div class="result-meta">20% more return visits than control · taxonomy built from BLS categories · Snagajob</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 11 -->
+        <article class="story-stop" id="wells-fargo-cx-script" data-mode="plum">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">Wells Fargo</p>
+              <h2 class="case-title">Rate objection reframed as cross-sell</h2>
+              <div class="metric-badge">
+                <span class="metric-num">50 objections</span>
+                <span class="metric-label">→ 50 cross-sell opportunities</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Strategy</span>
+                <span class="tag" data-v="gold">Execution</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>In yield optimization on unsecured revolving credit at Wells Fargo, CX was fielding steady complaints from customers comparing their rates to mortgages and home equity loans. The team's proposed fix was to give representatives more flexibility to lower rates — a solution that would have created real margin pressure on rates that were already correctly priced.</p>
+                <p>The actual issue was a product comparison problem, not a rate problem. Any customer upset about a revolving credit rate who also owned a home was potentially a legitimate candidate for a home equity product at a genuinely lower rate. I reframed the complaint as a qualification signal and wrote a CX script giving representatives a clean redirect: acknowledge the frustration, then ask whether a home equity option might fit better. I worked with supervisors to get the approach in front of the team. Rather than a thankless de-escalation, the script gave representatives a way to demonstrate real empathy and potentially earn on a home equity cross-sell in the same interaction.</p>
+              </div>
+              <div class="result-meta">Turned a rate objection into a repeatable cross-sell motion for CX · kept the revolving credit book intact · Wells Fargo</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="story-stop" id="sendgrid-migration" data-mode="gold">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" aria-expanded="false">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">SendGrid to Customer.io migration</h2>
+              <div class="metric-badge">
+                <span class="metric-num">30</span>
+                <span class="metric-label">net-new emails in 6 weeks</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="gold">Execution</span>
+                <span class="tag">Strategy</span>
+              </div>
+              <span class="accordion-cue">Read the story
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" role="region">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant's transactional email infrastructure was split across SendGrid, Klaviyo, and Intercom, each owned by a different team. SendGrid sat under Engineering and relied on static templates that required a development ticket for every content change. When TurboTenant launched a managed property service that needed high volumes of personalized transactional messaging, that architecture became untenable.</p>
+                <p>I led the full migration across multiple product teams: built per-team workflows, joined Sprint Demos to stay ahead of product changes, and documented the process to build cross-functional buy-in. I rebuilt emails in Customer.io with Liquid logic and dynamic content blocks so one template could serve the right content per user, and unlocked structural A/B testing that SendGrid's architecture had blocked. We launched 30 net-new transactional emails in six weeks with multiple content revisions per email as procedures evolved, accelerated testing cadence roughly fourfold, and moved Marketing into direct ownership of transactional messaging — removing a persistent Engineering dependency and creating a foundation for SMS and push.</p>
+              </div>
+              <div class="result-meta">30 net-new transactional emails in 6 weeks · testing cadence up roughly 4x · TurboTenant</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- END-OF-PAGE CTA -->
+  <div class="impact-cta">
+    <h2>Want the story behind a number that isn't here?</h2>
+    <p>Happy to walk through the details, the misses, or the parts that didn't make the page.</p>
+    <a href="contact.html" class="cta-button">Get in touch</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-name">Rachel Hull</span>
+      <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+    </div>
+  </footer>
+
+<script>
+  const stops = Array.from(document.querySelectorAll('.story-stop'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Accordion — each stop toggles independently ─────────────────
+  stops.forEach(stop => {
+    const trigger = stop.querySelector('.case-trigger');
+    trigger.addEventListener('click', () => {
+      const isOpen = stop.classList.contains('open');
+      stop.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // ── Node activation as each stop crosses the reading line ────────
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+    stops.forEach(stop => io.observe(stop));
+  } else {
+    stops.forEach(stop => stop.classList.add('active'));
+  }
+
+  // ── Scroll-driven path fill (skipped entirely under reduced motion) ──
+  const fill = document.getElementById('pathFill');
+  const pathEl = document.querySelector('.impact-path');
+
+  if (!reduceMotion && fill && pathEl) {
+    let ticking = false;
+    function updateFill() {
+      const rect = pathEl.getBoundingClientRect();
+      const viewportCenter = window.innerHeight * 0.5;
+      const total = rect.height;
+      const traveled = viewportCenter - rect.top;
+      const pct = Math.min(1, Math.max(0, traveled / total));
+      fill.style.height = (pct * 100) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateFill);
+        ticking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateFill);
+    updateFill();
+  } else if (fill) {
+    fill.style.height = '100%';
+  }
+
+  // ── Deep-link on page load (#story-id) ────────────────────────────
+  function openFromHash() {
+    if (!window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (target && target.classList.contains('story-stop')) {
+      target.classList.add('open');
+      target.querySelector('.case-trigger').setAttribute('aria-expanded', 'true');
+      const top = target.getBoundingClientRect().top + window.scrollY - 68;
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  }
+  setTimeout(openFromHash, 120);
+  window.addEventListener('hashchange', openFromHash);
+</script>
+
+</body>
+</html>
