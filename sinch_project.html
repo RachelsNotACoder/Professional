@@ -497,6 +497,7 @@
       <h3 class="intv-title">Three branches, each with a different job</h3>
       <p>A user has submitted a custom domain for verification. From there, three different things can happen: it can <strong>stall</strong> (DNS still propagating, no error, still within the expected window), it can get <strong>rejected</strong> (the domain provider returns a verification-rejected response, sometimes within minutes), or the user can <strong>abandon</strong> the flow before it resolves (no error, no completion, no in-product activity for 24+ hours).</p>
       <p>Every branch also splits on a second axis: is the user in-product with cookies enabled, or not. That split matters as much as the first, since roughly 40–50% of users are invisible to the in-app tool at any given moment, regardless of which branch they're in.</p>
+      <p class="field-row"><span class="field-label">Success criteria:</span> % of users whose domain is successfully verified within 7 days of setup.</p>
 
       <div class="branch">
         <p class="branch-title">Branch A — Stall</p>
@@ -518,7 +519,6 @@
         <div class="msg"><span class="msg-label">Email — stall delay</span><p class="msg-subject">Subject: Your domain verification is still in progress</p><p class="msg-body">"DNS can take up to 48 hours to propagate, so [domain] may not be verified yet. If you haven't already, you can test your integration in the sandbox while you wait. We'll email you the moment verification completes."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
 
         <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ sandbox domain setup, in-product</span><span class="link-target">→ production domain setup, in-product</span></p>
-        <p class="field-row"><span class="field-label">Success criteria:</span> % who take a sandbox or production-setup action during the wait, median time to first production send, % of verifications completing while the user is still in-product.</p>
       </div>
 
       <div class="branch">
@@ -537,17 +537,16 @@
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
           <p class="surface-why">Same reasoning as the stall email: if they're not there to see the in-app alert, email has to carry the same specifics on its own, with no in-app follow-up to lean on.</p>
         </div>
-        <div class="msg"><span class="msg-label">Email — verification rejected</span><p class="msg-subject">Subject: Action needed: we couldn't verify [domain]</p><p class="msg-body">"We weren't able to verify [domain]. Here's why: [reason]. If DNS isn't something you handle yourself, loop in the teammate who manages it. Or reach out and we'll walk you through the fix."</p><span class="msg-cta">CTA: See how to fix this · Invite a teammate · Talk to support</span></div>
+        <div class="msg"><span class="msg-label">Email — verification rejected</span><p class="msg-subject">Subject: Action needed: we couldn't verify [domain]</p><p class="msg-body">"We weren't able to verify [domain]. Here's why: [reason]. If you need help troubleshooting and correcting it, start a support ticket. Or if you have a teammate who handles DNS, loop them in."</p><span class="msg-cta">CTA: See how to fix this · Start a support ticket · Invite a teammate</span></div>
 
         <div class="callout insight">
           <p class="callout-header">Personalization opportunity</p>
           <div class="callout-body">
-            <p>The rejected reason often correlates with the domain provider (GoDaddy, Cloudflare, Namecheap, Google Domains, and so on), so both the in-app message and the DNS-records screen could be tailored per provider instead of generic. Where provider isn't captured directly, time-to-rejection is a cheaper proxy: a rejection that surfaces within seconds of submission is usually a simple syntax issue, while one that only shows up after normal propagation time has passed suggests a deeper conflict, like an existing conflicting record, that's less self-serve-friendly and might warrant leaning harder on the support and teammate-invite paths instead of the fix-it-yourself one.</p>
+            <p>The rejected reason often correlates with the domain's nameserver records (GoDaddy, Cloudflare, Namecheap, Google Domains, and so on), so both the in-app message and the DNS-records screen could be tailored per provider instead of generic. Where nameserver isn't captured directly, time-to-rejection is a cheaper proxy: a rejection that surfaces within seconds of submission is usually a simple syntax issue, while one that only shows up after normal propagation time has passed suggests a deeper conflict, like an existing conflicting record, that's less self-serve-friendly and might warrant leaning harder on the support and teammate-invite paths instead of the fix-it-yourself one.</p>
           </div>
         </div>
 
-        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ DNS records screen, showing the expected values</span><span class="link-target">→ direct line to support</span><span class="link-target">→ teammate invite flow</span></p>
-        <p class="field-row"><span class="field-label">Success criteria:</span> % resolved by the original user vs. via teammate invite vs. via support vs. unresolved after 7 days, teammate invite acceptance rate, support contact rate on this specific error state.</p>
+        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ DNS records screen, showing the expected values</span><span class="link-target">→ start a support ticket</span><span class="link-target">→ mailto: support</span><span class="link-target">→ teammate invite flow</span></p>
       </div>
 
       <div class="branch">
@@ -559,7 +558,6 @@
         </div>
         <div class="msg"><span class="msg-label">Email — verification abandoned</span><p class="msg-subject">Subject: Your Mailgun domain verification is still waiting on you</p><p class="msg-body">"Verification for [domain] hasn't completed, and we haven't seen any activity on your account in a while. If DNS setup isn't something you handle yourself, invite a teammate who manages your domain so it doesn't stall your launch."</p><span class="msg-cta">CTA: Invite a teammate · See setup instructions</span></div>
         <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ teammate invite flow</span><span class="link-target">→ domain setup, in-product</span></p>
-        <p class="field-row"><span class="field-label">Success criteria:</span> email open and click rate, % of abandoned verifications that resume within 7 days, % using the invite-teammate link specifically.</p>
       </div>
 
       <div class="callout highlight">
@@ -573,24 +571,25 @@
 
     <!-- Intervention 2 -->
     <div class="intv-card" data-mode="gold">
-      <p class="intv-eyebrow">Intervention 2 · Missing capabilities beyond core sending</p>
-      <h3 class="intv-title">A discovery nudge, split by persona</h3>
-      <p>A user has activated and is sending reliably, but hasn't touched suppression lists, templates, inbound routing, or validation. Splits into two inferred personas: developer (API-heavy, little dashboard use) and marketer/growth (dashboard-heavy, less code). The DNS and nameserver setup captured back at domain verification adds a second signal: some will skew developer, some non-technical product or marketing, some solopreneur. I would also check with Growth to see if anything is captured with source during signup; certain campaigns likely skew as well; if that information rolls up to UTMs or other acquisition information.</p>
-      <p class="field-row"><span class="field-label">Trigger:</span> 14+ consecutive days of sending, zero use of a second capability category, cross-referenced against inferred persona signals (dashboard vs. API usage, plus the nameserver signal from domain setup).</p>
+      <p class="intv-eyebrow">Intervention 2 · Webhooks, unused</p>
+      <h3 class="intv-title">A discovery nudge for webhooks, split by persona</h3>
+      <p>A user is sending at real volume but hasn't set up webhooks. The feature is the same either way, real-time event data leaving Mailgun automatically, but what it's for and how it gets wired up differs by persona: a developer uses it to automate list hygiene and compliance in their own systems; a non-technical sender uses it, via Mailgun's no-code Zapier integration, to feed engagement and deliverability data into tools they already work in. Splits into two inferred personas: developer (API-heavy, little dashboard use) and marketer/growth (dashboard-heavy, less code). The DNS and nameserver setup captured back at domain verification adds a second signal: some will skew developer, some non-technical product or marketing, some solopreneur. I would also check with Growth to see if anything is captured with source during signup; certain campaigns likely skew as well; if that information rolls up to UTMs or other acquisition information.</p>
+      <p class="field-row"><span class="field-label">Trigger:</span> <code>first_production_send = true AND webhook_configured = false</code>, cross-referenced against inferred persona signals (dashboard vs. API usage, plus the nameserver signal from domain setup). Volume is the qualifying signal, this is a healthy, active sender who's outgrown manual/no-tooling handling of their event data, not a struggling one; webhook non-adoption is what makes the nudge relevant.</p>
 
       <div class="surface-line">
-        <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="6" y="13" width="12" height="5" rx="1"/></svg>Slider</span>
-        <p class="surface-why">Not a <strong>Tooltip</strong>: too transient to hold a persona-specific message and a CTA before it's read. Not a <strong>Dialog</strong>: this is a discovery nudge, not an urgent one, and interrupting a working session to suggest a feature undercuts it.</p>
+        <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="6" y="13" width="12" height="5" rx="1"/></svg>Slide-out</span>
+        <p class="surface-why">Not a <strong>Tooltip</strong>: too transient to hold a persona-specific message and a CTA before it's read. Not a <strong>Dialog</strong>: this is a non-blocking discovery nudge for a healthy, active sender, not a gate they need to clear, and interrupting a working session to suggest a feature undercuts that.</p>
       </div>
-      <div class="msg"><span class="msg-label">Message — developer persona</span><p class="msg-body">"You're sending reliably. Most teams at your volume also use suppression lists to automatically keep bounces and complaints out of future sends. It's a two-minute setup, and it protects your sender reputation."</p><span class="msg-cta">CTA: Set it up</span></div>
-      <div class="msg"><span class="msg-label">Message — marketer/growth persona</span><p class="msg-body">"Your delivery rates are strong. Want to see what a templated, on-brand send looks like? Templates take the guesswork out of formatting and give you reusable, trackable campaigns."</p><span class="msg-cta">CTA: See templates</span></div>
-      <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ suppression list setup</span><span class="link-target">→ template gallery</span></p>
-      <p class="field-row"><span class="field-label">Success criteria:</span> % of exposed users who adopt a second capability within 30 days, correlation between second-capability adoption and upgrade at 60/90 days, click-through and dismissal rate by persona.</p>
+      <div class="msg"><span class="msg-label">Message — developer persona</span><p class="msg-body">"Stop cleaning your list by hand. Webhooks push bounce, complaint, and unsubscribe events into your own systems in real time, auto-suppress bad addresses, stay compliant, and feed your data warehouse without manual log pulls."</p><span class="msg-cta">CTA: Set Up Webhooks →</span></div>
+      <div class="msg"><span class="msg-label">Message — non-technical persona</span><p class="msg-body">"See engagement and deliverability as it happens. Use webhooks to sync opens, clicks, bounces, and complaints straight to your CRM or Slack in real time, automatically, no code required with Zapier."</p><span class="msg-cta">CTA: Connect Your Tools →</span></div>
+      <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ webhook setup docs</span><span class="link-target">→ Zapier integration, connect flow</span></p>
+      <p class="field-row"><span class="field-label">Success criteria:</span> webhook endpoint configured (developer persona) or Zapier/CRM connection established (non-technical persona) within 14 days of exposure, correlation between webhook adoption and upgrade at 60/90 days, click-through and dismissal rate by persona.</p>
+      <p class="field-row"><span class="field-label">Execution boundary:</span> Gainsight-executable on its own for trigger logic, persona branching, and the in-app slide-out (page view / feature-flag events). The developer CTA resolves entirely in-house, straight to docs. The non-technical CTA's completion event, a live Zapier/CRM connection, depends on Mailgun's Zapier integration being live and instrumented; until that's confirmed, the non-technical success metric can't be measured end-to-end even though the nudge itself can still ship.</p>
 
       <div class="callout">
         <p class="callout-header">A/B test opportunity</p>
         <div class="callout-body">
-          <p>Control: every eligible user sees one generic nudge, regardless of persona. Variant: the persona-branched version above. The metric that matters is upgrade rate at 60/90 days, not click-through or second-capability adoption alone, since a branched message could win engagement without moving revenue. Restricting the test to users the persona classifier is confident about keeps misclassified accounts from diluting the read.</p>
+          <p>Control: every eligible user sees one generic nudge, regardless of persona. Variant: the persona-branched version above. The metric that matters is upgrade rate at 60/90 days, not click-through or webhook-adoption alone, since a branched message could win engagement without moving revenue. Restricting the test to users the persona classifier is confident about keeps misclassified accounts from diluting the read.</p>
         </div>
       </div>
     </div>
@@ -608,14 +607,14 @@
         <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/></svg>Banner</span>
         <p class="surface-why">Elevated but still non-blocking. There's real time left to act, so the surface should be visible and specific without stopping the user's work.</p>
       </div>
-      <div class="msg"><span class="msg-label">Message — banner (5-day threshold)</span><p class="msg-body">"You're on track to hit your free plan limit around [date]."</p><span class="msg-cta">CTA: Upgrade now</span></div>
+      <div class="msg"><span class="msg-label">Message — banner (5-day threshold)</span><p class="msg-body">"You may be at risk of hitting your free plan limit around [date]."</p><span class="msg-cta">CTA: Upgrade now</span></div>
 
       <p class="condition-label">Same threshold, not in-product or no cookies</p>
       <div class="surface-line">
         <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
         <p class="surface-why">Same coverage-gap logic as domain verification: a user the in-app tool can't reach still needs the warning, so the same stored projection that drives the banner also drives a paired email through Customer.io.</p>
       </div>
-      <div class="msg"><span class="msg-label">Email — 5-day threshold</span><p class="msg-subject">Subject: You're about to hit your Mailgun sending limit</p><p class="msg-body">"Your Mailgun account is on track to hit its free plan limit around [date], based on your current sending pace. Upgrading now keeps your sends running without interruption, no code changes required."</p><span class="msg-cta">CTA: Upgrade now</span></div>
+      <div class="msg"><span class="msg-label">Email — 5-day threshold</span><p class="msg-subject">Subject: You're about to hit your Mailgun sending limit</p><p class="msg-body">"Your Mailgun account may be at risk of hitting its free plan limit around [date], based on your current sending pace. Upgrading now keeps your sends running without interruption, no code changes required."</p><span class="msg-cta">CTA: Upgrade now</span></div>
 
       <p class="condition-label">Within 24 hours of the cap, no action taken</p>
       <div class="surface-line">
@@ -625,7 +624,7 @@
       <div class="msg"><span class="msg-label">Message — modal (24-hour threshold)</span><p class="msg-body">"You're about to reach your sending limit."</p><span class="msg-cta">CTA: Upgrade now</span></div>
 
       <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ plan upgrade flow, pre-filled with the recommended tier</span></p>
-      <p class="field-row"><span class="field-label">Success criteria:</span> % of at-risk accounts that upgrade before hitting the cap vs. after, reduction in cap-related support tickets, time from first exposure to upgrade decision, whether the banner-and-email pairing reduces how often accounts reach the modal stage over time.</p>
+      <p class="field-row"><span class="field-label">Success criteria:</span> % of accounts that convert to a paid plan before month end. Secondary: reduction in cap-related support tickets, time from first exposure to upgrade decision, whether the banner-and-email pairing reduces how often accounts reach the modal stage over time.</p>
     </div>
   </section>
 
@@ -685,7 +684,7 @@
     </div>
     <div class="role-item">
       <span class="role-badge">Support</span>
-      <p>A direct line, not just a help article, for the rejected branch. When verification fails, the user should be able to reach a person, not only a doc.</p>
+      <p>A working support-ticket flow for the rejected branch, this tier doesn't have live chat or phone support, but a ticket that gets a real reply still beats leaving the user with a self-serve doc and nothing else.</p>
     </div>
     <div class="role-item">
       <span class="role-badge">Data (success metrics owner)</span>
