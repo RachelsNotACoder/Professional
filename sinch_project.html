@@ -524,7 +524,7 @@
 
       <div class="branch">
         <p class="branch-title">Branch B — Rejected</p>
-        <p class="field-row"><span class="field-label">Trigger:</span> domain provider returns a verification-rejected response (bad record, mismatch, conflict).</p>
+        <p class="field-row"><span class="field-label">Trigger:</span> domain provider returns a verification-rejected response (bad record, mismatch, conflict). Banner and email fire together, immediately, not conditionally on each other, this is the one branch where email isn't a coverage-gap fallback but a deliberate second surface.</p>
 
         <p class="condition-label">In-product, cookies enabled</p>
         <div class="surface-line">
@@ -533,10 +533,10 @@
         </div>
         <div class="msg"><span class="msg-label">Message — banner, alert treatment</span><p class="msg-subject">Action Needed: Verification Failed</p><p class="msg-body">"We couldn't verify [domain]: [reason]. Need a hand? <span class="link-hint">Invite a teammate</span> to help, or <span class="link-hint">start a support ticket</span>."</p><span class="msg-cta">CTA: Fix It</span></div>
 
-        <p class="condition-label">Not in-product, or no cookies</p>
+        <p class="condition-label">All users, regardless of presence or cookies</p>
         <div class="surface-line">
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
-          <p class="surface-why">Same reasoning as the stall email: if they're not there to see the in-app alert, email has to carry the same specifics on its own, with no in-app follow-up to lean on.</p>
+          <p class="surface-why">Unlike the stall branch, this email isn't gated on being unreachable in-app. A rejection needs real explanation, what went wrong and why, and real next steps, fix it, invite a teammate, open a ticket, and email has more room for that than a banner ever will. The banner covers the immediate "something's wrong" signal for anyone in-app right now; the email carries the substance, for everyone.</p>
         </div>
         <div class="msg"><span class="msg-label">Email — verification rejected</span><p class="msg-subject">Subject: Action needed: we couldn't verify [domain]</p><p class="msg-body">"We weren't able to verify [domain]. Here's why: [reason]. If you need help troubleshooting and correcting it, <span class="link-hint">start a support ticket</span>. Or if you have a teammate who handles DNS, <span class="link-hint">loop them in</span>."</p><span class="msg-cta">CTA: See how to fix this · Start a support ticket · Invite a teammate</span></div>
 
@@ -648,14 +648,30 @@
         <tbody>
           <tr><td>Stall</td><td>In-product, cookies enabled</td><td>Banner (in-app)</td><td>Personalized on sandbox-usage status</td></tr>
           <tr><td>Stall</td><td>Not in-product, or no cookies</td><td>Email</td><td>Delay email at 10+ min, same personalization logic</td></tr>
-          <tr><td>Rejected</td><td>In-product, cookies enabled</td><td>Banner, alert treatment (in-app)</td><td>"Needs attention" notice with reason, fix-it and invite-teammate and support links</td></tr>
-          <tr><td>Rejected</td><td>Not in-product, or no cookies</td><td>Email</td><td>Same reason and links, sent directly</td></tr>
+          <tr><td>Rejected</td><td>In-product, cookies enabled</td><td>Banner, alert treatment (in-app)</td><td>Immediate "needs attention" signal; fires alongside the email, not instead of it</td></tr>
+          <tr><td>Rejected</td><td>All users</td><td>Email</td><td>Sent immediately and unconditionally, not gated on presence, more room than a banner to explain the specific reason and lay out fix-it, support, and invite-teammate options</td></tr>
           <tr><td>Abandon</td><td>Not in-product, 24h+</td><td>Email</td><td>"Still in progress" nudge, invite-teammate and domain-setup links</td></tr>
           <tr><td>Teammate invite accepted</td><td>Any</td><td>Product (billing/entitlements)</td><td>30-day multi-user trial activates; confirmation email to both users</td></tr>
           <tr><td>Verification completes</td><td>All users</td><td>Status element (product UI)</td><td>Status updates immediately, regardless of cookies</td></tr>
           <tr><td>Verification completes</td><td>In-product, cookies enabled</td><td>Banner (in-app)</td><td>Fresh banner points to first production send; UTM suppression prevents a repeat for anyone who already got an email</td></tr>
+          <tr><td>Verification completes</td><td>Not in-product, or no cookies</td><td>Email</td><td>Same "you're verified, here's how to send from production" nudge, so completing setup while away doesn't go unnoticed until the user happens to come back</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <h3 class="sub-heading">How the fallback email actually triggers</h3>
+    <p>The table above answers <em>which</em> surface reaches a user; this is about <em>when</em>. Stall and Rejected use email differently, on purpose, not on the same clock.</p>
+    <ul>
+      <li><strong>Stall:</strong> not a fixed clock. The email fires once the account has been idle 10+ minutes since the banner appeared, checked on an ongoing basis, not just once at submission, so it still catches someone who steps away at any point during the up-to-48-hour stall window, not only people who were never in-app to begin with. It's a single, one-time send at the moment that threshold is crossed, not a recurring reminder every 10 minutes. This also means the large share of stalls that resolve in minutes never trigger an email at all, which matters: a stall email that arrives with no clear reason ("was this delayed, or did something just break?") is more confusing than useful, so it should only ever fire for the genuinely slow cases.</li>
+      <li><strong>Rejected:</strong> no delay, no inactivity check, no presence condition. A rejection doesn't self-resolve the way a stall might, so the email fires immediately and unconditionally, in parallel with the banner. It isn't a coverage-gap fallback here, it's the primary explanation surface, since it has far more room than a banner to lay out the specific reason and next steps, for every user, not just the ones the banner can't reach.</li>
+      <li><strong>Suppression on conversion:</strong> the stall email re-checks domain status immediately before sending and is suppressed if verification already resolved by then. The rejected email doesn't need this check, since it fires at the moment of rejection, before there's been time for anything else to resolve it.</li>
+    </ul>
+
+    <div class="callout insight">
+      <p class="callout-header">The product/UX lever this section is built around</p>
+      <div class="callout-body">
+        <p>The 30-day multi-user trial, granted automatically when a teammate accepts an invite from the rejected or abandon branch, is the non-messaging component this section calls for: an entitlement change triggered by user behavior, not another message. It turns a friction-relief mechanism (get help with DNS) into a real commercial entry point, without adding a fourth channel.</p>
+      </div>
     </div>
 
     <h3 class="sub-heading">Who I'd need, and what I'd ask of them</h3>
@@ -696,8 +712,9 @@
     <p>This isn't a footnote here, it's the design constraint that shaped every branch above.</p>
     <ul>
       <li>The domain-status element is the one piece every user sees, since it's product UI, not a cookie-gated messaging surface.</li>
-      <li>Email carries the rejected and abandon branches by necessity, not by cookie status: a user who hit a rejection they never saw, or who's already left, isn't reachable in-app regardless of consent. Both emails are written to be self-contained.</li>
-      <li>Cookie-enabled, still-active users get redundancy, not repetition: in-app for immediacy, the status element for reliability, email only if they've actually stepped away, with UTM suppression to prevent getting both.</li>
+      <li>Email carries the abandon branch by necessity: a user who's already left isn't reachable in-app regardless of consent, so the email has to be self-contained. Rejected is different, email fires there for everyone, cookies or not, because it's a better explanation surface, not just a fallback for people the banner can't reach.</li>
+      <li>Cookie-enabled, still-active users get redundancy, not repetition, in the stall, abandon, and completion moments: in-app for immediacy, the status element for reliability, email only if they've actually stepped away (including at completion itself, so finishing setup while away doesn't just sit unnoticed until the user happens to come back), with UTM suppression to prevent getting both. Rejected is the deliberate exception: banner and email both fire regardless of presence, since the email's job there is explanation, not reach.</li>
+      <li><strong>Identity resolution:</strong> the cookie gap only breaks the real-time in-app surface. Email and Customer.io triggers key off the authenticated account, not a cookie, so every user who's completed signup is reachable by email regardless of consent status. The 40–50% figure describes who we can reach instantly in the moment, not who we can reach at all.</li>
     </ul>
 
     <div class="callout">
