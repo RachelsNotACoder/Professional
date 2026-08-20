@@ -283,6 +283,7 @@
     .msg-cta { font-family: 'Outfit', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-style: normal; color: var(--ink); opacity: 0.75; margin: 0.55rem 0 0; display: block; }
 
     .link-target { display: inline-block; font-size: 11px; font-weight: 500; color: var(--plum); background: var(--lavender); border-radius: 20px; padding: 2px 9px; margin: 0 0.3rem 0.3rem 0; }
+    .link-hint { text-decoration: underline; text-decoration-color: var(--plum); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 
     /* ── ROLE / COLLABORATOR LIST ── */
     .role-item { margin-bottom: 1.1rem; max-width: 620px; }
@@ -508,15 +509,15 @@
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/></svg>Banner</span>
           <p class="surface-why">Ambient and non-blocking. DNS propagation is expected, nothing's broken, so the surface should update the user without demanding a response. A <strong>tooltip</strong> dismisses on hover-away and a <strong>modal</strong> interrupts; neither fits a wait that's supposed to resolve on its own.</p>
         </div>
-        <div class="msg"><span class="msg-label">Message — banner, hasn't tested in sandbox yet</span><p class="msg-body">"DNS can take up to 48 hours to propagate. While you wait, try a sandbox send."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
-        <div class="msg"><span class="msg-label">Message — banner, already tested in sandbox</span><p class="msg-body">"DNS can take up to 48 hours to propagate. You've already tested in sandbox, so get a head start on production."</p><span class="msg-cta">CTA: Set up production send</span></div>
+        <div class="msg"><span class="msg-label">Message — banner, hasn't tested in sandbox yet</span><p class="msg-subject">Domain Verification In Progress</p><p class="msg-body">"DNS can take up to 48 hours to propagate. While you wait, try a <span class="link-hint">sandbox send</span>."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
+        <div class="msg"><span class="msg-label">Message — banner, already tested in sandbox</span><p class="msg-subject">Domain Verification In Progress</p><p class="msg-body">"DNS can take up to 48 hours to propagate. You've already tested in sandbox, so get a <span class="link-hint">head start on production</span>."</p><span class="msg-cta">CTA: Set Up Production</span></div>
 
         <p class="condition-label">Not in-product, or no cookies, inactive 10+ minutes</p>
         <div class="surface-line">
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
           <p class="surface-why">The only surface that reaches someone outside the tab. Delayed to 10 minutes so it doesn't fire redundantly at someone still actively watching the in-app banner.</p>
         </div>
-        <div class="msg"><span class="msg-label">Email — stall delay</span><p class="msg-subject">Subject: Your domain verification is still in progress</p><p class="msg-body">"DNS can take up to 48 hours to propagate, so [domain] may not be verified yet. If you haven't already, you can test your integration in the sandbox while you wait. We'll email you the moment verification completes."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
+        <div class="msg"><span class="msg-label">Email — stall delay</span><p class="msg-subject">Subject: Your domain verification is still in progress</p><p class="msg-body">"DNS can take up to 48 hours to propagate, so [domain] may not be verified yet. If you haven't already, you can <span class="link-hint">test your integration in the sandbox</span> while you wait. We'll email you the moment verification completes."</p><span class="msg-cta">CTA: Test in sandbox</span></div>
 
         <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ sandbox domain setup, in-product</span><span class="link-target">→ production domain setup, in-product</span></p>
       </div>
@@ -530,23 +531,23 @@
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 20h20L12 2z"/><line x1="12" y1="9" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17"/></svg>Banner, alert treatment</span>
           <p class="surface-why">Same Gainsight Bar component as the stall banner, styled to read as urgent: color, icon, persistent placement until resolved. A real problem exists now, so it needs more visual weight than the ambient stall version. It still isn't modal-worthy. The user can keep working elsewhere while they decide how to fix it.</p>
         </div>
-        <div class="msg"><span class="msg-label">Message — banner, alert treatment</span><p class="msg-body">"We couldn't verify [domain]: [reason]."</p><span class="msg-cta">CTA: Fix it · Invite a teammate</span></div>
+        <div class="msg"><span class="msg-label">Message — banner, alert treatment</span><p class="msg-subject">Action Needed: Verification Failed</p><p class="msg-body">"We couldn't verify [domain]: [reason]. Need a hand? <span class="link-hint">Invite a teammate</span> to help, or <span class="link-hint">start a support ticket</span>."</p><span class="msg-cta">CTA: Fix It</span></div>
 
         <p class="condition-label">Not in-product, or no cookies</p>
         <div class="surface-line">
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
           <p class="surface-why">Same reasoning as the stall email: if they're not there to see the in-app alert, email has to carry the same specifics on its own, with no in-app follow-up to lean on.</p>
         </div>
-        <div class="msg"><span class="msg-label">Email — verification rejected</span><p class="msg-subject">Subject: Action needed: we couldn't verify [domain]</p><p class="msg-body">"We weren't able to verify [domain]. Here's why: [reason]. If you need help troubleshooting and correcting it, start a support ticket. Or if you have a teammate who handles DNS, loop them in."</p><span class="msg-cta">CTA: See how to fix this · Start a support ticket · Invite a teammate</span></div>
+        <div class="msg"><span class="msg-label">Email — verification rejected</span><p class="msg-subject">Subject: Action needed: we couldn't verify [domain]</p><p class="msg-body">"We weren't able to verify [domain]. Here's why: [reason]. If you need help troubleshooting and correcting it, <span class="link-hint">start a support ticket</span>. Or if you have a teammate who handles DNS, <span class="link-hint">loop them in</span>."</p><span class="msg-cta">CTA: See how to fix this · Start a support ticket · Invite a teammate</span></div>
 
         <div class="callout insight">
           <p class="callout-header">Personalization opportunity</p>
           <div class="callout-body">
-            <p>The rejected reason often correlates with the domain's nameserver records (GoDaddy, Cloudflare, Namecheap, Google Domains, and so on), so both the in-app message and the DNS-records screen could be tailored per provider instead of generic. Where nameserver isn't captured directly, time-to-rejection is a cheaper proxy: a rejection that surfaces within seconds of submission is usually a simple syntax issue, while one that only shows up after normal propagation time has passed suggests a deeper conflict, like an existing conflicting record, that's less self-serve-friendly and might warrant leaning harder on the support and teammate-invite paths instead of the fix-it-yourself one.</p>
+            <p>The rejected reason often correlates with the domain's nameserver records (GoDaddy, Cloudflare, Namecheap, Google Domains, and so on), so both the in-app message and the Domain settings → DNS records tab could be tailored per provider instead of generic. Where nameserver isn't captured directly, time-to-rejection is a cheaper proxy: a rejection that surfaces within seconds of submission is usually a simple syntax issue, while one that only shows up after normal propagation time has passed suggests a deeper conflict, like an existing conflicting record, that's less self-serve-friendly and might warrant leaning harder on the support and teammate-invite paths instead of the fix-it-yourself one.</p>
           </div>
         </div>
 
-        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ DNS records screen, showing the expected values</span><span class="link-target">→ start a support ticket</span><span class="link-target">→ mailto: support</span><span class="link-target">→ teammate invite flow</span></p>
+        <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ Domain settings → DNS records tab</span><span class="link-target">→ start a support ticket</span><span class="link-target">→ mailto: support</span><span class="link-target">→ teammate invite flow</span></p>
       </div>
 
       <div class="branch">
@@ -556,7 +557,7 @@
           <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Email</span>
           <p class="surface-why">In-app can't reach someone who isn't in the product, so this branch is email by definition. The copy is written to be fully self-contained, since there's no in-app surface to fall back on.</p>
         </div>
-        <div class="msg"><span class="msg-label">Email — verification abandoned</span><p class="msg-subject">Subject: Your Mailgun domain verification is still waiting on you</p><p class="msg-body">"Verification for [domain] hasn't completed, and we haven't seen any activity on your account in a while. If DNS setup isn't something you handle yourself, invite a teammate who manages your domain so it doesn't stall your launch."</p><span class="msg-cta">CTA: Invite a teammate · See setup instructions</span></div>
+        <div class="msg"><span class="msg-label">Email — verification abandoned</span><p class="msg-subject">Subject: Your Mailgun domain verification is still waiting on you</p><p class="msg-body">"Verification for [domain] hasn't completed, and we haven't seen any activity on your account in a while. If DNS setup isn't something you handle yourself, <span class="link-hint">invite a teammate</span> who manages your domain so it doesn't stall your launch."</p><span class="msg-cta">CTA: Invite a teammate · See setup instructions</span></div>
         <p class="field-row"><span class="field-label">Hyperlinks:</span> <span class="link-target">→ teammate invite flow</span><span class="link-target">→ domain setup, in-product</span></p>
       </div>
 
@@ -607,7 +608,7 @@
         <span class="surface-chip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="1"/></svg>Banner</span>
         <p class="surface-why">Elevated but still non-blocking. There's real time left to act, so the surface should be visible and specific without stopping the user's work.</p>
       </div>
-      <div class="msg"><span class="msg-label">Message — banner (5-day threshold)</span><p class="msg-body">"You may be at risk of hitting your free plan limit around [date]."</p><span class="msg-cta">CTA: Upgrade now</span></div>
+      <div class="msg"><span class="msg-label">Message — banner (5-day threshold)</span><p class="msg-subject">Approaching Your Sending Limit</p><p class="msg-body">"You may be at risk of hitting your free plan limit around [date]."</p><span class="msg-cta">CTA: Upgrade now</span></div>
 
       <p class="condition-label">Same threshold, not in-product or no cookies</p>
       <div class="surface-line">
