@@ -40,6 +40,9 @@
       --max-width: 720px;
       --path-width: 1120px;
       --font-display: 'Fraunces', serif;
+      /* Measured height of the sticky header. JS keeps this in sync so the
+         clearance below still holds when the header wraps to two rows. */
+      --sticky-header-h: 56px;
     }
 
     html { font-size: 16px; }
@@ -185,6 +188,103 @@
     .mode-dot.mode-teal { background: var(--teal); }
     .mode-dot.mode-gold { background: var(--gold); }
 
+    /* ── FILTER BY FOCUS ──
+       Functional-tag filtering. Deliberately neutral: plum / gold / teal
+       stay reserved for Strategy / Execution / Optimization, so these
+       controls read as editorial navigation rather than a second, louder
+       taxonomy. It uses the wider path column rather than the 720px reading
+       column so eight labels sit in one or two rows instead of stacking
+       three deep; the page-header rule above separates the two systems. */
+    .focus-filter {
+      max-width: var(--path-width);
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem 0;
+      /* Left edge tracks the 720px header column so there's no jump under
+         the legend; the row still runs right to the path column's edge,
+         which is the room the eight labels need. Collapses to the plain
+         1.5rem gutter once the viewport is narrower than the header column. */
+      padding-left: calc(1.5rem + max(0px, (min(100%, var(--path-width)) - var(--max-width)) / 2));
+    }
+
+    .focus-filter-label {
+      color: var(--slate);
+      margin-bottom: 0.7rem;
+    }
+
+    .focus-filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .focus-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 5px 11px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+    }
+
+    .focus-btn:hover { border-color: var(--slate); }
+
+    .focus-btn:focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 2px;
+    }
+
+    /* Selected state carries its own fill, not just a color shift */
+    .focus-btn[aria-pressed="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--linen);
+    }
+
+    /* Mobile equivalent — swapped in at the existing 640px breakpoint */
+    .focus-filter-select-wrap { display: none; }
+
+    .focus-select {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 7px 10px;
+      width: 100%;
+      max-width: 320px;
+      cursor: pointer;
+    }
+
+    .focus-select:focus-visible {
+      outline: 2px solid var(--plum);
+      outline-offset: 2px;
+    }
+
+    .focus-visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Filtered-out stories leave the flow entirely, so nothing inside
+       them stays reachable by keyboard or screen reader. */
+    .story-stop.hidden { display: none; }
+
     /* ── VERTICAL PATH ── */
     .impact-path {
       position: relative;
@@ -226,6 +326,11 @@
       grid-template-columns: 1fr 44px 1fr;
       column-gap: 2.5rem;
       padding: 1.75rem 0;
+      /* Clears the sticky header. Applies to the browser's own fragment
+         scroll as well as ours, so a deep-linked story can't land
+         underneath the header — including at narrow widths, where the
+         header wraps and --sticky-header-h grows past 56px. */
+      scroll-margin-top: calc(var(--sticky-header-h) + 12px);
     }
 
     .stop-node-col {
@@ -258,6 +363,12 @@
     .story-stop[data-mode="plum"].active .stop-node { background: var(--plum); box-shadow: 0 0 0 5px var(--lavender); }
     .story-stop[data-mode="gold"].active .stop-node { background: var(--gold); box-shadow: 0 0 0 5px var(--gold-tint); }
     .story-stop[data-mode="teal"].active .stop-node { background: var(--teal); box-shadow: 0 0 0 5px var(--teal-tint); }
+
+    /* Featured — subtle neutral double-ring, layered via outline so it never fights the mode-colored active glow */
+    .story-stop.is-featured .stop-node {
+      outline: 2px solid var(--slate);
+      outline-offset: 3px;
+    }
 
     .stop-card {
       grid-column: 1;
@@ -305,6 +416,17 @@
       text-transform: uppercase;
       color: var(--slate);
       margin-bottom: 0.5rem;
+    }
+
+    /* Featured — editorial selection flag, independent of the S/E/O color system */
+    .featured-flag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 0.35rem;
     }
 
     .case-title {
@@ -556,6 +678,12 @@
     @media (max-width: 640px) {
       .page-header { padding: 3rem 1.5rem 2.5rem; }
       .impact-path { padding: 2.5rem 0 1rem; }
+
+      /* A dropdown instead of a wrapping button row — no horizontal rail */
+      .focus-filter { padding-top: 1.5rem; }
+      .focus-filter-buttons { display: none; }
+      .focus-filter-select-wrap { display: block; }
+
       .story-stop { padding: 1.25rem 0; column-gap: 1rem; }
       .case-title { font-size: 19px; }
 
@@ -615,6 +743,19 @@
     </div>
   </div>
 
+  <!-- Functional filtering. Sits outside the 720px reading column so the
+       eight labels have room; controls are generated from the data-focus
+       attributes on the story stops, so the vocabulary lives with the
+       stories rather than being duplicated here. -->
+  <div class="focus-filter" id="focusFilter" hidden>
+    <p class="eyebrow focus-filter-label" id="focusFilterLabel">Filter by focus</p>
+    <div class="focus-filter-buttons" id="focusFilterButtons" role="group" aria-label="Filter by focus"></div>
+    <div class="focus-filter-select-wrap">
+      <label class="focus-visually-hidden" for="focusFilterSelect">Filter by focus</label>
+      <select class="focus-select" id="focusFilterSelect"></select>
+    </div>
+  </div>
+
   <!-- VERTICAL PATH -->
   <div class="path-wrap">
     <div class="impact-path">
@@ -625,10 +766,11 @@
       <div class="story-stops" id="storyStops">
 
         <!-- 1 -->
-        <article class="story-stop" id="rent-payments" data-mode="teal">
+        <article class="story-stop is-featured" id="rent-payments" data-mode="teal" data-focus="Adoption &amp; Engagement|Expansion &amp; Monetization">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="rent-payments-trigger" aria-expanded="false" aria-controls="rent-payments-panel">
+              <p class="featured-flag">Featured</p>
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">Rent Payment activation reframe</h2>
               <div class="metric-badge">
@@ -639,13 +781,13 @@
                 <span class="tag" data-v="teal">Optimization</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="rent-payments-panel" role="region" aria-labelledby="rent-payments-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>During a migration of the core Rent Payments retargeting flow from Klaviyo to Customer.io, I noticed the sequence was several years old and built on fear-based messaging that no longer fit the acquisition mix. Newer landlords didn't identify with copy about "chasing late rent" — they believed they had the problem handled, even when their actual solution was manual and tedious.</p>
@@ -657,10 +799,10 @@
         </article>
 
         <!-- 2 -->
-        <article class="story-stop" id="onboarding-rebuild" data-mode="teal">
+        <article class="story-stop" id="onboarding-rebuild" data-mode="teal" data-focus="Activation &amp; Onboarding|Segmentation &amp; Personalization">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="onboarding-rebuild-trigger" aria-expanded="false" aria-controls="onboarding-rebuild-panel">
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">Onboarding series rebuild: intent-based segmentation</h2>
               <div class="metric-badge">
@@ -671,13 +813,13 @@
                 <span class="tag" data-v="teal">Optimization</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="onboarding-rebuild-panel" role="region" aria-labelledby="onboarding-rebuild-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant's incomplete-signup onboarding series wasn't beating holdout for either the Marketing intent or Rent Payment intent segments — producing no measurable lift over doing nothing. Every message had been written for small landlords, systematically ignoring larger landlords who existed in both segments, behaved differently, and responded to entirely different value propositions.</p>
@@ -689,10 +831,10 @@
         </article>
 
         <!-- 3 -->
-        <article class="story-stop" id="vacancy-to-retention" data-mode="plum">
+        <article class="story-stop" id="vacancy-to-retention" data-mode="plum" data-focus="Retention|Adoption &amp; Engagement">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="vacancy-to-retention-trigger" aria-expanded="false" aria-controls="vacancy-to-retention-panel">
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">Vacancy-to-retention: screening-to-lease journey redesign</h2>
               <div class="metric-badge">
@@ -703,13 +845,13 @@
                 <span class="tag">Strategy</span>
                 <span class="tag" data-v="gold">Execution</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="vacancy-to-retention-panel" role="region" aria-labelledby="vacancy-to-retention-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant's Screening-to-Lease journey targeted users who signed up for a one-time background check — a segment with ~95% within-year dormancy and Rent Payments adoption under 5%. The journey followed landlord workflow logic and wasn't beating holdout. The first email promoted a $75 lease feature to a cold, transactional user who had just received a free screening report.</p>
@@ -721,10 +863,11 @@
         </article>
 
         <!-- 4 -->
-        <article class="story-stop" id="analytics-rebuild" data-mode="plum">
+        <article class="story-stop is-featured" id="analytics-rebuild" data-mode="plum" data-focus="Analytics &amp; Measurement|Expansion &amp; Monetization">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="analytics-rebuild-trigger" aria-expanded="false" aria-controls="analytics-rebuild-panel">
+              <p class="featured-flag">Featured</p>
               <p class="case-meta">Snagajob</p>
               <h2 class="case-title">Analytics rebuild</h2>
               <div class="metric-badge">
@@ -735,13 +878,13 @@
                 <span class="tag">Strategy</span>
                 <span class="tag" data-v="teal">Optimization</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="analytics-rebuild-panel" role="region" aria-labelledby="analytics-rebuild-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Snagajob had Adobe Analytics connected to lifecycle email, but inconsistent event structures meant program performance couldn't be compared across series. Decisions were being made on open and click rates. One program — daily job recommendations — represented roughly 80% of send volume, and no one had the data to question it.</p>
@@ -753,10 +896,11 @@
         </article>
 
         <!-- 5 -->
-        <article class="story-stop" id="patriot-act" data-mode="gold">
+        <article class="story-stop is-featured" id="patriot-act" data-mode="gold" data-focus="Activation &amp; Onboarding|Expansion &amp; Monetization">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="patriot-act-trigger" aria-expanded="false" aria-controls="patriot-act-panel">
+              <p class="featured-flag">Featured</p>
               <p class="case-meta">Conduent</p>
               <h2 class="case-title">Patriot Act activation program</h2>
               <div class="metric-badge">
@@ -767,13 +911,13 @@
                 <span class="tag" data-v="gold">Execution</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="patriot-act-panel" role="region" aria-labelledby="patriot-act-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Every year, a significant share of new HSA account holders failed Patriot Act identity verification — a regulatory requirement that blocked them from funding their accounts. Conduent's only outreach was a paper mail notice: legalistic, frequently undeliverable, and often sent to the same physical address that had caused the failure. Response rates were around 5%.</p>
@@ -785,10 +929,10 @@
         </article>
 
         <!-- 6 -->
-        <article class="story-stop" id="persona-development" data-mode="plum">
+        <article class="story-stop" id="persona-development" data-mode="plum" data-focus="Segmentation &amp; Personalization|Analytics &amp; Measurement">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="persona-development-trigger" aria-expanded="false" aria-controls="persona-development-panel">
               <p class="case-meta">Snagajob</p>
               <h2 class="case-title">Worker persona development</h2>
               <div class="metric-badge">
@@ -799,13 +943,13 @@
                 <span class="tag">Strategy</span>
                 <span class="tag" data-v="gold">Execution</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="persona-development-panel" role="region" aria-labelledby="persona-development-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Snagajob's marketing strategy had always focused on the employer side. The worker audience was treated as a single segment — people who wanted jobs — with no structured understanding of why different workers searched, applied, or disengaged. Marketing decisions had no framework for differentiated worker intent.</p>
@@ -817,10 +961,10 @@
         </article>
 
         <!-- 7 -->
-        <article class="story-stop" id="freemium-retargeting" data-mode="teal">
+        <article class="story-stop" id="freemium-retargeting" data-mode="teal" data-focus="Expansion &amp; Monetization|Segmentation &amp; Personalization">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="freemium-retargeting-trigger" aria-expanded="false" aria-controls="freemium-retargeting-panel">
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">Freemium-to-subscriber retargeting</h2>
               <div class="metric-badge">
@@ -831,13 +975,13 @@
                 <span class="tag" data-v="teal">Optimization</span>
                 <span class="tag" data-v="gold">Execution</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="freemium-retargeting-panel" role="region" aria-labelledby="freemium-retargeting-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant already had a freemium-to-Premium sequence triggered by a meaningful behavioral signal — an actual click on an upgrade prompt in-product. The trigger logic was sound; what it lacked was any personalization. Every high-intent user who clicked received the same generic pitch they'd already seen and not acted on.</p>
@@ -849,10 +993,10 @@
         </article>
 
         <!-- 8 -->
-        <article class="story-stop" id="wrapped-campaign" data-mode="teal">
+        <article class="story-stop" id="wrapped-campaign" data-mode="teal" data-focus="Adoption &amp; Engagement|Retention">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="wrapped-campaign-trigger" aria-expanded="false" aria-controls="wrapped-campaign-panel">
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">"Wrapped"-style year in review campaign</h2>
               <div class="metric-badge">
@@ -863,13 +1007,13 @@
                 <span class="tag" data-v="teal">Optimization</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="wrapped-campaign-panel" role="region" aria-labelledby="wrapped-campaign-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant's previous year-in-review campaign was structured around subscription retention, which meant it could only speak usefully to users who already had strong platform numbers. Anyone whose year looked thin got a message that didn't land, and the campaign wasn't building a case for deepening the landlord's relationship with the platform.</p>
@@ -881,10 +1025,11 @@
         </article>
 
         <!-- 9 -->
-        <article class="story-stop" id="new-worker-onboarding" data-mode="gold">
+        <article class="story-stop is-featured" id="new-worker-onboarding" data-mode="gold" data-focus="Activation &amp; Onboarding|Adoption &amp; Engagement">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="new-worker-onboarding-trigger" aria-expanded="false" aria-controls="new-worker-onboarding-panel">
+              <p class="featured-flag">Featured</p>
               <p class="case-meta">Snagajob</p>
               <h2 class="case-title">New worker onboarding series</h2>
               <div class="metric-badge">
@@ -895,13 +1040,13 @@
                 <span class="tag" data-v="gold">Execution</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="new-worker-onboarding-panel" role="region" aria-labelledby="new-worker-onboarding-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Snagajob's worker lifecycle program was entirely greenfield. New workers received a single generic welcome email and a handful of transactional messages — no structured effort to accelerate them toward meaningful product behavior.</p>
@@ -913,10 +1058,11 @@
         </article>
 
         <!-- 10 -->
-        <article class="story-stop" id="job-rec-filtering" data-mode="teal">
+        <article class="story-stop is-featured" id="job-rec-filtering" data-mode="teal" data-focus="Segmentation &amp; Personalization|Adoption &amp; Engagement">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="job-rec-filtering-trigger" aria-expanded="false" aria-controls="job-rec-filtering-panel">
+              <p class="featured-flag">Featured</p>
               <p class="case-meta">Snagajob</p>
               <h2 class="case-title">Job recommendation targeting rebuild</h2>
               <div class="metric-badge">
@@ -927,13 +1073,13 @@
                 <span class="tag" data-v="teal">Optimization</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="job-rec-filtering-panel" role="region" aria-labelledby="job-rec-filtering-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Snagajob's emailed job recommendations were filtered by ZIP code only, built on the assumption that hourly workers had high lateral job mobility and little preference for job type. No one had tested whether that assumption was accurate.</p>
@@ -945,10 +1091,10 @@
         </article>
 
         <!-- 11 -->
-        <article class="story-stop" id="wells-fargo-cx-script" data-mode="plum">
+        <article class="story-stop" id="wells-fargo-cx-script" data-mode="plum" data-focus="Expansion &amp; Monetization|Retention">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="wells-fargo-cx-script-trigger" aria-expanded="false" aria-controls="wells-fargo-cx-script-panel">
               <p class="case-meta">Wells Fargo</p>
               <h2 class="case-title">Rate objection reframed as cross-sell</h2>
               <div class="metric-badge">
@@ -959,13 +1105,13 @@
                 <span class="tag">Strategy</span>
                 <span class="tag" data-v="gold">Execution</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="wells-fargo-cx-script-panel" role="region" aria-labelledby="wells-fargo-cx-script-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>In yield optimization on unsecured revolving credit at Wells Fargo, CX was fielding steady complaints from customers comparing their rates to mortgages and home equity loans. The team's proposed fix was to give representatives more flexibility to lower rates — a solution that would have created real margin pressure on rates that were already correctly priced.</p>
@@ -977,10 +1123,11 @@
         </article>
 
         <!-- 12 -->
-        <article class="story-stop" id="sendgrid-migration" data-mode="gold">
+        <article class="story-stop is-featured" id="sendgrid-migration" data-mode="gold" data-focus="Lifecycle Infrastructure|Cross-channel Orchestration">
           <div class="stop-node-col"><span class="stop-node"></span></div>
           <div class="stop-card">
-            <button class="case-trigger" aria-expanded="false">
+            <button class="case-trigger" type="button" id="sendgrid-migration-trigger" aria-expanded="false" aria-controls="sendgrid-migration-panel">
+              <p class="featured-flag">Featured</p>
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">SendGrid to Customer.io migration</h2>
               <div class="metric-badge">
@@ -991,19 +1138,83 @@
                 <span class="tag" data-v="gold">Execution</span>
                 <span class="tag">Strategy</span>
               </div>
-              <span class="accordion-cue">Read the story
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
                 <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
             </button>
-            <div class="case-panel" role="region">
+            <div class="case-panel" id="sendgrid-migration-panel" role="region" aria-labelledby="sendgrid-migration-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant's transactional email infrastructure was split across SendGrid, Klaviyo, and Intercom, each owned by a different team. SendGrid sat under Engineering and relied on static templates that required a development ticket for every content change. When TurboTenant launched a managed property service that needed high volumes of personalized transactional messaging, that architecture became untenable.</p>
                 <p>I led the full migration across multiple product teams: built per-team workflows, joined Sprint Demos to stay ahead of product changes, and documented the process to build cross-functional buy-in. I rebuilt emails in Customer.io with Liquid logic and dynamic content blocks so one template could serve the right content per user, and unlocked structural A/B testing that SendGrid's architecture had blocked. We launched 30 net-new transactional emails in six weeks with multiple content revisions per email as procedures evolved, accelerated testing cadence roughly fourfold, and moved Marketing into direct ownership of transactional messaging — removing a persistent Engineering dependency and creating a foundation for SMS and push.</p>
               </div>
               <div class="result-meta">30 net-new transactional emails in 6 weeks · testing cadence up roughly 4x · TurboTenant</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 13 -->
+        <article class="story-stop" id="notification-center" data-mode="plum" data-focus="Lifecycle Infrastructure|Cross-channel Orchestration">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" type="button" id="notification-center-trigger" aria-expanded="false" aria-controls="notification-center-panel">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">Notification Center redesign for multi-channel lifecycle</h2>
+              <div class="metric-badge">
+                <span class="metric-num">1 → 3</span>
+                <span class="metric-label">channel preference architecture</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Strategy</span>
+                <span class="tag" data-v="gold">Execution</span>
+              </div>
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" id="notification-center-panel" role="region" aria-labelledby="notification-center-trigger">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant's Notification Center had been designed for an email-only world. Users could manage broad categories such as Leads, Property, Applicants, Leases, and Maintenance, but the system had no channel-specific consent model and did not even include Rent Payments — despite rent-related messages representing the largest messaging volume. As I pushed to expand SMS and eventually push, that architecture became a product and compliance constraint: Twilio TCR approval required a clearer SMS opt-in and opt-out experience.</p>
+                <p>I pushed for a Notification Center redesign and worked with Product and UX to define a model that could support multiple channels without collapsing fundamentally different communication expectations into one preference. We landed on separate email and mobile-channel experiences, incorporated explicit SMS consent, and added Rent Payments as a first-class notification category. The redesign turned a legacy email preference page into scalable lifecycle infrastructure: it supported compliant SMS expansion, created a cleaner foundation for push, and gave users more meaningful control over a communication system that had grown far beyond email.</p>
+              </div>
+              <div class="result-meta">Email-only → multi-channel preference architecture · SMS consent/TCR enablement · TurboTenant</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 14 -->
+        <article class="story-stop" id="maintenance-sms" data-mode="gold" data-focus="Cross-channel Orchestration|Adoption &amp; Engagement">
+          <div class="stop-node-col"><span class="stop-node"></span></div>
+          <div class="stop-card">
+            <button class="case-trigger" type="button" id="maintenance-sms-trigger" aria-expanded="false" aria-controls="maintenance-sms-panel">
+              <p class="case-meta">TurboTenant</p>
+              <h2 class="case-title">Maintenance alerts: SMS for urgent moments</h2>
+              <div class="metric-badge">
+                <span class="metric-num">+20%</span>
+                <span class="metric-label">1-hour message-read rate</span>
+              </div>
+              <div class="tag-row">
+                <span class="tag" data-v="gold">Execution</span>
+                <span class="tag" data-v="teal">Optimization</span>
+              </div>
+              <span class="accordion-cue"><span class="cue-label">Read the story</span>
+                <svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="case-panel" id="maintenance-sms-panel" role="region" aria-labelledby="maintenance-sms-trigger">
+              <div class="case-accent"></div>
+              <div class="case-body">
+                <p>TurboTenant had expanded its messaging infrastructure beyond email, creating an opportunity to match communication channels more deliberately to the urgency of the user need. Maintenance requests were a strong use case: landlords often needed to know quickly that a tenant had reported a problem, making speed of attention more important than the extra space and persistence email provides.</p>
+                <p>I extended the new SMS capability to maintenance request alerts, using SMS for the time-sensitive notification rather than treating every message as an email problem. The change increased the share of maintenance messages read within one hour by 20%, demonstrating that channel choice itself can materially change response behavior when it reflects the urgency and context of the communication.</p>
+              </div>
+              <div class="result-meta">+20% 1-hour message-read rate · SMS · TurboTenant</div>
             </div>
           </div>
         </article>
@@ -1031,13 +1242,42 @@
   const stops = Array.from(document.querySelectorAll('.story-stop'));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── Accordion — each stop toggles independently ─────────────────
-  stops.forEach(stop => {
+  // ── Sticky header height ───────────────────────────────
+  // scroll-margin-top on .story-stop is derived from --sticky-header-h,
+  // so an anchored story clears the header even at narrow widths, where
+  // the header wraps to two rows and grows past its 56px default.
+  const siteHeader = document.querySelector('header');
+  function syncHeaderHeight() {
+    if (!siteHeader) return;
+    const h = Math.round(siteHeader.getBoundingClientRect().height);
+    if (h) document.documentElement.style.setProperty('--sticky-header-h', h + 'px');
+  }
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight);
+
+  // ── Accordion state — one entry point for every open/close ───────
+  // Clicks, deep links and hashchange all route through setStoryOpen, so
+  // .open, aria-expanded and the visible cue can never drift apart.
+  const CUE_CLOSED = 'Read the story';
+  const CUE_OPEN = 'Close story';
+
+  function setStoryOpen(stop, open) {
+    if (!stop) return;
+    stop.classList.toggle('open', open);
     const trigger = stop.querySelector('.case-trigger');
+    if (trigger) trigger.setAttribute('aria-expanded', String(open));
+    const cue = stop.querySelector('.cue-label');
+    if (cue) cue.textContent = open ? CUE_OPEN : CUE_CLOSED;
+  }
+
+  // Each stop toggles independently — opening one never closes another,
+  // so two stories can be compared without the page shifting underneath.
+  stops.forEach(stop => {
+    setStoryOpen(stop, stop.classList.contains('open'));
+    const trigger = stop.querySelector('.case-trigger');
+    if (!trigger) return;
     trigger.addEventListener('click', () => {
-      const isOpen = stop.classList.contains('open');
-      stop.classList.toggle('open', !isOpen);
-      trigger.setAttribute('aria-expanded', String(!isOpen));
+      setStoryOpen(stop, !stop.classList.contains('open'));
     });
   });
 
@@ -1057,6 +1297,10 @@
   const fill = document.getElementById('pathFill');
   const pathEl = document.querySelector('.impact-path');
 
+  // Reassigned below when the scroll-driven fill is active, so filtering
+  // can recompute it after the path's height changes.
+  let refreshPath = () => {};
+
   if (!reduceMotion && fill && pathEl) {
     let ticking = false;
     function updateFill() {
@@ -1075,23 +1319,193 @@
       }
     }, { passive: true });
     window.addEventListener('resize', updateFill);
+    refreshPath = updateFill;
     updateFill();
   } else if (fill) {
     fill.style.height = '100%';
   }
 
-  // ── Deep-link on page load (#story-id) ────────────────────────────
+  // ── Filter by focus — single-select functional filtering ──────────
+  // Each story carries its functional tags in data-focus, pipe-separated
+  // ("Primary|Secondary"). FOCUS_ORDER fixes the order of the controls;
+  // any tag found on a story but missing from it is appended
+  // alphabetically, so the two can never drift out of sync silently.
+  const ALL_FOCUS = 'All';
+  const FOCUS_ORDER = [
+    'Activation & Onboarding',
+    'Adoption & Engagement',
+    'Retention',
+    'Expansion & Monetization',
+    'Segmentation & Personalization',
+    'Analytics & Measurement',
+    'Cross-channel Orchestration',
+    'Lifecycle Infrastructure',
+  ];
+
+  const focusFilter = document.getElementById('focusFilter');
+  const focusButtons = document.getElementById('focusFilterButtons');
+  const focusSelect = document.getElementById('focusFilterSelect');
+  let activeFocus = ALL_FOCUS;
+
+  function focusTagsOf(stop) {
+    return (stop.dataset.focus || '').split('|').map(t => t.trim()).filter(Boolean);
+  }
+
+  function applyFocus(tag) {
+    activeFocus = tag;
+
+    // Order is never touched — non-matching stories simply leave the flow.
+    stops.forEach(stop => {
+      const matches = tag === ALL_FOCUS || focusTagsOf(stop).includes(tag);
+      stop.classList.toggle('hidden', !matches);
+    });
+
+    focusButtons.querySelectorAll('.focus-btn').forEach(btn => {
+      btn.setAttribute('aria-pressed', String(btn.dataset.focus === tag));
+    });
+    if (focusSelect.value !== tag) focusSelect.value = tag;
+
+    refreshPath();
+  }
+
+  (function buildFocusControls() {
+    const present = [];
+    stops.forEach(stop => focusTagsOf(stop).forEach(t => {
+      if (present.indexOf(t) === -1) present.push(t);
+    }));
+    if (!present.length) return;
+
+    const ordered = FOCUS_ORDER.filter(t => present.indexOf(t) !== -1)
+      .concat(present.filter(t => FOCUS_ORDER.indexOf(t) === -1).sort());
+
+    [ALL_FOCUS].concat(ordered).forEach(tag => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'focus-btn';
+      btn.textContent = tag;
+      btn.dataset.focus = tag;
+      btn.setAttribute('aria-pressed', String(tag === ALL_FOCUS));
+      btn.addEventListener('click', () => applyFocus(tag));
+      focusButtons.appendChild(btn);
+
+      const opt = document.createElement('option');
+      opt.value = tag;
+      opt.textContent = tag;
+      focusSelect.appendChild(opt);
+    });
+
+    focusSelect.value = ALL_FOCUS;
+    focusSelect.addEventListener('change', () => applyFocus(focusSelect.value));
+    focusFilter.hidden = false;
+  })();
+
+  // ── Deep-link to a story (#story-id) ──────────────────────
+  // A direct link always wins: the filter resets so the requested story
+  // can never be the one that's hidden.
+
+  // Distance between where the story sits now and where it should sit —
+  // read from the CSS itself, so this can't disagree with scroll-margin-top.
+  function stopDrift(el) {
+    const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    return el.getBoundingClientRect().top - margin;
+  }
+
+  let releaseAnchor = null;
+
+  // Scrolls a story into place, then holds it there while the rest of the
+  // initial layout settles — webfonts swapping in are the usual culprit —
+  // rather than scrolling a second time after an arbitrary delay.
+  function anchorStop(el) {
+    if (releaseAnchor) releaseAnchor();
+
+    const HAND_BACK = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
+    let finished = false;
+    let rafId = null;
+    let observer = null;
+
+    // Always instant: this corrects for geometry that moved, it is not a
+    // second scroll for the visitor to watch.
+    const correct = () => {
+      const drift = stopDrift(el);
+      if (Math.abs(drift) > 1) window.scrollBy({ top: drift, behavior: 'instant' });
+    };
+
+    // On a reload the browser restores the previous scroll position after
+    // load — landing the visitor somewhere other than the story they asked
+    // for. The hash is the more specific instruction, so it wins.
+    const heldRestoration = 'scrollRestoration' in history && document.readyState !== 'complete';
+    if (heldRestoration) history.scrollRestoration = 'manual';
+
+    const release = () => {
+      if (finished) return;
+      finished = true;
+      if (rafId) cancelAnimationFrame(rafId);
+      if (observer) observer.disconnect();
+      HAND_BACK.forEach(type => window.removeEventListener(type, release));
+      if (heldRestoration) history.scrollRestoration = 'auto';
+      if (releaseAnchor === release) releaseAnchor = null;
+    };
+    releaseAnchor = release;
+
+    // The moment the visitor scrolls for themselves, stop correcting.
+    HAND_BACK.forEach(type => window.addEventListener(type, release, { passive: true }));
+
+    const watchLayout = () => {
+      if (finished) return;
+      correct();
+      if ('ResizeObserver' in window) {
+        observer = new ResizeObserver(() => { if (!finished) correct(); });
+        observer.observe(document.documentElement);
+        observer.observe(el);
+      }
+      // Deterministic end point: once fonts have loaded and the page has
+      // finished loading, geometry is settled and the watch is dropped.
+      Promise.all([
+        document.fonts ? document.fonts.ready : Promise.resolve(),
+        document.readyState === 'complete'
+          ? Promise.resolve()
+          : new Promise(resolve => window.addEventListener('load', resolve, { once: true })),
+      ]).then(() => {
+        if (finished) return;
+        requestAnimationFrame(() => { correct(); release(); });
+      });
+    };
+
+    // Let the opening scroll come to rest before correcting, so a smooth
+    // scroll is never fought mid-flight. Gated on the scroll position
+    // itself rather than on a timeout.
+    const whenScrollSettles = () => {
+      let last = window.scrollY;
+      let stillFor = 0;
+      const tick = () => {
+        if (finished) return;
+        const y = window.scrollY;
+        stillFor = y === last ? stillFor + 1 : 0;
+        last = y;
+        if (stillFor >= 3) { rafId = null; watchLayout(); }
+        else rafId = requestAnimationFrame(tick);
+      };
+      rafId = requestAnimationFrame(tick);
+    };
+
+    // scroll-margin-top on .story-stop supplies the header offset.
+    el.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    whenScrollSettles();
+  }
+
   function openFromHash() {
     if (!window.location.hash) return;
-    const target = document.querySelector(window.location.hash);
-    if (target && target.classList.contains('story-stop')) {
-      target.classList.add('open');
-      target.querySelector('.case-trigger').setAttribute('aria-expanded', 'true');
-      const top = target.getBoundingClientRect().top + window.scrollY - 68;
-      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
-    }
+    let target = null;
+    try { target = document.querySelector(window.location.hash); } catch (e) { return; }
+    if (!target || !target.classList.contains('story-stop')) return;
+    // A filtered-out story is still a valid URL, so the filter yields.
+    if (activeFocus !== ALL_FOCUS) applyFocus(ALL_FOCUS);
+    // Only the destination changes — stories already open stay open.
+    setStoryOpen(target, true);
+    anchorStop(target);
   }
-  setTimeout(openFromHash, 120);
+
+  openFromHash();
   window.addEventListener('hashchange', openFromHash);
 </script>
 

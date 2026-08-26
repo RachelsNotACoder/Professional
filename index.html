@@ -135,7 +135,7 @@
        tied to that photo section and no longer exists. */
     .hero {
       position: relative;
-      padding: 4rem 0 3.5rem;
+      padding: 3rem 0 3.5rem;
     }
 
     .hero-content {
@@ -167,7 +167,7 @@
     }
 
     .hero-cta {
-      margin-bottom: 3rem;
+      margin-bottom: 1.75rem;
     }
 
     /* wid-section is now the first section inside .page-wrap (the hero lives
@@ -191,6 +191,16 @@
       max-width: 1040px;
       margin: 0 auto;
       padding: 16px 1.5rem 12px;
+      /* Fallback for direct #selected-impact links / no-JS: the click handler
+         in the closing script computes the sticky header's real height and
+         scrolls precisely, but this keeps native anchor jumps (e.g. browser
+         back/forward, JS disabled) from landing under the header too. */
+      scroll-margin-top: 76px;
+    }
+
+    .carousel-eyebrow {
+      text-align: center;
+      margin-bottom: 0.9rem;
     }
 
     .wave-layer {
@@ -281,9 +291,9 @@
       border: 0.5px solid var(--border);
       border-radius: 12px;
       /* bottom padding reserves room for the absolutely-positioned footer
-         (metric + mode indicator) below, so it isn't a flex item — line-clamp
-         doesn't reliably apply to flex children in Chromium. */
-      padding: 22px 22px 118px;
+         (mode indicator + "View full story") below, so it isn't a flex item —
+         line-clamp doesn't reliably apply to flex children in Chromium. */
+      padding: 22px 22px 56px;
       text-decoration: none;
       color: inherit;
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
@@ -351,8 +361,30 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--slate);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.75rem;
     }
+
+    /* Metric-anchor treatment: a restrained vertical accent line (tinted to
+       the card's mode color) sits to the left of the metric + label, so the
+       result reads as an anchored editorial callout rather than a bare
+       number or a generic KPI-tile stat. */
+    .impact-card-metric-block {
+      display: flex;
+      align-items: stretch;
+      gap: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .impact-card-metric-accent {
+      flex-shrink: 0;
+      width: 3px;
+      border-radius: 2px;
+      background: var(--slate);
+    }
+
+    .impact-card[data-mode="plum"] .impact-card-metric-accent { background: var(--plum); }
+    .impact-card[data-mode="teal"] .impact-card-metric-accent { background: var(--teal); }
+    .impact-card[data-mode="gold"] .impact-card-metric-accent { background: var(--gold); }
 
     .impact-card-headline {
       font-family: var(--font-display);
@@ -381,15 +413,21 @@
       overflow: hidden;
     }
 
-    /* Metric + mode indicator are pinned to the card's bottom edge rather
-       than pushed there via flexbox, so the clamped text above (headline,
-       description) can sit in normal block flow — line-clamp only applies
-       reliably to non-flex-item elements in Chromium. */
+    /* The footer (mode indicator + "View full story" link text) is pinned to
+       the card's bottom edge rather than pushed there via flexbox, so the
+       clamped text above (headline, description) can sit in normal block
+       flow — line-clamp only applies reliably to non-flex-item elements in
+       Chromium. The footer's own two children lay out as a flex row. */
     .impact-card-footer {
       position: absolute;
       left: 22px;
       right: 22px;
       bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .impact-card-metric {
@@ -401,7 +439,6 @@
       letter-spacing: -0.02em;
       line-height: 1.05;
       color: var(--ink);
-      margin-bottom: 0.9rem;
     }
 
     .impact-card[data-mode="plum"] .impact-card-metric { color: var(--plum-deep); }
@@ -439,6 +476,21 @@
     .impact-card[data-mode="plum"] .mode-dot { background: var(--plum); }
     .impact-card[data-mode="teal"] .mode-dot { background: var(--teal); }
     .impact-card[data-mode="gold"] .mode-dot { background: var(--gold); }
+
+    /* Visible link affordance so the active card clearly reads as "there's
+       more here" rather than relying on cursor/hover alone. */
+    .impact-card-link {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--plum);
+      white-space: nowrap;
+    }
+
+    .impact-card[data-mode="plum"] .impact-card-link { color: var(--plum-deep); }
+    .impact-card[data-mode="teal"] .impact-card-link { color: var(--teal-dark); }
+    .impact-card[data-mode="gold"] .impact-card-link { color: var(--gold-dark); }
 
     .carousel-arrow {
       flex-shrink: 0;
@@ -480,33 +532,6 @@
       justify-content: center;
       align-items: center;
       gap: 6px;
-    }
-
-    .carousel-autoplay-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-      margin-left: 10px;
-      border-radius: 50%;
-      background: none;
-      border: none;
-      color: var(--slate);
-      cursor: pointer;
-      transition: color 0.15s, background 0.15s;
-    }
-
-    .carousel-autoplay-toggle:hover { background: var(--lavender); color: var(--plum); }
-
-    .carousel-autoplay-toggle:focus-visible {
-      outline: 2px solid var(--plum);
-      outline-offset: 2px;
-    }
-
-    .carousel-autoplay-toggle svg {
-      width: 12px;
-      height: 12px;
     }
 
     .carousel-dot {
@@ -729,7 +754,7 @@
     /* ── MOBILE ── */
     @media (max-width: 640px) {
       .hero { padding: 2.5rem 0 2.5rem; }
-      .hero-cta { margin-bottom: 2.25rem; }
+      .hero-cta { margin-bottom: 1.5rem; }
 
       /* wave band simplifies on mobile — narrower, and two of the six lines
          drop out (one gold, one teal) to avoid clutter behind a single
@@ -813,6 +838,11 @@
         margin-left: 0;
         gap: 1.5rem;
       }
+
+      /* header wraps to two rows at this width, so it's taller — bump the
+         CSS fallback offset to match (the click-handler script computes the
+         real height at runtime; this only covers no-JS/native anchor jumps). */
+      #selected-impact { scroll-margin-top: 108px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -846,15 +876,15 @@
        content column; see design-notes comment near the closing </body>. -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="hero-headline">I build the growth that makes acquisition cost pay off.</h1>
-      <p class="hero-body">I can pull the SQL, design the experiment, write and build the email, and explain the result to a product manager and a CEO in the same meeting.</p>
+      <h1 class="hero-headline">I build the growth that makes CAC pay off.</h1>
+      <p class="hero-body">I find the lifecycle opportunities that matter, pull the SQL, design the experiment, and build the journey—carrying the work from diagnosis through measurable results.</p>
       <p class="hero-cta">
-        <a href="Rachel_Hull_Resume.pdf" class="btn-primary" download>Download resume</a>
-        <a href="contact.html" class="btn-ghost">Get in touch</a>
+        <a href="#selected-impact" class="btn-primary">See selected impact</a>
+        <a href="Rachel_Hull_Resume.pdf" class="btn-ghost" download>Download r&eacute;sum&eacute;</a>
       </p>
     </div>
 
-    <div class="carousel-band">
+    <div class="carousel-band" id="selected-impact">
       <div class="wave-layer" aria-hidden="true">
         <svg viewBox="0 0 1160 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <g class="wave-set wave-set-1">
@@ -891,6 +921,7 @@
       </div>
 
       <div class="carousel-row-wrap">
+        <p class="eyebrow carousel-eyebrow">Selected impact</p>
         <div class="impact-carousel" id="impactCarousel" role="group" aria-roledescription="carousel" aria-label="Selected impact stories">
           <button class="carousel-arrow carousel-arrow--prev" id="carouselPrev" aria-label="Previous story">
             <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -903,61 +934,85 @@
 
               <a class="impact-card" data-mode="teal" href="impact.html#rent-payments" data-index="0">
                 <span class="impact-card-eyebrow">TurboTenant</span>
+                <span class="impact-card-metric-block">
+                  <span class="impact-card-metric-accent" aria-hidden="true"></span>
+                  <span class="impact-card-metric">+72%<span class="impact-card-metric-label">adoption lift</span></span>
+                </span>
                 <span class="impact-card-headline">Rent Payment activation reframe</span>
                 <span class="impact-card-description">The sequence was several years old and built on dated messaging.</span>
                 <span class="impact-card-footer">
-                  <span class="impact-card-metric">+72%<span class="impact-card-metric-label">adoption lift</span></span>
                   <span class="impact-card-mode"><span class="mode-dot"></span>Optimization</span>
+                  <span class="impact-card-link">View full story →</span>
                 </span>
               </a>
 
               <a class="impact-card" data-mode="plum" href="impact.html#analytics-rebuild" data-index="1">
                 <span class="impact-card-eyebrow">Snagajob</span>
+                <span class="impact-card-metric-block">
+                  <span class="impact-card-metric-accent" aria-hidden="true"></span>
+                  <span class="impact-card-metric">31%<span class="impact-card-metric-label">revenue growth</span></span>
+                </span>
                 <span class="impact-card-headline">Analytics rebuild</span>
                 <span class="impact-card-description">One program represented roughly 80% of send volume, but was it driving revenue?</span>
                 <span class="impact-card-footer">
-                  <span class="impact-card-metric">31%<span class="impact-card-metric-label">revenue growth</span></span>
                   <span class="impact-card-mode"><span class="mode-dot"></span>Strategy</span>
+                  <span class="impact-card-link">View full story →</span>
                 </span>
               </a>
 
               <a class="impact-card" data-mode="gold" href="impact.html#patriot-act" data-index="2">
                 <span class="impact-card-eyebrow">Conduent</span>
+                <span class="impact-card-metric-block">
+                  <span class="impact-card-metric-accent" aria-hidden="true"></span>
+                  <span class="impact-card-metric">5% → 27%<span class="impact-card-metric-label">activation</span></span>
+                </span>
                 <span class="impact-card-headline">Patriot Act activation program</span>
                 <span class="impact-card-description">Every year, a significant share of new HSA account holders failed identity verification.</span>
                 <span class="impact-card-footer">
-                  <span class="impact-card-metric">5% → 27%<span class="impact-card-metric-label">activation</span></span>
                   <span class="impact-card-mode"><span class="mode-dot"></span>Execution</span>
+                  <span class="impact-card-link">View full story →</span>
                 </span>
               </a>
 
               <a class="impact-card" data-mode="plum" href="impact.html#new-worker-onboarding" data-index="3">
                 <span class="impact-card-eyebrow">Snagajob</span>
+                <span class="impact-card-metric-block">
+                  <span class="impact-card-metric-accent" aria-hidden="true"></span>
+                  <span class="impact-card-metric">+80%<span class="impact-card-metric-label">applications within two weeks</span></span>
+                </span>
                 <span class="impact-card-headline">New worker onboarding series</span>
                 <span class="impact-card-description">Snagajob's worker lifecycle program was entirely greenfield.</span>
                 <span class="impact-card-footer">
-                  <span class="impact-card-metric">+80%<span class="impact-card-metric-label">applications within two weeks</span></span>
                   <span class="impact-card-mode"><span class="mode-dot"></span>Strategy</span>
+                  <span class="impact-card-link">View full story →</span>
                 </span>
               </a>
 
               <a class="impact-card" data-mode="teal" href="impact.html#job-rec-filtering" data-index="4">
                 <span class="impact-card-eyebrow">Snagajob</span>
+                <span class="impact-card-metric-block">
+                  <span class="impact-card-metric-accent" aria-hidden="true"></span>
+                  <span class="impact-card-metric">+20%<span class="impact-card-metric-label">return visits</span></span>
+                </span>
                 <span class="impact-card-headline">Job recommendation targeting rebuild</span>
                 <span class="impact-card-description">Snagajob's emailed job recommendations were personalized by ZIP code only.</span>
                 <span class="impact-card-footer">
-                  <span class="impact-card-metric">+20%<span class="impact-card-metric-label">return visits</span></span>
                   <span class="impact-card-mode"><span class="mode-dot"></span>Optimization</span>
+                  <span class="impact-card-link">View full story →</span>
                 </span>
               </a>
 
               <a class="impact-card" data-mode="gold" href="impact.html#sendgrid-migration" data-index="5">
                 <span class="impact-card-eyebrow">TurboTenant</span>
+                <span class="impact-card-metric-block">
+                  <span class="impact-card-metric-accent" aria-hidden="true"></span>
+                  <span class="impact-card-metric">30<span class="impact-card-metric-label">net-new emails in 6 weeks</span></span>
+                </span>
                 <span class="impact-card-headline">SendGrid → Customer.io migration</span>
                 <span class="impact-card-description">TurboTenant's transactional email infrastructure was split across multiple platforms.</span>
                 <span class="impact-card-footer">
-                  <span class="impact-card-metric">30<span class="impact-card-metric-label">net-new emails in 6 weeks</span></span>
                   <span class="impact-card-mode"><span class="mode-dot"></span>Execution</span>
+                  <span class="impact-card-link">View full story →</span>
                 </span>
               </a>
 
@@ -973,15 +1028,6 @@
 
         <div class="carousel-dots-row">
           <div class="carousel-dots" id="carouselDots"></div>
-          <button class="carousel-autoplay-toggle" id="carouselAutoplayToggle" type="button" aria-pressed="false">
-            <svg class="icon-pause" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="2" y="1.5" width="2.6" height="9" rx="0.5"/>
-              <rect x="7.4" y="1.5" width="2.6" height="9" rx="0.5"/>
-            </svg>
-            <svg class="icon-play" viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden>
-              <path d="M3 1.75v8.5l7-4.25-7-4.25z"/>
-            </svg>
-          </button>
         </div>
         <p class="visually-hidden" id="carouselLiveRegion" aria-live="polite"></p>
       </div>
@@ -1061,7 +1107,6 @@
       var nextBtn = document.getElementById('carouselNext');
       var count = cards.length;
       var active = 0;
-      var autoplayToggle = document.getElementById('carouselAutoplayToggle');
 
       if (!count) return;
 
@@ -1071,7 +1116,7 @@
         dot.className = 'carousel-dot';
         var headline = card.querySelector('.impact-card-headline');
         dot.setAttribute('aria-label', 'Go to story ' + (i + 1) + ': ' + (headline ? headline.textContent : ''));
-        dot.addEventListener('click', function () { goTo(i); restartAutoplay(); });
+        dot.addEventListener('click', function () { goTo(i); });
         dotsWrap.appendChild(dot);
         return dot;
       });
@@ -1122,68 +1167,8 @@
       function next() { goTo(active + 1); }
       function prev() { goTo(active - 1); }
 
-      // ── Autoplay ──
-      // Advances one story at a time on a timer. Respects prefers-reduced-motion
-      // (never starts), pauses on hover/keyboard focus within the carousel and
-      // when the tab isn't visible, and can be stopped for good via the
-      // play/pause toggle (required so this satisfies WCAG 2.2.2 — moving
-      // content that starts automatically and runs longer than 5s must be
-      // pausable).
-      var AUTOPLAY_MS = 6000;
-      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var autoplayWanted = !reduceMotion;
-      var autoplayTimer = null;
-
-      function startAutoplay() {
-        if (!autoplayWanted || autoplayTimer) return;
-        autoplayTimer = setInterval(function () { next(); }, AUTOPLAY_MS);
-      }
-
-      function stopAutoplay() {
-        if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
-      }
-
-      function restartAutoplay() {
-        // Called after manual navigation so a click doesn't get immediately
-        // overridden by an in-flight timer, without stopping autoplay for good.
-        if (!autoplayWanted) return;
-        stopAutoplay();
-        startAutoplay();
-      }
-
-      function setAutoplayToggleState(paused) {
-        if (!autoplayToggle) return;
-        autoplayToggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
-        autoplayToggle.setAttribute('aria-label', paused ? 'Play carousel' : 'Pause carousel');
-        autoplayToggle.querySelector('.icon-pause').hidden = paused;
-        autoplayToggle.querySelector('.icon-play').hidden = !paused;
-      }
-
-      if (autoplayToggle) {
-        setAutoplayToggleState(!autoplayWanted);
-        autoplayToggle.addEventListener('click', function () {
-          autoplayWanted = !autoplayWanted;
-          setAutoplayToggleState(!autoplayWanted);
-          if (autoplayWanted) startAutoplay(); else stopAutoplay();
-        });
-      }
-
-      carousel.addEventListener('mouseenter', stopAutoplay);
-      carousel.addEventListener('mouseleave', function () { if (autoplayWanted) startAutoplay(); });
-      carousel.addEventListener('focusin', stopAutoplay);
-      carousel.addEventListener('focusout', function (e) {
-        if (autoplayWanted && !carousel.contains(e.relatedTarget)) startAutoplay();
-      });
-
-      if (typeof document.addEventListener === 'function') {
-        document.addEventListener('visibilitychange', function () {
-          if (document.hidden) stopAutoplay();
-          else if (autoplayWanted) startAutoplay();
-        });
-      }
-
-      prevBtn.addEventListener('click', function () { prev(); restartAutoplay(); });
-      nextBtn.addEventListener('click', function () { next(); restartAutoplay(); });
+      prevBtn.addEventListener('click', function () { prev(); });
+      nextBtn.addEventListener('click', function () { next(); });
 
       // Clicking a peeking (non-center) card selects it instead of navigating;
       // clicking the already-active center card follows its deep link normally.
@@ -1192,15 +1177,14 @@
           if (i !== active) {
             e.preventDefault();
             goTo(i);
-            restartAutoplay();
           }
         });
       });
 
       // Arrow-key navigation while focus is anywhere inside the carousel.
       carousel.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); restartAutoplay(); }
-        else if (e.key === 'ArrowRight') { e.preventDefault(); next(); restartAutoplay(); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
       });
 
       // Touch swipe — one card per swipe, horizontal gestures only.
@@ -1220,14 +1204,37 @@
         var SWIPE_THRESHOLD = 40;
         if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
           if (dx < 0) next(); else prev();
-          restartAutoplay();
         }
         touchStartX = null;
         touchStartY = null;
       }, { passive: true });
 
       render(false);
-      startAutoplay();
+    })();
+  </script>
+
+  <script>
+    // "See selected impact" scrolls to the carousel, offsetting for the
+    // sticky header's actual (possibly wrapped, on narrow widths) height so
+    // the "Selected impact" label isn't left tucked underneath it.
+    (function () {
+      var link = document.querySelector('a[href="#selected-impact"]');
+      var header = document.querySelector('header');
+      var target = document.getElementById('selected-impact');
+      if (!link || !target) return;
+
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var headerHeight = header ? header.getBoundingClientRect().height : 0;
+        var top = window.pageYOffset + target.getBoundingClientRect().top - headerHeight - 16;
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        try {
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', '#selected-impact');
+          }
+        } catch (err) { /* restricted-origin contexts (e.g. sandboxed preview) can't update history — scroll still happened */ }
+      });
     })();
   </script>
 
@@ -1294,6 +1301,40 @@
       impact.html's header remains the untouched reference implementation.
     - lantern-hero.png remains on disk (unreferenced asset) — left in place
       per "don't delete unrelated assets."
+
+    UPDATE (2026-08-25 session) — CTA hierarchy, card hierarchy, autoplay removal
+    ==============================================================================
+    Hero CTAs: primary is now "See selected impact" (#selected-impact,
+    handled by the second inline <script> block below the carousel script —
+    it preempts the default jump to compute the sticky header's real height
+    at click time and offset the smooth-scroll accordingly, since the header
+    wraps to two rows at ≤480px and a fixed CSS offset alone can't cover
+    both cases). Secondary/ghost is "Download résumé" — same file, same
+    `download` attribute, unchanged destination. "Get in touch" is gone from
+    the hero (still in nav). #selected-impact also carries a CSS
+    scroll-margin-top as a fallback for no-JS/native anchor jumps.
+
+    Carousel intro: a centered `.carousel-eyebrow` (`.eyebrow` + centering
+    modifier) reading "Selected impact" sits inside `.carousel-row-wrap`,
+    above `.impact-carousel`. No scope/lifecycle line was added, per brief.
+
+    Card hierarchy reordered to: eyebrow → metric (with accent) → headline →
+    description → footer. The metric now lives in `.impact-card-metric-block`
+    (flex row) with a `.impact-card-metric-accent` bar tinted to the card's
+    mode color (plum/gold/teal) — a restrained callout rather than a
+    dashboard-tile treatment. The footer no longer holds the metric; it's a
+    flex row of the existing mode indicator plus a new `.impact-card-link`
+    ("View full story →") for an explicit affordance. Card/viewport heights
+    (372px desktop, 340px mobile) are unchanged — only internal padding
+    (bottom padding 118px → 56px, no longer needing to reserve room for a
+    metric inside the footer) and a few margins shifted to fit the new order.
+
+    Autoplay is gone entirely: no timer, no play/pause toggle (markup +
+    CSS + JS all removed), no `restartAutoplay()` calls from any input
+    handler. Arrows, dots, keyboard, swipe, click-to-center-a-neighbor,
+    the live region, and focus-visible styles are all untouched and still
+    manual-navigation-only. The wave paths' own animation and reduced-motion
+    handling are a separate system and were not touched.
   -->
 
 </body>

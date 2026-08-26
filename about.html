@@ -208,7 +208,8 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--teal-dark);
-      min-width: 180px;
+      width: 180px;
+      flex-shrink: 0;
     }
 
     .tool-list {
@@ -220,6 +221,16 @@
     }
 
     /* ── CAREER ARC ── */
+    .section-intro {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.7;
+      max-width: 580px;
+      margin-bottom: 1.75rem;
+    }
+
     .arc-list {
       display: flex;
       flex-direction: column;
@@ -383,7 +394,7 @@
     /* ── MOBILE ── */
     @media (max-width: 640px) {
       .tool-row { flex-direction: column; gap: 0.25rem; }
-      .tool-category { min-width: unset; }
+      .tool-category { width: auto; }
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
     }
 
@@ -430,7 +441,7 @@
       <h1 class="page-headline">I build the systems that turn signups into revenue.</h1>
       <div class="page-body">
         <p>Lifecycle marketing, done right, is a behavioral decision engine: who gets what message, when, based on what they've done, and what that combination is most likely to make them do next. Not a single push toward conversion, but a loop that pulls someone deeper into the product with each pass.</p>
-        <p>I've spent my career in the post-signup part of the funnel, where the product and the marketing motion have to work together. That's made me comfortable operating at the intersection of data, product, and copy in ways that pure-channel marketers usually aren't. I can pull the SQL, design the experiment, write the email, and explain the result to a product manager and a CEO in the same meeting.</p>
+        <p>I've spent most of my career in the post-signup part of the funnel, where product behavior and marketing have to work as one system. My work moves between behavioral data, product mechanics, technical implementation, and message execution: diagnosing what users are doing, deciding what intervention could change it, building that intervention, and measuring whether it worked.</p>
         <p>My background spans B2B2C marketplaces (Snagajob), product-led SaaS (TurboTenant), and regulated healthcare and financial products (Wells Fargo, Conduent). User behavior (not always the behavior of paying users or clients) directly drives OKRs, including revenue.</p>
         <p>I'm based in the Denver area and looking for senior lifecycle or growth marketing roles (remote or hybrid) where the lifecycle motion plays a critical role in how the product grows.</p>
       </div>
@@ -454,8 +465,8 @@
             <span class="tool-list">Figma · Liquid · HTML · CSS</span>
           </div>
           <div class="tool-row">
-            <span class="tool-category">AI &amp; workflow</span>
-            <span class="tool-list">Claude · ChatGPT · Gemini · Cursor</span>
+            <span class="tool-category">AI-assisted research &amp; workflows</span>
+            <span class="tool-list">Analysis · synthesis · persona development · prototyping · workflow automation</span>
           </div>
         </div>
       </div>
@@ -464,6 +475,7 @@
     <!-- CAREER ARC -->
     <div class="about-section">
       <h2 class="section-label">Career arc</h2>
+      <p class="section-intro">My career started at the intersection of product, analytics, and direct marketing, then moved progressively deeper into lifecycle—building programs, measurement systems, and infrastructure that connect user behavior to product growth.</p>
       <div class="arc-list">
         <div class="arc-item">
           <div class="arc-marker">
@@ -506,7 +518,7 @@
           </div>
           <div class="arc-content">
             <div class="arc-company">Wells Fargo</div>
-            <div class="arc-desc">12 years across product management, yield optimization, and acquisition marketing. Built pricing models that generated $6M+ in annual revenue. Applied early A/B testing and direct marketing before either was standard practice.</div>
+            <div class="arc-desc">12 years across product management, yield optimization, and acquisition marketing. Built pricing models that generated $6M+ in annual revenue. Built the product, analytical, experimentation, and direct-marketing foundation that ultimately led me into lifecycle.</div>
           </div>
         </div>
       </div>
