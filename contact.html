@@ -243,8 +243,11 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 1.25rem 1.5rem;
+    }
+
+    .footer-row {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.75rem;
@@ -255,6 +258,15 @@
       font-size: 13px;
       font-weight: 500;
       color: #ffffff;
+    }
+
+    .footer-credit {
+      display: block;
+      margin-top: 0.125rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
     }
 
     .footer-meta {
@@ -283,7 +295,7 @@
     @media (max-width: 640px) {
       .contact-item { flex-direction: column; gap: 0.25rem; }
       .contact-label { min-width: unset; }
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .footer-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
     }
 
     @media (max-width: 480px) {
@@ -365,8 +377,11 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-name">Rachel Hull</span>
-      <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      <div class="footer-row">
+        <span class="footer-name">Rachel Hull</span>
+        <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      </div>
+      <span class="footer-credit">Site designed, built &amp; iterated with ChatGPT, Claude Code &amp; Codex</span>
     </div>
   </footer>
 

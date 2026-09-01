@@ -615,8 +615,11 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 1.25rem 1.5rem;
+    }
+
+    .footer-row {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.75rem;
@@ -627,6 +630,15 @@
       font-size: 13px;
       font-weight: 500;
       color: #ffffff;
+    }
+
+    .footer-credit {
+      display: block;
+      margin-top: 0.125rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
     }
 
     .footer-meta {
@@ -687,7 +699,7 @@
       .story-stop { padding: 1.25rem 0; column-gap: 1rem; }
       .case-title { font-size: 19px; }
 
-      .footer-inner {
+      .footer-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.25rem;
@@ -807,7 +819,7 @@
               <h2 class="case-title">Onboarding series rebuild: intent-based segmentation</h2>
               <div class="metric-badge">
                 <span class="metric-num">+11% / +5%</span>
-                <span class="metric-label">feature adoption</span>
+                <span class="metric-label">property-add completion</span>
               </div>
               <div class="tag-row">
                 <span class="tag" data-v="teal">Optimization</span>
@@ -838,8 +850,8 @@
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">Vacancy-to-retention: screening-to-lease journey redesign</h2>
               <div class="metric-badge">
-                <span class="metric-num">5% → 40%</span>
-                <span class="metric-label">feature adoption</span>
+                <span class="metric-num">&lt;5% → 40%</span>
+                <span class="metric-label">Rent Payments adoption</span>
               </div>
               <div class="tag-row">
                 <span class="tag">Strategy</span>
@@ -871,7 +883,7 @@
               <p class="case-meta">Snagajob</p>
               <h2 class="case-title">Analytics rebuild</h2>
               <div class="metric-badge">
-                <span class="metric-num">31%</span>
+                <span class="metric-num">+31%</span>
                 <span class="metric-label">revenue growth</span>
               </div>
               <div class="tag-row">
@@ -890,7 +902,7 @@
                 <p>Snagajob had Adobe Analytics connected to lifecycle email, but inconsistent event structures meant program performance couldn't be compared across series. Decisions were being made on open and click rates. One program — daily job recommendations — represented roughly 80% of send volume, and no one had the data to question it.</p>
                 <p>I standardized event structures and organized lifecycle programs into four themes: job recommendations, worker engagement, onboarding, and transactional. I built reporting around site visits, job views, applications, and last-touch revenue, then validated the baseline against historical data and seasonality. That exposed the high-volume job recommendation program as a poor-ROI area and showed that engagement and onboarding programs performed significantly better. Shifting send volume toward those programs while reducing job-recommendation frequency drove 31% revenue growth and 6.7% visit growth while cutting total send volume by 22%.</p>
               </div>
-              <div class="result-meta">6.7% visit growth · 22% reduction in send volume · Adobe Analytics · UTM framework · Snagajob</div>
+              <div class="result-meta">31% revenue growth measured pre/post send-volume rebalancing · 6.7% visit growth · 22% reduction in send volume · Adobe Analytics / UTM framework</div>
             </div>
           </div>
         </article>
@@ -936,8 +948,8 @@
               <p class="case-meta">Snagajob</p>
               <h2 class="case-title">Worker persona development</h2>
               <div class="metric-badge">
-                <span class="metric-num">1,500 verbatims</span>
-                <span class="metric-label">→ first segmentation framework</span>
+                <span class="metric-num">~1,500</span>
+                <span class="metric-label">worker verbatims analyzed</span>
               </div>
               <div class="tag-row">
                 <span class="tag">Strategy</span>
@@ -953,7 +965,7 @@
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Snagajob's marketing strategy had always focused on the employer side. The worker audience was treated as a single segment — people who wanted jobs — with no structured understanding of why different workers searched, applied, or disengaged. Marketing decisions had no framework for differentiated worker intent.</p>
-                <p>I used hundreds of open-ended worker survey responses as raw input and worked iteratively with ChatGPT to identify behavioral and motivational patterns, deliberately resisting the urge to ask for polished output until the groupings were solid. I identified four distinct segments — including students sending money home, seniors seeking low-stress part-time work, and "maximizers" stacking multiple jobs — pressure-tested them with human judgment, and packaged the findings for both Marketing and Product. The personas were adopted as the team's first structured worker segmentation framework, shifting lifecycle strategy from treating workers as a monolithic audience toward differentiated, intent-based messaging and targeting.</p>
+                <p>I used roughly 1,500 open-ended worker survey responses as raw input and worked iteratively with ChatGPT to identify behavioral and motivational patterns, deliberately resisting the urge to ask for polished output until the groupings were solid. I identified four distinct segments — including students sending money home, seniors seeking low-stress part-time work, and "maximizers" stacking multiple jobs — pressure-tested them with human judgment, and packaged the findings for both Marketing and Product. The personas were adopted as the team's first structured worker segmentation framework, shifting lifecycle strategy from treating workers as a monolithic audience toward differentiated, intent-based messaging and targeting.</p>
               </div>
               <div class="result-meta">ChatGPT · Snagajob</div>
             </div>
@@ -969,7 +981,7 @@
               <h2 class="case-title">Freemium-to-subscriber retargeting</h2>
               <div class="metric-badge">
                 <span class="metric-num">+15%</span>
-                <span class="metric-label">freemium conversion</span>
+                <span class="metric-label">conversion lift vs. control</span>
               </div>
               <div class="tag-row">
                 <span class="tag" data-v="teal">Optimization</span>
@@ -1000,8 +1012,8 @@
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">"Wrapped"-style year in review campaign</h2>
               <div class="metric-badge">
-                <span class="metric-num">0.5%</span>
-                <span class="metric-label">retention lift</span>
+                <span class="metric-num">+0.5 pp</span>
+                <span class="metric-label">subscriber retention vs. holdout</span>
               </div>
               <div class="tag-row">
                 <span class="tag" data-v="teal">Optimization</span>
@@ -1017,7 +1029,7 @@
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant's previous year-in-review campaign was structured around subscription retention, which meant it could only speak usefully to users who already had strong platform numbers. Anyone whose year looked thin got a message that didn't land, and the campaign wasn't building a case for deepening the landlord's relationship with the platform.</p>
-                <p>I reframed the goal around feature adoption instead. That let the campaign include low-activity users by turning weak numbers into opportunities: a landlord with zero rent reminders sent saw that stat next to copy explaining what automating reminders would do for them. Personalization pulled from rent collected, features adopted, portfolio growth, tenant applications, maintenance requests, and Premium status. I set a 15% random holdout and tracked non-openers separately. The campaign generated a 55% open rate, 4% CTR, and a 0.5% lift in two-month subscriber retention against holdout, along with incremental adoption gains on the specific features it called out.</p>
+                <p>I reframed the goal around feature adoption instead. That let the campaign include low-activity users by turning weak numbers into opportunities: a landlord with zero rent reminders sent saw that stat next to copy explaining what automating reminders would do for them. Personalization pulled from rent collected, features adopted, portfolio growth, tenant applications, maintenance requests, and Premium status. I set a 15% random holdout and tracked non-openers separately. The campaign generated a 55% open rate, 4% CTR, and a 0.5 percentage-point lift in two-month subscriber retention against holdout, along with incremental adoption gains on the specific features it called out.</p>
               </div>
               <div class="result-meta">55% open rate · 4% CTR · Holdout tested · TurboTenant</div>
             </div>
@@ -1050,9 +1062,9 @@
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>Snagajob's worker lifecycle program was entirely greenfield. New workers received a single generic welcome email and a handful of transactional messages — no structured effort to accelerate them toward meaningful product behavior.</p>
-                <p>I combined worker survey data, in-product behavioral signals, and interviews with Product and Marketing stakeholders to identify which motivations mattered most to new signups and which in-product actions were worth building toward. I designed a personalized series opening with a calibrated welcome, followed by four emails introducing search, filters, and profile completion, personalized by job type and geography. Applications submitted within two weeks of signup rose 80%. Refinement over the following two quarters pushed series-driven site visits up 70%, apply intents up 50%, and attributed revenue up 115%.</p>
+                <p>I combined worker survey data, in-product behavioral signals, and interviews with Product and Marketing stakeholders to identify which motivations mattered most to new signups and which in-product actions were worth building toward. I designed a personalized series opening with a calibrated welcome, followed by four emails introducing search, filters, and profile completion, personalized by job type and geography. Applications submitted during the first two weeks after signup rose 80%, normalized as applications per 1,000 emails sent. Refinement over the following two quarters pushed series-driven site visits up 70%, apply intents up 50%, and attributed revenue up 115%.</p>
               </div>
-              <div class="result-meta">Persona-driven · Snagajob</div>
+              <div class="result-meta">Applications per 1,000 emails sent · measured by signup/onboarding cohort · Persona-driven · Snagajob</div>
             </div>
           </div>
         </article>
@@ -1067,7 +1079,7 @@
               <h2 class="case-title">Job recommendation targeting rebuild</h2>
               <div class="metric-badge">
                 <span class="metric-num">+20%</span>
-                <span class="metric-label">return visits</span>
+                <span class="metric-label">return visits vs. control</span>
               </div>
               <div class="tag-row">
                 <span class="tag" data-v="teal">Optimization</span>
@@ -1098,8 +1110,8 @@
               <p class="case-meta">Wells Fargo</p>
               <h2 class="case-title">Rate objection reframed as cross-sell</h2>
               <div class="metric-badge">
-                <span class="metric-num">50 objections</span>
-                <span class="metric-label">→ 50 cross-sell opportunities</span>
+                <span class="metric-num">+50</span>
+                <span class="metric-label">incremental cross-sell opportunities / month</span>
               </div>
               <div class="tag-row">
                 <span class="tag">Strategy</span>
@@ -1114,10 +1126,10 @@
             <div class="case-panel" id="wells-fargo-cx-script-panel" role="region" aria-labelledby="wells-fargo-cx-script-trigger">
               <div class="case-accent"></div>
               <div class="case-body">
-                <p>In yield optimization on unsecured revolving credit at Wells Fargo, CX was fielding steady complaints from customers comparing their rates to mortgages and home equity loans. The team's proposed fix was to give representatives more flexibility to lower rates — a solution that would have created real margin pressure on rates that were already correctly priced.</p>
-                <p>The actual issue was a product comparison problem, not a rate problem. Any customer upset about a revolving credit rate who also owned a home was potentially a legitimate candidate for a home equity product at a genuinely lower rate. I reframed the complaint as a qualification signal and wrote a CX script giving representatives a clean redirect: acknowledge the frustration, then ask whether a home equity option might fit better. I worked with supervisors to get the approach in front of the team. Rather than a thankless de-escalation, the script gave representatives a way to demonstrate real empathy and potentially earn on a home equity cross-sell in the same interaction.</p>
+                <p>In yield optimization on unsecured revolving credit at Wells Fargo, CX was fielding roughly 50 complaints per month from customers comparing their rates to mortgages and home equity loans. The team's proposed fix was to give representatives more flexibility to lower rates — a solution that would have created real margin pressure on rates that were already correctly priced.</p>
+                <p>The actual issue was a product comparison problem, not a rate problem. Any customer upset about a revolving credit rate who also owned a home was potentially a legitimate candidate for a home equity product at a genuinely lower rate. I reframed the complaint as a qualification signal and wrote a CX script giving representatives a clean redirect: acknowledge the frustration, then ask whether a home equity option might fit better. I worked with supervisors to get the approach in front of the team. Rather than a thankless de-escalation, the script turned an existing service burden into approximately 50 incremental cross-sell opportunities per month.</p>
               </div>
-              <div class="result-meta">Turned a rate objection into a repeatable cross-sell motion for CX · kept the revolving credit book intact · Wells Fargo</div>
+              <div class="result-meta">~50 monthly rate objections reframed as incremental cross-sell opportunities · kept the revolving credit book intact · Wells Fargo</div>
             </div>
           </div>
         </article>
@@ -1163,8 +1175,8 @@
               <p class="case-meta">TurboTenant</p>
               <h2 class="case-title">Notification Center redesign for multi-channel lifecycle</h2>
               <div class="metric-badge">
-                <span class="metric-num">1 → 3</span>
-                <span class="metric-label">channel preference architecture</span>
+                <span class="metric-num">3 channels</span>
+                <span class="metric-label">preference architecture</span>
               </div>
               <div class="tag-row">
                 <span class="tag">Strategy</span>
@@ -1196,7 +1208,7 @@
               <h2 class="case-title">Maintenance alerts: SMS for urgent moments</h2>
               <div class="metric-badge">
                 <span class="metric-num">+20%</span>
-                <span class="metric-label">1-hour message-read rate</span>
+                <span class="metric-label">1-hour Maintenance page views</span>
               </div>
               <div class="tag-row">
                 <span class="tag" data-v="gold">Execution</span>
@@ -1212,9 +1224,9 @@
               <div class="case-accent"></div>
               <div class="case-body">
                 <p>TurboTenant had expanded its messaging infrastructure beyond email, creating an opportunity to match communication channels more deliberately to the urgency of the user need. Maintenance requests were a strong use case: landlords often needed to know quickly that a tenant had reported a problem, making speed of attention more important than the extra space and persistence email provides.</p>
-                <p>I extended the new SMS capability to maintenance request alerts, using SMS for the time-sensitive notification rather than treating every message as an email problem. The change increased the share of maintenance messages read within one hour by 20%, demonstrating that channel choice itself can materially change response behavior when it reflects the urgency and context of the communication.</p>
+                <p>I extended the new SMS capability to maintenance request alerts, using SMS for the time-sensitive notification rather than treating every message as an email problem. Adding SMS increased the share of users who viewed the Maintenance Request page in-product within one hour by 20%, demonstrating that channel choice itself can materially change response behavior when it reflects the urgency and context of the communication.</p>
               </div>
-              <div class="result-meta">+20% 1-hour message-read rate · SMS · TurboTenant</div>
+              <div class="result-meta">+20% share of users viewing the Maintenance Request page within one hour · SMS · TurboTenant</div>
             </div>
           </div>
         </article>
@@ -1233,8 +1245,11 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-name">Rachel Hull</span>
-      <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      <div class="footer-row">
+        <span class="footer-name">Rachel Hull</span>
+        <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      </div>
+      <span class="footer-credit">Site designed, built &amp; iterated with ChatGPT, Claude Code &amp; Codex</span>
     </div>
   </footer>
 

@@ -216,33 +216,15 @@
       display: block;
     }
 
-    .wave-base { fill: none; stroke-linecap: round; opacity: 0.2; }
+    .wave-base { fill: none; stroke: var(--slate); stroke-width: 2.5; stroke-linecap: round; opacity: 0.28; }
 
-    /* Each line is static — no positional movement. A wide/dim "halo" dash
-       and a narrow/bright "core" dash share the same stroke-dashoffset
-       animation, so a band of color travels left-to-right along the fixed
-       curve with a soft (not hard-edged) transition. */
-    .wave-band-wide { fill: none; stroke-linecap: round; opacity: 0.28; stroke-dasharray: 260 900; animation: wave-flow linear infinite; }
-    .wave-band-core { fill: none; stroke-linecap: round; opacity: 0.9;  stroke-dasharray: 90 1070; animation: wave-flow linear infinite; }
-
-    .wave-line-plum { stroke: var(--plum); }
-    .wave-line-gold { stroke: var(--gold); }
-    .wave-line-teal { stroke: var(--teal); }
-
-    @keyframes wave-flow {
-      from { stroke-dashoffset: 0; }
-      to { stroke-dashoffset: -1160; }
-    }
-
-    .wave-band-1 { animation-duration: 9s; }
-    .wave-band-2 { animation-duration: 12s; animation-delay: -2s; }
-    .wave-band-3 { animation-duration: 8s;  animation-delay: -5s; }
-    .wave-band-4 { animation-duration: 13s; animation-delay: -1s; }
-    .wave-band-5 { animation-duration: 10s; animation-delay: -6s; }
-    .wave-band-6 { animation-duration: 11s; animation-delay: -3s; }
+    /* JavaScript samples each curve into fine, crisp SVG segments. Each
+       segment receives its width and alpha from distance along that curve,
+       rather than from a screen-axis blur or stacked stroke layers. */
+    .wave-pulse-segment { fill: none; stroke-linecap: butt; pointer-events: none; }
 
     @media (prefers-reduced-motion: reduce) {
-      .wave-band-wide, .wave-band-core { animation: none; stroke-dashoffset: 0; }
+      .wave-pulse-track { display: none; }
     }
 
     /* ── IMPACT CAROUSEL — sits above the wave layer. Deliberately narrower
@@ -715,8 +697,11 @@
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 1.25rem 1.5rem;
+    }
+
+    .footer-row {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.75rem;
@@ -727,6 +712,15 @@
       font-size: 13px;
       font-weight: 500;
       color: #ffffff;
+    }
+
+    .footer-credit {
+      display: block;
+      margin-top: 0.125rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
     }
 
     .footer-meta {
@@ -756,13 +750,13 @@
       .hero { padding: 2.5rem 0 2.5rem; }
       .hero-cta { margin-bottom: 1.5rem; }
 
-      /* wave band simplifies on mobile — narrower, and two of the six lines
-         drop out (one gold, one teal) to avoid clutter behind a single
+      /* wave band simplifies on mobile — narrower, and the lowest of four lines
+         drops out to avoid clutter behind a single
          stacked card. overflow-x stays clipped to this band only, never the
          page, so the intentionally-oversized band can't cause page scroll. */
       .carousel-band { max-width: 94vw; padding: 12px 1rem 10px; overflow: hidden; }
       .carousel-row-wrap { max-width: 100%; }
-      .wave-set-4, .wave-set-6 { display: none; }
+      .wave-set-4 { display: none; }
 
       /* mobile shows exactly one card at a time — not a shrunk version of the
          desktop peek layout, per brief. Neighbor cards are pushed fully
@@ -810,7 +804,7 @@
         margin-bottom: 0;
       }
 
-      .footer-inner {
+      .footer-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.25rem;
@@ -888,34 +882,20 @@
       <div class="wave-layer" aria-hidden="true">
         <svg viewBox="0 0 1160 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <g class="wave-set wave-set-1">
-            <path class="wave-base wave-line-plum" pathLength="1160" d="M0,120 C190,60 380,180 570,110 C760,40 950,160 1160,90" />
-            <path class="wave-band-wide wave-band-1 wave-line-plum" pathLength="1160" d="M0,120 C190,60 380,180 570,110 C760,40 950,160 1160,90" />
-            <path class="wave-band-core wave-band-1 wave-line-plum" pathLength="1160" d="M0,120 C190,60 380,180 570,110 C760,40 950,160 1160,90" />
+            <path class="wave-base" pathLength="1160" d="M0,105 C190,50 380,165 570,100 C760,38 950,150 1160,85" />
+            <g class="wave-pulse-track" data-wave="1"></g>
           </g>
           <g class="wave-set wave-set-2">
-            <path class="wave-base wave-line-gold" pathLength="1160" d="M0,205 C200,265 380,140 610,215 C810,280 970,150 1160,225" />
-            <path class="wave-band-wide wave-band-2 wave-line-gold" pathLength="1160" d="M0,205 C200,265 380,140 610,215 C810,280 970,150 1160,225" />
-            <path class="wave-band-core wave-band-2 wave-line-gold" pathLength="1160" d="M0,205 C200,265 380,140 610,215 C810,280 970,150 1160,225" />
+            <path class="wave-base" pathLength="1160" d="M0,190 C200,250 380,130 610,205 C810,270 970,145 1160,215" />
+            <g class="wave-pulse-track" data-wave="2"></g>
           </g>
           <g class="wave-set wave-set-3">
-            <path class="wave-base wave-line-teal" pathLength="1160" d="M0,75 C180,150 380,55 590,140 C790,225 970,85 1160,165" />
-            <path class="wave-band-wide wave-band-3 wave-line-teal" pathLength="1160" d="M0,75 C180,150 380,55 590,140 C790,225 970,85 1160,165" />
-            <path class="wave-band-core wave-band-3 wave-line-teal" pathLength="1160" d="M0,75 C180,150 380,55 590,140 C790,225 970,85 1160,165" />
+            <path class="wave-base" pathLength="1160" d="M0,270 C180,205 390,325 590,255 C790,185 970,295 1160,235" />
+            <g class="wave-pulse-track" data-wave="3"></g>
           </g>
           <g class="wave-set wave-set-4">
-            <path class="wave-base wave-line-gold" pathLength="1160" d="M0,305 C190,240 410,345 600,270 C810,195 1000,325 1160,255" />
-            <path class="wave-band-wide wave-band-4 wave-line-gold" pathLength="1160" d="M0,305 C190,240 410,345 600,270 C810,195 1000,325 1160,255" />
-            <path class="wave-band-core wave-band-4 wave-line-gold" pathLength="1160" d="M0,305 C190,240 410,345 600,270 C810,195 1000,325 1160,255" />
-          </g>
-          <g class="wave-set wave-set-5">
-            <path class="wave-base wave-line-plum" pathLength="1160" d="M0,345 C200,385 380,300 590,365 C790,405 990,320 1160,375" />
-            <path class="wave-band-wide wave-band-5 wave-line-plum" pathLength="1160" d="M0,345 C200,385 380,300 590,365 C790,405 990,320 1160,375" />
-            <path class="wave-band-core wave-band-5 wave-line-plum" pathLength="1160" d="M0,345 C200,385 380,300 590,365 C790,405 990,320 1160,375" />
-          </g>
-          <g class="wave-set wave-set-6">
-            <path class="wave-base wave-line-teal" pathLength="1160" d="M0,35 C180,5 380,65 580,15 C790,-25 980,45 1160,5" />
-            <path class="wave-band-wide wave-band-6 wave-line-teal" pathLength="1160" d="M0,35 C180,5 380,65 580,15 C790,-25 980,45 1160,5" />
-            <path class="wave-band-core wave-band-6 wave-line-teal" pathLength="1160" d="M0,35 C180,5 380,65 580,15 C790,-25 980,45 1160,5" />
+            <path class="wave-base" pathLength="1160" d="M0,335 C200,370 380,290 590,350 C790,390 990,310 1160,360" />
+            <g class="wave-pulse-track" data-wave="4"></g>
           </g>
         </svg>
       </div>
@@ -1092,10 +1072,120 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-name">Rachel Hull</span>
-      <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      <div class="footer-row">
+        <span class="footer-name">Rachel Hull</span>
+        <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      </div>
+      <span class="footer-credit">Site designed, built &amp; iterated with ChatGPT, Claude Code &amp; Codex</span>
     </div>
   </footer>
+
+  <script>
+    // Wave pulses are sampled directly along each SVG curve. Every short
+    // segment is crisp and follows the local curve direction; a sine envelope
+    // based on path distance controls both width and same-color opacity.
+    (function () {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var svgNS = 'http://www.w3.org/2000/svg';
+      var rootStyle = getComputedStyle(document.documentElement);
+      var colors = {
+        plum: rootStyle.getPropertyValue('--plum').trim(),
+        gold: rootStyle.getPropertyValue('--gold').trim(),
+        teal: rootStyle.getPropertyValue('--teal').trim()
+      };
+      var definitions = [
+        { duration: 9000,  delay: 4000,  colors: ['plum', 'gold', 'teal'] },
+        { duration: 12000, delay: 14000, colors: ['teal', 'plum', 'gold'] },
+        { duration: 8000,  delay: 5000,  colors: ['gold', 'teal', 'plum'] },
+        { duration: 13000, delay: 21000, colors: ['plum', 'teal', 'gold'] }
+      ];
+      var pulseLength = 216;
+      var segmentCount = 72;
+      var waves = [];
+
+      document.querySelectorAll('.wave-pulse-track').forEach(function (track, index) {
+        var base = track.parentNode.querySelector('.wave-base');
+        var total = base.getTotalLength();
+        var parts = [];
+        for (var i = 0; i < segmentCount; i++) {
+          var segment = document.createElementNS(svgNS, 'path');
+          segment.setAttribute('class', 'wave-pulse-segment');
+          track.appendChild(segment);
+          parts.push(segment);
+        }
+        waves.push({ base: base, total: total, parts: parts, definition: definitions[index] });
+      });
+
+      function pointAt(path, distance) {
+        return path.getPointAtLength(distance);
+      }
+
+      function segmentPath(path, total, startDistance, endDistance) {
+        var start;
+        var end;
+        var seamEnd;
+        var seamStart;
+
+        // A segment crossing the seam becomes two independent, path-local
+        // pieces. It can never draw a direct line from one physical end of
+        // the curve to the other.
+        if (startDistance < 0 && endDistance > 0) {
+          start = pointAt(path, total + startDistance);
+          seamEnd = pointAt(path, total);
+          seamStart = pointAt(path, 0);
+          end = pointAt(path, endDistance);
+          return 'M' + start.x.toFixed(2) + ',' + start.y.toFixed(2) + ' L' + seamEnd.x.toFixed(2) + ',' + seamEnd.y.toFixed(2) +
+            ' M' + seamStart.x.toFixed(2) + ',' + seamStart.y.toFixed(2) + ' L' + end.x.toFixed(2) + ',' + end.y.toFixed(2);
+        }
+        if (startDistance < 0) {
+          start = pointAt(path, total + startDistance);
+          end = pointAt(path, total + endDistance);
+        } else if (endDistance > total && startDistance < total) {
+          start = pointAt(path, startDistance);
+          seamEnd = pointAt(path, total);
+          seamStart = pointAt(path, 0);
+          end = pointAt(path, endDistance - total);
+          return 'M' + start.x.toFixed(2) + ',' + start.y.toFixed(2) + ' L' + seamEnd.x.toFixed(2) + ',' + seamEnd.y.toFixed(2) +
+            ' M' + seamStart.x.toFixed(2) + ',' + seamStart.y.toFixed(2) + ' L' + end.x.toFixed(2) + ',' + end.y.toFixed(2);
+        } else if (endDistance > total) {
+          start = pointAt(path, startDistance - total);
+          end = pointAt(path, endDistance - total);
+        } else {
+          start = pointAt(path, startDistance);
+          end = pointAt(path, endDistance);
+        }
+        return 'M' + start.x.toFixed(2) + ',' + start.y.toFixed(2) + ' L' + end.x.toFixed(2) + ',' + end.y.toFixed(2);
+      }
+
+      function draw(now) {
+        waves.forEach(function (wave) {
+          var definition = wave.definition;
+          var elapsed = now - definition.delay;
+          var pass = Math.floor(elapsed / definition.duration);
+          var center = ((elapsed % definition.duration) + definition.duration) % definition.duration / definition.duration * wave.total;
+          var stroke = colors[definition.colors[((pass % 3) + 3) % 3]];
+          var unit = pulseLength / segmentCount;
+
+          wave.parts.forEach(function (segment, i) {
+            var progress = (i + 0.5) / segmentCount;
+            var envelope = Math.sin(Math.PI * progress);
+            var opacity = Math.pow(envelope, 1.55);
+            var width = 2.5 + 3.3 * Math.pow(envelope, 1.15);
+            var startDistance = center - pulseLength / 2 + i * unit - 0.35;
+            var endDistance = center - pulseLength / 2 + (i + 1) * unit + 0.35;
+            segment.setAttribute('d', segmentPath(wave.base, wave.total, startDistance, endDistance));
+            segment.setAttribute('stroke', stroke);
+            segment.setAttribute('stroke-width', width.toFixed(2));
+            segment.setAttribute('opacity', opacity.toFixed(3));
+          });
+        });
+        requestAnimationFrame(draw);
+      }
+
+      requestAnimationFrame(draw);
+    })();
+  </script>
 
   <script>
     (function () {
@@ -1248,19 +1338,16 @@
     Files: everything lives in this file (index.html) — inline <style> and
     inline <script>, no separate CSS/JS files for this site.
 
-    How the paths are implemented: six static SVG <path> curves inside
-    .wave-layer (2 each — plum/Strategy, gold/Execution, teal/Optimization),
+    How the paths are implemented: four static SVG curves inside .wave-layer,
     grouped in <g class="wave-set wave-set-N"> for the mobile line-drop rule.
-    Each line is three stacked paths sharing one "d": a faint .wave-base
-    (always visible, static), and a .wave-band-wide/.wave-band-core pair that
-    share a stroke-dashoffset animation (@keyframes wave-flow) so a colored
-    band travels left-to-right along the fixed curve — the "wide" pass is a
-    dim/broad dash, the "core" pass is a bright/narrow dash on the same
-    timing, which reads as a soft-edged gradient instead of a hard cut. Six
-    lines run on independent durations/delays (8–13s) so they don't move in
-    lockstep. pathLength="1160" is set on every path so stroke-dasharray/
-    offset values are simple round numbers regardless of the curve's actual
-    geometry.
+    Each curve has one quiet, neutral .wave-base and a .wave-pulse-track that
+    is generated at runtime from fine SVG segments sampled with
+    getPointAtLength(). Segment width and same-color opacity are calculated
+    from a symmetric sine envelope based on distance from the traveling pulse
+    center. This keeps every crisp segment attached to its curve while
+    creating a continuous-looking taper without changing curve geometry.
+    Each group has its own travel timing and discrete plum/gold/teal color
+    cycle, so no line owns a permanent color or moves in lockstep.
 
     How layering works: .wave-layer is position:absolute; inset:0 inside
     .carousel-band (z-index 1) — that box is sized to exactly wrap the
@@ -1275,18 +1362,17 @@
     fading the card's own background. This was deliberate after an earlier
     round where card opacity let the waves show through peeking cards.
 
-    How reduced motion works: @media (prefers-reduced-motion: reduce) sets
-    the wave-band-wide/wave-band-core animation to none and pins
-    stroke-dashoffset to 0 — the lines stay fully visible, just static (the
-    base line was already static). The page's other blanket reduced-motion
+    How reduced motion works: @media (prefers-reduced-motion: reduce) hides
+    the traveling .wave-pulse layers, leaving only the quiet static base paths.
+    The page's other blanket reduced-motion
     rule (`* { transition: none !important }`) also kills the carousel's
     card transform/scrim transitions, which was already true before this
     change.
 
     Which selectors control the hero: .hero / .hero-content / .hero-headline
     / .hero-body / .hero-cta for the text; .carousel-band / .wave-layer /
-    .wave-base / .wave-band-wide / .wave-band-core / .wave-line-plum|gold|teal
-    / .wave-band-1..6 for the paths; .carousel-row-wrap wraps the existing
+    .wave-base / .wave-pulse / .wave-pulse-1..4 for the paths;
+    .carousel-row-wrap wraps the existing
     .impact-carousel (unchanged internals/JS). Site-wide --max-width stayed
     at 720px (design system default) — only .carousel-band (1040px) breaks
     out wider, which was a deliberate late revision after 840px site-wide
