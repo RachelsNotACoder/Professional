@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ED4QVHV7Q8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ED4QVHV7Q8');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifecycleOS — Rachel Hull</title>
+  <meta name="description" content="Rachel Hull's lifecycle operating philosophy: observe, interpret, intervene, learn, and recalibrate.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,350;9..144,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #5C3A7E;
+      --plum-deep: #3D2454;
+      --lavender: #EDE8F5;
+      --teal: #2A4A45;
+      --teal-tint: #D8EAE7;
+      --gold: #B8762A;
+      --gold-tint: #FAF0DC;
+      --ink: #111111;
+      --linen: #F7F6F3;
+      --slate: #6B6B6B;
+      --risk: #A35F58;
+      --border: rgba(0,0,0,0.10);
+      --spine: rgba(0,0,0,0.16);
+      --max-width: 720px;
+      --page-width: 1120px;
+      --font-display: 'Fraunces', serif;
+      --sticky-header-h: 56px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--linen);
+      color: var(--ink);
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--plum);
+    }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      gap: 0.6rem;
+    }
+
+    .header-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .header-dot { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+    .header-role {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .header-links {
+      margin-left: auto;
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .header-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .header-links a:hover,
+    .header-links a.active { color: #ffffff; }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 1px;
+    }
+
+    .header-links a:focus-visible,
+    .header-name:focus-visible,
+    .footer-link:focus-visible {
+      outline-color: #ffffff;
+    }
+
+    main { display: block; }
+
+    .hero,
+    .section-inner,
+    .feedback-inner {
+      width: min(100%, var(--page-width));
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .hero { padding-top: 5.5rem; padding-bottom: 4.5rem; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-optical-sizing: auto;
+      text-wrap: pretty;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      font-size: clamp(2.75rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.09;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-intro {
+      max-width: 660px;
+      margin-top: 1.625rem;
+      color: var(--slate);
+      font-size: 18px;
+      line-height: 1.7;
+      text-wrap: pretty;
+    }
+
+    .hero-model {
+      width: min(410px, 100%);
+      margin-top: 2.5rem;
+    }
+
+    .hero-model svg,
+    .diagram svg,
+    .feedback-path svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .principle-section {
+      border-top: 0.5px solid var(--border);
+      padding-top: 4.75rem;
+    }
+
+    .section-inner {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 5.5rem;
+      align-items: start;
+    }
+
+    .section-context {
+      position: sticky;
+      top: calc(var(--sticky-header-h) + 1.5rem);
+      padding-bottom: 4rem;
+    }
+
+    .section-context h2 {
+      font-size: 34px;
+      font-weight: 350;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+    }
+
+    .section-orientation {
+      margin-top: 1.125rem;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.7;
+      text-wrap: pretty;
+    }
+
+    .pov-pair {
+      position: relative;
+      min-width: 0;
+      padding-left: 2.25rem;
+    }
+
+    .pov-pair::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      bottom: 5rem;
+      width: 1px;
+      background: var(--spine);
+    }
+
+    .pov {
+      position: relative;
+      min-width: 0;
+      padding-bottom: 4.125rem;
+    }
+
+    .pov:last-child { padding-bottom: 4.75rem; }
+
+    .pov::before {
+      content: '';
+      position: absolute;
+      left: -2.25rem;
+      top: 1.125rem;
+      width: 1.625rem;
+      height: 1px;
+      background: var(--spine);
+    }
+
+    .pov h3 {
+      max-width: 640px;
+      font-size: 27px;
+      font-weight: 400;
+      line-height: 1.32;
+      letter-spacing: -0.01em;
+    }
+
+    .thesis {
+      max-width: 640px;
+      margin-top: 1.25rem;
+      font-size: 16.5px;
+      line-height: 1.75;
+      text-wrap: pretty;
+    }
+
+    strong { font-weight: 500; }
+
+    .diagram {
+      width: min(360px, 100%);
+      margin: 2.125rem 0 1.875rem;
+    }
+
+    .diagram svg { aspect-ratio: 12 / 5; }
+
+    .svg-ink { stroke: var(--ink); }
+    .svg-slate { stroke: var(--slate); }
+    .svg-plum { stroke: var(--plum); }
+    .svg-gold { stroke: var(--gold); }
+    .svg-teal { stroke: var(--teal); }
+    .svg-risk { stroke: var(--risk); }
+    .svg-lavender-fill { fill: var(--lavender); }
+    .svg-teal-fill { fill: var(--teal-tint); }
+    .svg-gold-fill { fill: var(--gold-tint); }
+    .svg-plum-fill { fill: var(--plum); }
+    .svg-ink-fill { fill: var(--ink); }
+    .svg-linen-fill { fill: var(--linen); }
+    .svg-none { fill: none; }
+    .hairline { stroke-width: 1.25; }
+    .signal-line { stroke-width: 2; }
+    .emphasis-line { stroke-width: 2.5; }
+    .reference-line { stroke-dasharray: 6 6; }
+    .rounded { stroke-linecap: round; stroke-linejoin: round; }
+
+    details {
+      max-width: 640px;
+      border-top: 0.5px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      list-style: none;
+      cursor: pointer;
+      color: var(--plum);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+
+    details[open] summary::after { content: '−'; }
+
+    .deeper-copy {
+      display: grid;
+      gap: 1rem;
+      padding-top: 1.125rem;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.75;
+      text-wrap: pretty;
+    }
+
+    .deeper-copy strong { color: var(--ink); }
+
+    .feedback {
+      border-top: 0.5px solid var(--border);
+      padding: 4.5rem 0 5.5rem;
+    }
+
+    .feedback h2 {
+      max-width: 660px;
+      font-size: 30px;
+      font-weight: 350;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .feedback p {
+      max-width: 560px;
+      margin-top: 0.875rem;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .feedback-path {
+      width: min(520px, 100%);
+      margin-top: 1.875rem;
+    }
+
+    footer { background: var(--plum); }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .footer-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .footer-credit {
+      display: block;
+      margin-top: 0.125rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-meta {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-link {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .footer-link:hover {
+      color: #ffffff;
+      border-bottom-color: rgba(255,255,255,0.7);
+    }
+
+    @keyframes draw-line {
+      from { stroke-dashoffset: var(--draw-length, 400); }
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes open-field {
+      from { opacity: 0.12; transform: scaleX(0.04); }
+      to { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes settle-reading {
+      from { transform: translateY(-18px); opacity: 0.2; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .motion-ready [data-animate]:not(.has-played) .anim-draw {
+      stroke-dasharray: var(--draw-length, 400);
+      stroke-dashoffset: var(--draw-length, 400);
+    }
+
+    .motion-ready [data-animate]:not(.has-played) .anim-fade { opacity: 0; }
+
+    .motion-ready [data-animate]:not(.has-played) .anim-open {
+      opacity: 0.12;
+      transform: scaleX(0.04);
+      transform-origin: 46% center;
+    }
+
+    .motion-ready [data-animate]:not(.has-played) .anim-settle {
+      opacity: 0.2;
+      transform: translateY(-18px);
+    }
+
+    .motion-ready [data-animate].has-played .anim-draw {
+      animation: draw-line 900ms cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .motion-ready [data-animate].has-played .anim-fade {
+      animation: fade-in 450ms ease both;
+    }
+
+    .motion-ready [data-animate].has-played .anim-open {
+      animation: open-field 800ms cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .motion-ready [data-animate].has-played .anim-settle {
+      animation: settle-reading 750ms cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .motion-ready [data-delay="1"] { animation-delay: 120ms !important; }
+    .motion-ready [data-delay="2"] { animation-delay: 240ms !important; }
+    .motion-ready [data-delay="3"] { animation-delay: 360ms !important; }
+    .motion-ready [data-delay="4"] { animation-delay: 480ms !important; }
+
+    @media (max-width: 900px) {
+      .hero { padding-top: 4.5rem; padding-bottom: 4rem; }
+      .principle-section { padding-top: 3.75rem; }
+      .section-inner { grid-template-columns: 240px minmax(0, 1fr); gap: 3.25rem; }
+      .section-context h2 { font-size: 30px; }
+    }
+
+    @media (max-width: 760px) {
+      .section-inner { display: block; }
+      .section-context { position: static; padding-bottom: 2.25rem; }
+      .section-context h2 { font-size: 28px; }
+      .section-orientation { max-width: 540px; }
+      .pov-pair { padding-left: 1.5rem; }
+      .pov-pair::before { bottom: 3.25rem; }
+      .pov::before { left: -1.5rem; width: 0.875rem; top: 0.9rem; }
+      .pov { padding-bottom: 3.5rem; }
+      .pov:last-child { padding-bottom: 3.75rem; }
+      .pov h3 { font-size: 24px; }
+      .thesis { font-size: 15.5px; margin-top: 1rem; }
+      .diagram { margin: 1.625rem 0 1.5rem; }
+      .deeper-copy { font-size: 14.5px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero,
+      .section-inner,
+      .feedback-inner { padding-left: 1rem; padding-right: 1rem; }
+      .hero { padding-top: 2.75rem; padding-bottom: 3.25rem; }
+      .hero h1 { font-size: 33px; line-height: 1.14; letter-spacing: -0.03em; }
+      .hero-intro { margin-top: 1.25rem; font-size: 16px; }
+      .hero-model { margin-top: 2rem; }
+      .principle-section { padding-top: 2.25rem; }
+      .section-context { padding-bottom: 1.75rem; }
+      .section-context h2 { font-size: 26px; }
+      .section-orientation { margin-top: 0.75rem; }
+      .pov-pair { padding-left: 1.25rem; }
+      .pov-pair::before { bottom: 2.75rem; }
+      .pov::before { left: -1.25rem; width: 0.8125rem; }
+      .pov { padding-bottom: 3rem; }
+      .pov:last-child { padding-bottom: 3.25rem; }
+      .pov h3 { font-size: 22px; line-height: 1.35; }
+      .diagram { width: 100%; }
+      .feedback { padding: 2.75rem 0 3.5rem; }
+      .feedback h2 { font-size: 26px; }
+      .footer-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .header-inner { padding: 0 1rem; }
+      .header-links { gap: 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .header-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0.75rem 1rem;
+        row-gap: 0.6rem;
+      }
+      .header-links { width: 100%; margin-left: 0; gap: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="header-name">Rachel Hull</a>
+      <span class="header-dot">·</span>
+      <span class="header-role">Lifecycle &amp; Growth Marketing</span>
+      <ul class="header-links">
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="lifecycle-os.html" class="active" aria-current="page">LifecycleOS</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">Lifecycle Operating System</p>
+      <h1 id="page-title">Lifecycle is a system that continuously observes, interprets, intervenes, learns, and recalibrates.</h1>
+      <p class="hero-intro">Strong lifecycle marketing connects understanding customer behavior, choosing meaningful interventions, making sophistication scalable, and continually recalibrating as customers and the business change.</p>
+      <div class="hero-model" data-animate>
+        <svg viewBox="0 0 410 228" role="img" aria-labelledby="ring-title ring-desc">
+          <title id="ring-title">Lifecycle operating model</title>
+          <desc id="ring-desc">A clockwise cycle moves from Understand to Intervene to Scale to Recalibrate and returns to Understand.</desc>
+          <defs>
+            <marker id="ring-arrow-ink" viewBox="0 0 8 8" refX="6.6" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0L8 4L0 8Z" fill="#111111"/>
+            </marker>
+            <marker id="ring-arrow-plum" viewBox="0 0 8 8" refX="6.6" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0 0L8 4L0 8Z" fill="#5C3A7E"/>
+            </marker>
+          </defs>
+          <g fill="none" stroke-width="2.25" stroke-linecap="round">
+            <path class="svg-ink anim-draw" data-delay="1" pathLength="100" style="--draw-length:100" d="M218 40A76 76 0 0 1 280 102" marker-end="url(#ring-arrow-ink)"/>
+            <path class="svg-ink anim-draw" data-delay="2" pathLength="100" style="--draw-length:100" d="M280 126A76 76 0 0 1 218 188" marker-end="url(#ring-arrow-ink)"/>
+            <path class="svg-ink anim-draw" data-delay="3" pathLength="100" style="--draw-length:100" d="M192 188A76 76 0 0 1 130 126" marker-end="url(#ring-arrow-ink)"/>
+            <path class="svg-plum anim-draw" data-delay="4" pathLength="100" style="--draw-length:100" d="M130 102A76 76 0 0 1 192 40" marker-end="url(#ring-arrow-plum)"/>
+          </g>
+          <g fill="#F7F6F3" stroke="#111111" stroke-width="1.75">
+            <circle cx="205" cy="38" r="6"/><circle cx="282" cy="114" r="6"/>
+            <circle cx="205" cy="190" r="6"/><circle cx="128" cy="114" r="6"/>
+          </g>
+          <g fill="#111111" font-family="Outfit, sans-serif" font-size="11" font-weight="500" letter-spacing=".04em">
+            <text x="205" y="17" text-anchor="middle">Understand</text>
+            <text x="306" y="118">Intervene</text>
+            <text x="205" y="218" text-anchor="middle">Scale</text>
+            <text x="104" y="118" text-anchor="end">Recalibrate</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="principle-section" aria-labelledby="understand-heading">
+      <div class="section-inner">
+        <div class="section-context">
+          <h2 id="understand-heading">Understand the behavior</h2>
+          <p class="section-orientation">Identify what is actually happening—and why—before selecting an intervention.</p>
+        </div>
+        <div class="pov-pair">
+          <article class="pov">
+            <h3>Activation should represent a behavior that unlocks meaningful customer value.</h3>
+            <p class="thesis">Activation shouldn't just be a milestone correlated with retention or conversion. It should represent a behavior that meaningfully changes the customer's ability to get value from the product. Understanding what that behavior unlocks—and what prevents customers from reaching it—turns an activation metric into an actionable lifecycle strategy.</p>
+            <div class="diagram" data-animate>
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="activation-title activation-desc">
+                <title id="activation-title">Activation unlocks customer value</title>
+                <desc id="activation-desc">A sequence of customer behaviors reaches one decisive behavior that raises the available level of value for the behaviors that follow.</desc>
+                <path class="svg-lavender-fill anim-open" d="M166 37H342V111H166Z"/>
+                <path class="svg-slate svg-none hairline reference-line" d="M18 76H157"/>
+                <path class="svg-slate svg-none hairline reference-line" d="M174 37H342"/>
+                <path class="svg-ink svg-none hairline" d="M18 111H342"/>
+                <path class="svg-plum svg-none emphasis-line rounded anim-draw" data-delay="1" style="--draw-length:90" d="M164 111V37"/>
+                <g class="svg-ink-fill">
+                  <circle cx="38" cy="111" r="4"/><circle cx="78" cy="111" r="4"/><circle cx="118" cy="111" r="4"/>
+                  <circle cx="164" cy="111" r="5" fill="#5C3A7E"/>
+                  <circle cx="206" cy="111" r="4"/><circle cx="248" cy="111" r="4"/><circle cx="290" cy="111" r="4"/><circle cx="332" cy="111" r="4"/>
+                </g>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>Activation metrics are useful because they simplify a complicated customer journey into something a business can measure and rally around. But the metric itself isn't the strategy.</p>
+                <p>A strong activation milestone represents a meaningful change in the customer's relationship with the product: they've done something that makes the value proposition more real, more accessible, or more likely to repeat. That's why customers who activate often retain or convert at higher rates. The behavior isn't valuable because we've labeled it "activation"; we've labeled it activation because it unlocks value.</p>
+                <p>That distinction changes how lifecycle approaches the problem. Instead of simply asking "How do we get more customers to complete this step?", ask what value the step unlocks, what has to be true for the customer to want it, and what prevents them from getting there. Sometimes communication can remove the barrier. Sometimes the answer lies in segmentation, timing, sequence, the product experience, or something else entirely.</p>
+              </div>
+            </details>
+          </article>
+
+          <article class="pov">
+            <h3>The right intervention starts with the right diagnosis</h3>
+            <p class="thesis">A funnel tells you where customers stop progressing, <strong>but not what to do about it.</strong> The solution requires understanding the behavior underneath the drop-off: who isn't progressing, what distinguishes them, what they're doing instead, and what's actually preventing the next step. That diagnosis determines whether the right intervention is messaging, segmentation, timing, sequence—or something else entirely.</p>
+            <div class="diagram" data-animate>
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="diagnosis-title diagnosis-desc">
+                <title id="diagnosis-title">A progression break requires diagnosis</title>
+                <desc id="diagnosis-desc">Observed progress stops at a marked break while an expected continuation and three unresolved possible causes remain visible.</desc>
+                <path class="svg-ink svg-none signal-line rounded" d="M18 48H168"/>
+                <path class="svg-slate svg-none hairline reference-line" d="M178 48H342"/>
+                <path class="svg-gold svg-none emphasis-line rounded anim-draw" style="--draw-length:75" d="M173 29V67"/>
+                <path class="svg-slate svg-none hairline anim-fade" data-delay="1" d="M173 68V92M173 92H88V112M173 92V120M173 92H258V112"/>
+                <g class="svg-none svg-slate hairline anim-fade" data-delay="2">
+                  <circle cx="88" cy="120" r="8"/>
+                  <rect x="165" y="112" width="16" height="16"/>
+                  <path d="M258 111L267 127H249Z"/>
+                </g>
+                <g class="svg-ink-fill"><circle cx="28" cy="48" r="4"/><circle cx="73" cy="48" r="4"/><circle cx="118" cy="48" r="4"/><circle cx="163" cy="48" r="4"/></g>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>Funnel analysis is good at showing where outcomes diverge. A meaningful drop between signup and activation, activation and adoption, or trial and conversion tells you where to investigate. It doesn't tell you what will change the outcome.</p>
+                <p>Start by interrogating the behavior underneath the aggregate. Who is getting through? Who isn't? What did those customers do differently before the drop-off? Are meaningful segments or cohorts hidden inside the average? What happens instead of the behavior you expected? And what's actually preventing the next step?</p>
+                <p>Those questions can reveal very different problems behind an identical-looking funnel leak. Customers may not understand the next step. They may understand it perfectly but not see enough value in taking it. They may encounter friction. They may be trying to accomplish something different from what you assumed. Or the milestone itself may not represent the customer behavior you thought it did.</p>
+                <p>Each diagnosis points toward a different intervention. The message itself may need to change—or the problem may be who receives it, when they receive it, what precedes or follows it, or whether communication is the right intervention at all. The work is matching the intervention to the barrier rather than defaulting to the most obvious lever.</p>
+                <p><strong>A funnel leak is a signal to investigate, not a prescription for what to send.</strong></p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="principle-section" aria-labelledby="communication-heading">
+      <div class="section-inner">
+        <div class="section-context">
+          <h2 id="communication-heading">Design the communication system</h2>
+          <p class="section-orientation">Choose how communication should intervene in the customer's actual context.</p>
+        </div>
+        <div class="pov-pair">
+          <article class="pov">
+            <h3>Channel strategy starts with the job the communication needs to do</h3>
+            <p class="thesis">Channels aren't interchangeable delivery mechanisms. They differ in how effectively they can interrupt, explain, persist, add context, and meet the customer's expectations. Start with the job the communication needs to do, then choose the channel—or coordinated channels—best suited to doing it for that customer.</p>
+            <div class="diagram" data-animate>
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="routing-title routing-desc">
+                <title id="routing-title">Deliberate communication routing</title>
+                <desc id="routing-desc">One communication need reaches a decision point. Four routes remain available while two coordinated routes are deliberately selected and converge on one outcome.</desc>
+                <path class="svg-ink svg-none signal-line rounded" d="M18 75H91"/>
+                <path class="svg-ink svg-linen-fill hairline" d="M100 65L110 75L100 85L90 75Z"/>
+                <g class="svg-slate svg-none hairline rounded">
+                  <path d="M110 75C145 75 151 30 194 30H248"/>
+                  <path d="M110 75H248"/>
+                  <path d="M110 75C145 75 151 120 194 120H248"/>
+                  <path d="M110 75C140 75 156 51 194 51H248"/>
+                </g>
+                <g class="svg-plum svg-none emphasis-line rounded">
+                  <path class="anim-draw" style="--draw-length:180" d="M110 75C145 75 151 30 194 30H250C278 30 286 75 317 75"/>
+                  <path class="anim-draw" data-delay="1" style="--draw-length:170" d="M110 75C140 75 156 51 194 51H250C278 51 286 75 317 75"/>
+                </g>
+                <circle cx="326" cy="75" r="6" fill="#F7F6F3" stroke="#111111" stroke-width="1.75"/>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>Different channels create different experiences and meet customer expectations in different ways. SMS can command immediate attention but offers little room for complexity. Email can explain, educate, and persist beyond the initial interaction, but may not be seen when timing matters. Push can create timely interruption when the customer isn't actively using the product, but is easy to lose once dismissed. In-product communication can add context at the moment of action, but only reaches someone who is actually there.</p>
+                <p>Those differences make channel choice a strategic decision, not a distribution decision. Ask what the customer needs from the communication: Does this need to interrupt them? Can it wait? Does it require explanation? Is its usefulness tied to what they're doing right now? What else is happening in this channel for this customer right now? Does it need to remain available after they interact with it?</p>
+                <p>Sometimes one channel clearly fits the job. Sometimes channels need to work together: an urgent interruption may need a richer follow-up, or an email may be reinforced when the customer reaches the relevant product surface. And the right answer may differ by customer based on their behavior, context, or relationship with a channel. The point isn't to maximize channel coverage. It's to give each channel a deliberate role.</p>
+              </div>
+            </details>
+          </article>
+
+          <article class="pov">
+            <h3>Lifecycle should steward customer attention across functions and channels</h3>
+            <p class="thesis">Customers experience the combined weight of communication across functions and channels, even when the teams sending it don't. Lifecycle is positioned to see that communication as a whole: how it accumulates over time, when attention is worth asking for, and when restraint preserves it for something that matters more.</p>
+            <div class="diagram">
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="pressure-title pressure-desc">
+                <title id="pressure-title">A managed range of communication pressure</title>
+                <desc id="pressure-desc">Low and high communication pressure are both risk zones. A broad managed range lies between them, with the current reading clearly inside that range.</desc>
+                <path d="M48 115A132 132 0 0 1 83 51" fill="none" stroke="#A35F58" stroke-width="13" stroke-linecap="butt"/>
+                <path d="M83 51A132 132 0 0 1 277 51" fill="none" stroke="#D8EAE7" stroke-width="13" stroke-linecap="butt"/>
+                <path d="M277 51A132 132 0 0 1 312 115" fill="none" stroke="#A35F58" stroke-width="13" stroke-linecap="butt"/>
+                <g stroke="#6B6B6B" stroke-width="1.25">
+                  <path d="M58 111L46 116"/><path d="M73 75L62 68"/><path d="M108 45L102 33"/>
+                  <path d="M150 30L147 16"/><path d="M210 30L213 16"/><path d="M252 45L258 33"/>
+                  <path d="M287 75L298 68"/><path d="M302 111L314 116"/>
+                </g>
+                <path d="M180 116L218 52" fill="none" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="180" cy="116" r="6" fill="#111111"/>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>Messages that make sense individually can collectively ask too much of the customer—or leave important gaps. The problem is that responsibility for those messages is often distributed across teams, while the customer experiences their combined effect.</p>
+                <p>Lifecycle is uniquely positioned to steward that communication environment because it sees the customer relationship across channels and over time. That doesn't mean Lifecycle should control every interaction. Product, Support, Sales, Growth, and other functions have legitimate reasons to communicate with customers and expertise that should shape those interactions.</p>
+                <p>That broader view lets Lifecycle see when communications are starting to compete and establish guardrails for the communication set as a whole. The aim is to protect the customer's willingness to keep paying attention.</p>
+                <p>That doesn't always mean communicating less. Irrelevant, redundant, or ineffective communications shouldn't survive simply because they already exist, but there are also moments when the customer or business value clearly justifies asking for attention.</p>
+                <p>Too little communication can create a different problem. Mature, successful customers may naturally need fewer interventions than customers who are onboarding or struggling. But extended silence can allow familiarity and relevance to decay. Useful, appropriately paced communication can preserve the relationship without manufacturing engagement for its own sake.</p>
+                <p><strong>The objective is not to maximize communication or minimize it. It's to preserve a relationship in which the customer is willing to pay attention when something genuinely matters.</strong></p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="principle-section" aria-labelledby="scale-heading">
+      <div class="section-inner">
+        <div class="section-context">
+          <h2 id="scale-heading">Make sophistication scalable</h2>
+          <p class="section-orientation">Build a system that can make more nuanced decisions without multiplying complexity.</p>
+        </div>
+        <div class="pov-pair">
+          <article class="pov">
+            <h3>AI should make lifecycle marketing more sophisticated</h3>
+            <p class="thesis">AI creates the most value when it expands what Lifecycle can understand, decide, and improve—not simply how quickly it can produce. Better execution is the starting point. The larger opportunity is stronger analysis and judgment, then systems that can detect changing customer behavior and help Lifecycle respond as its assumptions change.</p>
+            <div class="diagram" data-animate>
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="ai-title ai-desc">
+                <title id="ai-title">Expanded information and relational complexity</title>
+                <desc id="ai-desc">A small bounded set of information and relationships expands into a larger connected system that can also reason through feedback.</desc>
+                <rect x="16" y="27" width="118" height="96" rx="2" fill="none" stroke="#6B6B6B" stroke-width="1.25"/>
+                <g fill="#111111"><circle cx="45" cy="55" r="4"/><circle cx="103" cy="52" r="4"/><circle cx="73" cy="98" r="4"/></g>
+                <g fill="none" stroke="#111111" stroke-width="1.25"><path d="M49 56L99 53M47 59L70 94M100 56L77 95"/></g>
+                <g class="anim-fade">
+                  <g fill="#111111"><circle cx="176" cy="43" r="4"/><circle cx="220" cy="31" r="4"/><circle cx="263" cy="48" r="4"/><circle cx="316" cy="35" r="4"/><circle cx="195" cy="88" r="4"/><circle cx="246" cy="104" r="4"/><circle cx="306" cy="91" r="4"/><circle cx="286" cy="126" r="4"/></g>
+                  <g fill="none" stroke="#5C3A7E" stroke-width="1.5" stroke-linecap="round">
+                    <path class="anim-draw" style="--draw-length:260" d="M180 43L216 32L259 47L312 36M178 46L193 84L242 102L302 92M221 35L197 84M263 52L248 100M315 39L308 87M250 107L282 124"/>
+                    <path class="anim-draw" data-delay="2" style="--draw-length:180" d="M303 89C333 72 334 119 288 126"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>The easiest way to use AI in lifecycle marketing is to make existing work faster: draft more copy, generate variants, summarize research, or accelerate production. That's useful, but efficiency is only the first layer of the opportunity.</p>
+                <p>AI becomes more valuable when it helps Lifecycle reason across information that is difficult to hold together manually: customer behavior, message performance, product events, segmentation, journey logic, and business context. It can help identify patterns, interrogate assumptions, surface opportunities, and make a marketer's judgment more informed.</p>
+                <p>The bigger opportunity is continuous improvement. Lifecycle programs are built on assumptions: that a particular behavior matters, that a segment responds differently, that a certain intervention helps, that the business still prioritizes the same outcome. Those assumptions—and even the goals themselves—can change or decay. More sophisticated systems should help detect that drift rather than allowing programs to keep operating indefinitely on yesterday's understanding.</p>
+                <p>That doesn't require handing strategy over to an autonomous agent. Different decisions carry different levels of ambiguity and risk. AI can surface evidence, recommend changes, and eventually act within clearly defined boundaries while human judgment remains responsible for context, tradeoffs, and decisions that shouldn't be inferred from behavioral data alone.</p>
+              </div>
+            </details>
+          </article>
+
+          <article class="pov">
+            <h3>Standardization makes personalization scalable</h3>
+            <p class="thesis">Personalization becomes difficult to scale when every useful variation creates another bespoke journey. Standardizing the underlying system—shared goals, decision logic, reusable components, measurement, and governance—creates room to vary content, timing, cadence, channel, and experience intentionally without multiplying complexity.</p>
+            <div class="diagram">
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="standard-title standard-desc">
+                <title id="standard-title">A standardized architecture with available capacity</title>
+                <desc id="standard-desc">Five consistent mounting positions connect to one foundation. Four hold varied modules and one remains intentionally open for future variation.</desc>
+                <path d="M18 126H342" fill="none" stroke="#111111" stroke-width="2"/>
+                <g fill="none" stroke="#6B6B6B" stroke-width="1.25">
+                  <path d="M43 126V112M111 126V112M179 126V112M247 126V112M315 126V112"/>
+                  <rect x="20" y="52" width="46" height="60"/><rect x="88" y="31" width="46" height="81"/>
+                  <rect x="156" y="44" width="46" height="68"/><rect x="224" y="22" width="46" height="90"/>
+                  <rect x="292" y="45" width="46" height="67"/>
+                </g>
+                <g>
+                  <path d="M27 72H59M27 91H50" stroke="#111111" stroke-width="2"/>
+                  <circle cx="55" cy="94" r="5" fill="#5C3A7E"/>
+                  <rect x="96" y="42" width="30" height="17" fill="#FAF0DC"/><path d="M96 70H126M96 88H118" stroke="#111111" stroke-width="2"/>
+                  <path d="M164 57H194M164 77H188" stroke="#111111" stroke-width="2"/><rect x="180" y="88" width="14" height="14" fill="#5C3A7E"/>
+                  <circle cx="247" cy="46" r="9" fill="#FAF0DC"/><path d="M232 68H262M232 86H255" stroke="#111111" stroke-width="2"/><path d="M232 98H262" stroke="#B8762A" stroke-width="2.5"/>
+                </g>
+                <g>
+                  <circle cx="43" cy="126" r="4" fill="#111111"/><circle cx="111" cy="126" r="4" fill="#111111"/>
+                  <circle cx="179" cy="126" r="4" fill="#111111"/><circle cx="247" cy="126" r="4" fill="#111111"/>
+                  <circle cx="315" cy="126" r="4" fill="#F7F6F3" stroke="#6B6B6B" stroke-width="1.25"/>
+                </g>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>By standardization, I mean the underlying architecture: shared goals, consistent decision logic, reusable components, common measurement, and governance. Those things don't need to be reinvented every time the customer experience varies.</p>
+                <p>That foundation creates more room for meaningful personalization. Content is often the easiest place to start, but customer behavior, lifecycle stage, segment, timing, cadence, channel, and next step can all vary when there is a reason for them to. Without a common architecture, each useful variation risks becoming its own campaign or journey—and complexity compounds quickly.</p>
+                <p><strong>Standardize what should be consistent so you can intentionally vary what should be different.</strong></p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="principle-section" aria-labelledby="outcomes-heading">
+      <div class="section-inner">
+        <div class="section-context">
+          <h2 id="outcomes-heading">Align around outcomes</h2>
+          <p class="section-orientation">Keep goals and assumptions current, and bring the right expertise and judgment to shared outcomes.</p>
+        </div>
+        <div class="pov-pair">
+          <article class="pov">
+            <h3>"Set it and forget it" is a communication failure mode</h3>
+            <p class="thesis">Lifecycle programs encode assumptions about customers, behavior, and business priorities that change over time. Ongoing optimization means more than watching performance metrics: periodically revisit whether the original goal still matters, whether the assumptions behind the program still hold, and whether the program still deserves to exist in its current form.</p>
+            <div class="diagram" data-animate>
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="calibration-title calibration-desc">
+                <title id="calibration-title">A drifting reading is recalibrated</title>
+                <desc id="calibration-desc">A measured reading drifts away from its reference. At a deliberate reset point, the reference is updated and the reading is brought back into alignment.</desc>
+                <path class="svg-slate svg-none hairline reference-line" d="M18 48H222"/>
+                <path class="svg-ink svg-none signal-line rounded" d="M18 48C86 48 122 58 170 71C190 77 205 80 222 81"/>
+                <g class="svg-slate hairline">
+                  <path d="M75 48V52M112 48V58M149 48V67M186 48V77"/>
+                </g>
+                <path class="svg-gold svg-none emphasis-line rounded anim-draw" style="--draw-length:80" d="M230 31V104"/>
+                <path class="svg-slate svg-none hairline reference-line anim-fade" data-delay="1" d="M238 81H342"/>
+                <path class="svg-ink svg-none signal-line rounded anim-settle" data-delay="2" d="M238 81H342"/>
+                <circle cx="230" cy="81" r="5" fill="#B8762A"/>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>Every automated communication is built for a particular moment: a business goal mattered, customer behavior suggested an opportunity, and a set of assumptions informed the audience, message, timing, cadence, and journey.</p>
+                <p>Those conditions don't stay fixed. Business priorities shift. Products and customer behavior change. Segments evolve. A timing assumption that once worked may drift. A message may continue producing acceptable results even after the reason it was created has become less important.</p>
+                <p>That's why optimization can't begin and end with campaign performance. Start with the goal: is this outcome still relevant, valuable, and prioritized? Then revisit the assumptions that connect the communication to that goal. Is the audience still the right one? Does the behavior still mean what we thought it meant? Are timing and cadence still appropriate? Is the intervention still helping?</p>
+                <p>Sometimes the answer is optimization: adjust the audience, sequence, timing, cadence, or message. Sometimes the program needs to be rethought more substantially. And sometimes the right optimization is to stop sending it.</p>
+                <p><strong>Automation should remove repetitive execution, not repetitive judgment.</strong></p>
+              </div>
+            </details>
+          </article>
+
+          <article class="pov">
+            <h3>Shared outcomes require distinct expertise</h3>
+            <p class="thesis">Strong cross-functional work requires both contribution and trust. Product, Lifecycle, Growth, Support, and Sales bring different expertise to a shared problem, but good ideas aren't constrained by functional boundaries. When perspectives differ, trust means challenging each other's thinking while respecting where deeper expertise and accountability ultimately sit.</p>
+            <div class="diagram" data-animate>
+              <svg viewBox="0 0 360 150" role="img" aria-labelledby="signals-title signals-desc">
+                <title id="signals-title">Distinct expertise converges on a shared decision</title>
+                <desc id="signals-desc">Four visibly distinct signals arrive at one shared decision and continue together while remaining identifiable.</desc>
+                <g fill="none" stroke-linecap="round">
+                  <path class="anim-draw" style="--draw-length:300" d="M18 31H108C144 31 166 68 218 68H342" stroke="#5C3A7E" stroke-width="2.25"/>
+                  <path class="anim-draw" data-delay="1" style="--draw-length:300" d="M18 58H114C148 58 170 73 218 73H342" stroke="#2A4A45" stroke-width="2.25" stroke-dasharray="15 5 2 5"/>
+                  <path class="anim-draw" data-delay="2" style="--draw-length:300" d="M18 90H112C146 90 170 78 218 78H342" stroke="#B8762A" stroke-width="3" stroke-dasharray="1 8"/>
+                  <path class="anim-draw" data-delay="3" style="--draw-length:300" d="M18 119H108C144 119 166 83 218 83H342" stroke="#111111" stroke-width="1.5"/>
+                </g>
+                <path d="M226 51V100" fill="none" stroke="#111111" stroke-width="2.5"/>
+              </svg>
+            </div>
+            <details>
+              <summary>Go deeper</summary>
+              <div class="deeper-copy">
+                <p>Shared goals create the foundation for strong cross-functional work. Distinct expertise is what makes that collaboration valuable.</p>
+                <p>The same customer behavior can look different depending on where you sit. Product may see opportunities to change the experience itself. Lifecycle may see communication, timing, segmentation, orchestration, and customer attention. Growth, Support, and Sales bring still other perspectives based on how they encounter the customer and the outcomes they're trying to influence.</p>
+                <p>Functional expertise doesn't constrain where good ideas can come from. Marketing can see a product opportunity; Product can have a good marketing idea. Strong teams make room for those contributions while still recognizing that different functions bring different depth of expertise to the decision.</p>
+                <p>Trust matters most when the perspectives don't align. The people closest to a discipline know things that aren't always visible from the outside: constraints, context, and the accumulated judgment that comes from working in it. Collaboration means challenging each other's thinking and explaining the reasoning behind a decision, but it also means knowing when to trust the judgment of the people accountable for that domain.</p>
+                <p>That trust needs to work in both directions. Shared outcomes don't always mean perfectly aligned priorities, and being clear about where goals overlap—and where they don't—makes the partnership stronger. <strong>When the outcome is genuinely shared, good collaboration doesn't require consensus on every decision. It requires enough trust to challenge each other's thinking and still respect where the final judgment belongs.</strong></p>
+              </div>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feedback" aria-labelledby="feedback-heading">
+      <div class="feedback-inner">
+        <h2 id="feedback-heading">What you learn changes what you look for next.</h2>
+        <p>Each cycle leaves you with a better understanding of the customer—and better questions for the next one.</p>
+        <div class="feedback-path" data-animate>
+          <svg viewBox="0 0 520 84" role="img" aria-labelledby="feedback-title feedback-desc">
+            <title id="feedback-title">Learning returns to understanding</title>
+            <desc id="feedback-desc">A contained return path shows that what the system learns changes what it looks for next.</desc>
+            <defs>
+              <marker id="return-arrow" viewBox="0 0 8 8" refX="6.7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0 0L8 4L0 8Z" fill="#5C3A7E"/>
+              </marker>
+            </defs>
+            <circle cx="486" cy="18" r="6" fill="#F7F6F3" stroke="#111111" stroke-width="1.75"/>
+            <path class="anim-draw" style="--draw-length:700" pathLength="700" d="M486 25V50Q486 62 474 62H46Q34 62 34 50V28" fill="none" stroke="#5C3A7E" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#return-arrow)"/>
+            <circle cx="34" cy="18" r="6" fill="#F7F6F3" stroke="#111111" stroke-width="1.75"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-row">
+        <span class="footer-name">Rachel Hull</span>
+        <span class="footer-meta">Lifecycle &amp; Growth Marketing · <a href="https://linkedin.com/in/rachel-e-hull" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></span>
+      </div>
+      <span class="footer-credit">Site designed, built &amp; iterated with ChatGPT, Claude Code &amp; Codex</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var siteHeader = document.querySelector('header');
+      function syncHeaderHeight() {
+        if (!siteHeader) return;
+        var height = Math.round(siteHeader.getBoundingClientRect().height);
+        if (height) document.documentElement.style.setProperty('--sticky-header-h', height + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion || !('IntersectionObserver' in window)) return;
+
+      var visuals = document.querySelectorAll('[data-animate]');
+      try {
+        var observer = new IntersectionObserver(function (entries, activeObserver) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('has-played');
+            activeObserver.unobserve(entry.target);
+          });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.25 });
+
+        document.documentElement.classList.add('motion-ready');
+        visuals.forEach(function (visual) { observer.observe(visual); });
+      } catch (error) {
+        document.documentElement.classList.remove('motion-ready');
+      }
+    }());
+  </script>
+</body>
+</html>
