@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ED4QVHV7Q8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ED4QVHV7Q8');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Senior Lifecycle Marketing Manager Project — Rachel Hull</title>
@@ -70,7 +79,7 @@
     section:last-of-type { border-bottom: none; }
 
     /* ── PAGE HEADER / INTRO ── */
-    .page-header { max-width: var(--max-width); margin: 0 auto; padding: 4rem 1.5rem 2.5rem; border-bottom: 0.5px solid var(--border); }
+    .page-header { max-width: var(--max-width); margin: 0 auto; padding: 4rem 1.5rem 1.5rem; border-bottom: 0.5px solid var(--border); }
 
     .eyebrow {
       font-family: 'Outfit', sans-serif;
@@ -100,8 +109,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem 1.5rem;
-      margin-top: 1.75rem;
-      padding-top: 1.5rem;
+      margin: 1.75rem -1.5rem 0;
+      padding: 1.5rem 1.5rem 0;
       border-top: 0.5px solid var(--border);
     }
     .quick-nav a { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500; color: var(--plum); text-decoration: none; border-bottom: 1px solid transparent; }
@@ -347,7 +356,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 640px) {
-      .page-header { padding: 3rem 1.5rem 2rem; }
+      .page-header { padding: 3rem 1.5rem 1.5rem; }
       section { padding: 2.5rem 1.5rem; }
       .intv-title { font-size: 19px; }
       .surface-line { flex-direction: column; gap: 0.4rem; }
@@ -364,13 +373,14 @@
   <!-- STICKY HEADER -->
   <header>
     <div class="header-inner">
-      <a href="index.html" class="header-name">Rachel Hull</a>
+      <a href="index.html?ref=sinch_project" class="header-name">Rachel Hull</a>
       <span class="header-dot">·</span>
-      <span class="header-role">Senior Lifecycle Marketing Manager Project</span>
+      <span class="header-role">Sr. LMM Project</span>
       <ul class="header-links">
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="impact.html?ref=sinch_project">Impact</a></li>
+        <li><a href="lifecycle-os.html?ref=sinch_project">LifecycleOS</a></li>
+        <li><a href="about.html?ref=sinch_project">About</a></li>
+        <li><a href="contact.html?ref=sinch_project">Contact</a></li>
       </ul>
     </div>
   </header>
@@ -736,7 +746,7 @@
   <div class="impact-cta">
     <h2>Want to walk through the reasoning behind any of this?</h2>
     <p>Happy to go deeper on trade-offs, the branches that didn't make the cut, or how this would change with real usage data.</p>
-    <a href="contact.html" class="cta-button">Get in touch</a>
+    <a href="contact.html?ref=sinch_project" class="cta-button">Get in touch</a>
   </div>
 
   <!-- FOOTER -->
