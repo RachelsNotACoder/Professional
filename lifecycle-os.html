@@ -8,6 +8,11 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-ED4QVHV7Q8');
+
+    const refSource = new URLSearchParams(window.location.search).get('ref');
+    if (refSource !== null && refSource !== '') {
+      gtag('event', 'portfolio_referral', { ref_source: refSource });
+    }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -602,7 +607,7 @@
           <p class="section-orientation">Identify what is actually happening—and why—before selecting an intervention.</p>
         </div>
         <div class="pov-pair">
-          <article class="pov">
+          <article class="pov" data-thesis-id="activation-unlocks-value">
             <h3>Activation should represent a behavior that unlocks meaningful customer value.</h3>
             <p class="thesis">Activation shouldn't just be a milestone correlated with retention or conversion. It should represent a behavior that meaningfully changes the customer's ability to get value from the product. Understanding what that behavior unlocks—and what prevents customers from reaching it—turns an activation metric into an actionable lifecycle strategy.</p>
             <div class="diagram" data-animate>
@@ -631,7 +636,7 @@
             </details>
           </article>
 
-          <article class="pov">
+          <article class="pov" data-thesis-id="diagnosis-before-intervention">
             <h3>The right intervention starts with the right diagnosis</h3>
             <p class="thesis">A funnel tells you where customers stop progressing, <strong>but not what to do about it.</strong> The solution requires understanding the behavior underneath the drop-off: who isn't progressing, what distinguishes them, what they're doing instead, and what's actually preventing the next step. That diagnosis determines whether the right intervention is messaging, segmentation, timing, sequence—or something else entirely.</p>
             <div class="diagram" data-animate>
@@ -672,7 +677,7 @@
           <p class="section-orientation">Choose how communication should intervene in the customer's actual context.</p>
         </div>
         <div class="pov-pair">
-          <article class="pov">
+          <article class="pov" data-thesis-id="channel-strategy-by-job">
             <h3>Channel strategy starts with the job the communication needs to do</h3>
             <p class="thesis">Channels aren't interchangeable delivery mechanisms. They differ in how effectively they can interrupt, explain, persist, add context, and meet the customer's expectations. Start with the job the communication needs to do, then choose the channel—or coordinated channels—best suited to doing it for that customer.</p>
             <div class="diagram" data-animate>
@@ -704,7 +709,7 @@
             </details>
           </article>
 
-          <article class="pov">
+          <article class="pov" data-thesis-id="customer-attention-stewardship">
             <h3>Lifecycle should steward customer attention across functions and channels</h3>
             <p class="thesis">Customers experience the combined weight of communication across functions and channels, even when the teams sending it don't. Lifecycle is positioned to see that communication as a whole: how it accumulates over time, when attention is worth asking for, and when restraint preserves it for something that matters more.</p>
             <div class="diagram">
@@ -746,7 +751,7 @@
           <p class="section-orientation">Build a system that can make more nuanced decisions without multiplying complexity.</p>
         </div>
         <div class="pov-pair">
-          <article class="pov">
+          <article class="pov" data-thesis-id="ai-for-lifecycle-sophistication">
             <h3>AI should make lifecycle marketing more sophisticated</h3>
             <p class="thesis">AI creates the most value when it expands what Lifecycle can understand, decide, and improve—not simply how quickly it can produce. Better execution is the starting point. The larger opportunity is stronger analysis and judgment, then systems that can detect changing customer behavior and help Lifecycle respond as its assumptions change.</p>
             <div class="diagram" data-animate>
@@ -776,7 +781,7 @@
             </details>
           </article>
 
-          <article class="pov">
+          <article class="pov" data-thesis-id="standardization-enables-personalization">
             <h3>Standardization makes personalization scalable</h3>
             <p class="thesis">Personalization becomes difficult to scale when every useful variation creates another bespoke journey. Standardizing the underlying system—shared goals, decision logic, reusable components, measurement, and governance—creates room to vary content, timing, cadence, channel, and experience intentionally without multiplying complexity.</p>
             <div class="diagram">
@@ -824,7 +829,7 @@
           <p class="section-orientation">Keep goals and assumptions current, and bring the right expertise and judgment to shared outcomes.</p>
         </div>
         <div class="pov-pair">
-          <article class="pov">
+          <article class="pov" data-thesis-id="set-it-and-forget-it-failure">
             <h3>"Set it and forget it" is a communication failure mode</h3>
             <p class="thesis">Lifecycle programs encode assumptions about customers, behavior, and business priorities that change over time. Ongoing optimization means more than watching performance metrics: periodically revisit whether the original goal still matters, whether the assumptions behind the program still hold, and whether the program still deserves to exist in its current form.</p>
             <div class="diagram" data-animate>
@@ -854,7 +859,7 @@
             </details>
           </article>
 
-          <article class="pov">
+          <article class="pov" data-thesis-id="shared-outcomes-distinct-expertise">
             <h3>Shared outcomes require distinct expertise</h3>
             <p class="thesis">Strong cross-functional work requires both contribution and trust. Product, Lifecycle, Growth, Support, and Sales bring different expertise to a shared problem, but good ideas aren't constrained by functional boundaries. When perspectives differ, trust means challenging each other's thinking while respecting where deeper expertise and accountability ultimately sit.</p>
             <div class="diagram" data-animate>
@@ -927,6 +932,18 @@
       }
       syncHeaderHeight();
       window.addEventListener('resize', syncHeaderHeight);
+
+      document.querySelectorAll('.pov details').forEach(function (details) {
+        details.addEventListener('toggle', function () {
+          if (!details.open || typeof gtag !== 'function') return;
+          var thesis = details.closest('.pov');
+          var heading = thesis.querySelector('h3');
+          gtag('event', 'lifecycle_thesis_opened', {
+            thesis_id: thesis.dataset.thesisId,
+            thesis_name: heading ? heading.textContent.trim() : thesis.dataset.thesisId,
+          });
+        });
+      });
 
       var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reducedMotion || !('IntersectionObserver' in window)) return;

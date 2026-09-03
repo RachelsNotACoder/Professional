@@ -9,6 +9,11 @@
   gtag('js', new Date());
 
   gtag('config', 'G-ED4QVHV7Q8');
+
+  const refSource = new URLSearchParams(window.location.search).get('ref');
+  if (refSource !== null && refSource !== '') {
+    gtag('event', 'portfolio_referral', { ref_source: refSource });
+  }
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1268,6 +1273,16 @@
           if (i !== active) {
             e.preventDefault();
             goTo(i);
+            return;
+          }
+
+          if (typeof gtag === 'function') {
+            var headline = card.querySelector('.impact-card-headline');
+            var destination = new URL(card.href, window.location.href);
+            gtag('event', 'homepage_impact_card_clicked', {
+              case_id: destination.hash.slice(1),
+              case_name: headline ? headline.textContent.trim() : destination.hash.slice(1),
+            });
           }
         });
       });

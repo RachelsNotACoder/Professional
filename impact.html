@@ -9,6 +9,11 @@
   gtag('js', new Date());
 
   gtag('config', 'G-ED4QVHV7Q8');
+
+  const refSource = new URLSearchParams(window.location.search).get('ref');
+  if (refSource !== null && refSource !== '') {
+    gtag('event', 'portfolio_referral', { ref_source: refSource });
+  }
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1277,6 +1282,10 @@
   const CUE_CLOSED = 'Read the story';
   const CUE_OPEN = 'Close story';
 
+  function trackInteraction(eventName, parameters) {
+    if (typeof gtag === 'function') gtag('event', eventName, parameters);
+  }
+
   function setStoryOpen(stop, open) {
     if (!stop) return;
     stop.classList.toggle('open', open);
@@ -1293,7 +1302,15 @@
     const trigger = stop.querySelector('.case-trigger');
     if (!trigger) return;
     trigger.addEventListener('click', () => {
-      setStoryOpen(stop, !stop.classList.contains('open'));
+      const willOpen = !stop.classList.contains('open');
+      setStoryOpen(stop, willOpen);
+      if (willOpen) {
+        const title = stop.querySelector('.case-title');
+        trackInteraction('impact_case_opened', {
+          case_id: stop.id,
+          case_name: title ? title.textContent.trim() : stop.id,
+        });
+      }
     });
   });
 
@@ -1401,7 +1418,10 @@
       btn.textContent = tag;
       btn.dataset.focus = tag;
       btn.setAttribute('aria-pressed', String(tag === ALL_FOCUS));
-      btn.addEventListener('click', () => applyFocus(tag));
+      btn.addEventListener('click', () => {
+        applyFocus(tag);
+        trackInteraction('impact_filter_selected', { filter_name: tag });
+      });
       focusButtons.appendChild(btn);
 
       const opt = document.createElement('option');
@@ -1411,7 +1431,10 @@
     });
 
     focusSelect.value = ALL_FOCUS;
-    focusSelect.addEventListener('change', () => applyFocus(focusSelect.value));
+    focusSelect.addEventListener('change', () => {
+      applyFocus(focusSelect.value);
+      trackInteraction('impact_filter_selected', { filter_name: focusSelect.value });
+    });
     focusFilter.hidden = false;
   })();
 

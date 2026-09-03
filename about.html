@@ -9,6 +9,11 @@
   gtag('js', new Date());
 
   gtag('config', 'G-ED4QVHV7Q8');
+
+  const refSource = new URLSearchParams(window.location.search).get('ref');
+  if (refSource !== null && refSource !== '') {
+    gtag('event', 'portfolio_referral', { ref_source: refSource });
+  }
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
