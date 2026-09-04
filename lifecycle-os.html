@@ -278,6 +278,22 @@
 
     .diagram svg { aspect-ratio: 12 / 5; }
 
+    .evidence-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--plum);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+      transition: color 0.15s;
+    }
+
+    .evidence-link:hover { color: var(--plum-deep); }
+
     .svg-ink { stroke: var(--ink); }
     .svg-slate { stroke: var(--slate); }
     .svg-plum { stroke: var(--plum); }
@@ -626,6 +642,7 @@
                 </g>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#rent-payments" data-case-id="rent-payments" data-case-name="Rent Payment activation reframe">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -655,6 +672,7 @@
                 <g class="svg-ink-fill"><circle cx="28" cy="48" r="4"/><circle cx="73" cy="48" r="4"/><circle cx="118" cy="48" r="4"/><circle cx="163" cy="48" r="4"/></g>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#vacancy-to-retention" data-case-id="vacancy-to-retention" data-case-name="Vacancy-to-retention: screening-to-lease journey redesign">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -699,6 +717,7 @@
                 <circle cx="326" cy="75" r="6" fill="#F7F6F3" stroke="#111111" stroke-width="1.75"/>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#maintenance-sms" data-case-id="maintenance-sms" data-case-name="Maintenance alerts: SMS for urgent moments">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -728,6 +747,7 @@
                 <circle cx="180" cy="116" r="6" fill="#111111"/>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#analytics-rebuild" data-case-id="analytics-rebuild" data-case-name="Analytics rebuild">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -770,6 +790,7 @@
                 </g>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#persona-development" data-case-id="persona-development" data-case-name="Worker persona development">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -809,6 +830,7 @@
                 </g>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#onboarding-rebuild" data-case-id="onboarding-rebuild" data-case-name="Onboarding series rebuild: intent-based segmentation">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -847,6 +869,7 @@
                 <circle cx="230" cy="81" r="5" fill="#B8762A"/>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#sendgrid-migration" data-case-id="sendgrid-migration" data-case-name="SendGrid to Customer.io migration">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -875,6 +898,7 @@
                 <path d="M226 51V100" fill="none" stroke="#111111" stroke-width="2.5"/>
               </svg>
             </div>
+            <a class="evidence-link" href="impact.html#notification-center" data-case-id="notification-center" data-case-name="Notification Center redesign for multi-channel lifecycle">See it in action</a>
             <details>
               <summary>Go deeper</summary>
               <div class="deeper-copy">
@@ -942,6 +966,27 @@
             thesis_id: thesis.dataset.thesisId,
             thesis_name: heading ? heading.textContent.trim() : thesis.dataset.thesisId,
           });
+        });
+      });
+
+      function trackEvidenceLink(link) {
+        if (typeof gtag !== 'function') return;
+        var thesis = link.closest('.pov');
+        var heading = thesis.querySelector('h3');
+        gtag('event', 'lifecycle_impact_link_clicked', {
+          thesis_id: thesis.dataset.thesisId,
+          thesis_name: heading ? heading.textContent.trim() : thesis.dataset.thesisId,
+          case_id: link.dataset.caseId,
+          case_name: link.dataset.caseName,
+        });
+      }
+
+      document.querySelectorAll('.evidence-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          trackEvidenceLink(link);
+        });
+        link.addEventListener('auxclick', function (event) {
+          if (event.button === 1) trackEvidenceLink(link);
         });
       });
 
