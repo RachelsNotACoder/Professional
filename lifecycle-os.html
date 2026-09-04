@@ -985,9 +985,6 @@
         link.addEventListener('click', function () {
           trackEvidenceLink(link);
         });
-        link.addEventListener('auxclick', function (event) {
-          if (event.button === 1) trackEvidenceLink(link);
-        });
       });
 
       var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
