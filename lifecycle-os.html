@@ -992,6 +992,7 @@
           thesis_name: heading ? heading.textContent.trim() : thesis.dataset.thesisId,
           case_id: link.dataset.caseId,
           case_name: link.dataset.caseName,
+          transport_type: 'beacon',
           event_callback: navigate,
           event_timeout: 800,
         });
