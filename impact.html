@@ -14,6 +14,44 @@
   if (refSource !== null && refSource !== '') {
     gtag('event', 'portfolio_referral', { ref_source: refSource });
   }
+
+  (function () {
+    const storageKey = 'portfolio_lifecycle_impact_click';
+    let rawPending;
+
+    try {
+      rawPending = sessionStorage.getItem(storageKey);
+      if (!rawPending) return;
+      sessionStorage.removeItem(storageKey);
+    } catch (error) {
+      return;
+    }
+
+    try {
+      const pending = JSON.parse(rawPending);
+      const age = Date.now() - pending.timestamp;
+      const validStrings =
+        typeof pending.thesis_id === 'string' && pending.thesis_id !== '' &&
+        typeof pending.thesis_name === 'string' && pending.thesis_name !== '' &&
+        typeof pending.case_id === 'string' && pending.case_id !== '' &&
+        typeof pending.case_name === 'string' && pending.case_name !== '' &&
+        typeof pending.destination_hash === 'string';
+      const validDestination =
+        pending.destination_hash === '#' + pending.case_id &&
+        window.location.hash === pending.destination_hash;
+
+      if (!validStrings || !Number.isFinite(pending.timestamp) || age < 0 || age > 10000 || !validDestination) return;
+
+      gtag('event', 'lifecycle_impact_link_clicked', {
+        thesis_id: pending.thesis_id,
+        thesis_name: pending.thesis_name,
+        case_id: pending.case_id,
+        case_name: pending.case_name,
+      });
+    } catch (error) {
+      // Invalid handoffs are discarded without affecting the Impact page.
+    }
+  }());
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
